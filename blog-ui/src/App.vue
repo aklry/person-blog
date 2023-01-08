@@ -6,7 +6,7 @@
 
 <script>
 import HelloWorld from "./components/HelloWorld.vue";
-import { listUser } from "@/api/user.js";
+import { listUser } from "@/api/test.js";
 export default {
   name: "App",
   components: {
