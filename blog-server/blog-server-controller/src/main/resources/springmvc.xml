@@ -25,4 +25,8 @@
     <mvc:annotation-driven/>
     <!-- 放行静态资源 -->
     <mvc:default-servlet-handler />
+    <!--解决跨域-->
+    <mvc:cors>
+        <mvc:mapping path="/*" allowed-methods="*" allowed-origins="*"/>
+    </mvc:cors>
 </beans>
