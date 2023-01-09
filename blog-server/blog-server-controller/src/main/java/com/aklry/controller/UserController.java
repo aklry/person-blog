@@ -16,7 +16,7 @@ public class UserController {
     @Autowired
     private UserService userService;
     @RequestMapping("/listUser")
-    public List<User> listUser(Model model) {
+    public List<User> listUser() {
         List<User> users = userService.ListUser();
         return users;
     }
