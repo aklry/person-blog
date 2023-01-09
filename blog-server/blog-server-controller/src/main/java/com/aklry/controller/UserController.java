@@ -16,12 +16,9 @@ public class UserController {
     @Autowired
     private UserService userService;
     @RequestMapping("/listUser")
-    public Result listUser(Model model) {
+    public List<User> listUser(Model model) {
         List<User> users = userService.ListUser();
-        model.addAttribute("users",users);
-        Result result = new Result(true,"查找所有学生成功");
-
-        return result;
+        return users;
     }
 
     @PostMapping("/addUser")
