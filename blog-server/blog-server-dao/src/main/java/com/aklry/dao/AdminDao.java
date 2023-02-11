@@ -1,10 +1,7 @@
 package com.aklry.dao;
 
 import com.aklry.domain.Admin;
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -41,6 +38,6 @@ public interface AdminDao {
      */
     @Insert("insert into admin(id,username,password) values(default,#{username},#{password}) ")
     String addAdmin(Admin admin);
-    @Select("select * from admin where username=#{username},password=#{password}")
-    Admin findByParams(String username, String password);
+    @Select("select * from admin where username=#{username} and password=#{password}")
+    Admin findByParams(@Param("username") String username, @Param("password") String password);
 }
