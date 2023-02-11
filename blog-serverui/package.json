@@ -21,6 +21,7 @@
     "@vue/cli-plugin-router": "~5.0.0",
     "@vue/cli-plugin-vuex": "~5.0.0",
     "@vue/cli-service": "~5.0.0",
+    "node-polyfill-webpack-plugin": "^2.0.1",
     "vue-template-compiler": "^2.6.14"
   }
 }

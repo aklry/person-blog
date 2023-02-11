@@ -4,10 +4,10 @@
             <h1>登录</h1>
             <el-form :rules="rules" :model="form" ref="form">
                 <el-form-item label="用户名" prop="username">
-                    <el-input v-model="form.username"></el-input>
+                    <el-input v-model="form.username" ref="username"></el-input>
                 </el-form-item>
                 <el-form-item label="密码" prop="password">
-                    <el-input v-model="form.password" show-password></el-input>
+                    <el-input v-model="form.password" show-password ref="password"></el-input>
                 </el-form-item>
                 <p>无账号,<router-link to="/register" class="register">去注册</router-link></p>
                 <el-form-item style="text-align: center;">
@@ -20,9 +20,23 @@
 
 <script>
 import mixin from '@/mixins/login.js'
+import api from '@/api'
 export default {
     name: 'Login',
-    mixins: [mixin]
+    mixins: [mixin],
+    methods: {
+        submitForm () {
+            api.getAdminInfo({
+                username: this.$data.username,
+                password: this.$data.password
+            })
+                .then(res => {
+                console.log(res.data)
+                })
+            .catch(error => console.log(error))
+
+        }
+    }
 }
 </script>
 
