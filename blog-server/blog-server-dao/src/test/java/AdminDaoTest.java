@@ -23,4 +23,11 @@ public class AdminDaoTest {
         List<Admin> admins = adminDao.listAdmin();
         admins.forEach(System.out::println);
     }
+
+    @Test
+    public void testAddAdmin() {
+        Admin admin = new Admin("王五","12345678");
+        int result = 1 / 0;
+        adminDao.addAdmin(admin);
+    }
 }
