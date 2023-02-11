@@ -23,18 +23,21 @@ public class AdminController {
     @RequestMapping("/login")
     public Result login(String username, String password) {
         Admin adminInfo = adminService.getAdminInfo(username, password);
-        String name = adminInfo.getUsername();
-        String adminPassword = adminInfo.getPassword();
         Result result = new Result();
-        if (name != null && adminPassword != null && name.length() != 0 && adminPassword.length() != 0) {
-            result.flag = true;
-            result.message = "登录成功";
-            result.token = Utils.getUUID();
+        if (adminInfo != null) {
+            String name = adminInfo.getUsername();
+            String adminPassword = adminInfo.getPassword();
+            if (name != null && adminPassword != null && name.length() != 0 && adminPassword.length() != 0) {
+                result.flag = true;
+                result.message = "登录成功";
+                result.token = Utils.getUUID();
+            }
         } else {
             result.flag = false;
-            result.message = "用户名或密码错误";
+            result.message = "没有该用户";
             result.token = null;
         }
+
         return result;
     }
 }
