@@ -10,7 +10,7 @@
                     <el-input v-model="form.password" show-password></el-input>
                 </el-form-item>
                 <el-form-item label="邮箱" prop="email">
-                    <el-input v-model="form.password" show-email></el-input>
+                    <el-input v-model="form.email" show-email></el-input>
                 </el-form-item>
                 <el-form-item style="text-align: center;">
                     <el-button type="primary" @click="registerForm">注册</el-button>
@@ -21,43 +21,9 @@
 </template>
 
 <script>
-import mixin from '@/mixins'
+import mixin from '@/mixins/register'
 export default {
-    data () {
-        return {
-            form: {
-                email: ''
-            },
-            rules: {
-                username: [
-                    { required: true, message: "请输入用户名", trigger: "blur" },
-                    { min: 3, max: 10, message: "长度在3到10个字符", trigger: "blur" },
-                ],
-                password: [
-                    { required: true, message: "请输入密码", trigger: "blur" },
-                    { min: 3, max: 10, message: "长度在3到10个字符", trigger: "blur" },
-                ],
-                email: [
-                    { required: true, message: "请输入密码", trigger: "blur" },
-                    { min: 3, max: 10, message: "长度在3到10个字符", trigger: "blur" },
-                ]
-            }
-        }
-    },
-    methods: {
-        registerForm () {
-            this.$alert('注册成功', '提示', {
-                confirmButtonText: '确定',
-                callback: action => {
-                    this.$message({
-                        type: 'info',
-                        message: `action${ action }`
-                    })
-                }
-            })
-        }
-    }
-
+    mixins: [mixin]
 }
 </script>
 
