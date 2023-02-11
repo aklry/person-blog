@@ -14,4 +14,8 @@ public class AdminService {
     public List<Admin> listAdmin() {
         return adminDao.listAdmin();
     }
+
+    public Admin getAdminInfo(String username, String password) {
+        return adminDao.findByParams(username, password);
+    }
 }
