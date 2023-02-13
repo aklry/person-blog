@@ -8,14 +8,14 @@ const routes = [
     path: '/',
     name: 'Index',
     redirect: '/home',
-    meta: {
-      isLogin: true
-    },
     component: () => import('@/components/Layout'),
     children: [
       {
         path: '/home',
-        name:'Home'
+        name: 'Home',
+        meta: {
+          isLogin: true
+        }
       }
     ]
   },
@@ -36,9 +36,12 @@ const router = new VueRouter({
   routes
 })
 
-router.beforeEach((from, to, next) => {
+router.beforeEach((to, from, next) => {
+  console.log(from)
+  console.log(to)
     if (to.meta.isLogin) {
-    if (store.state.token) {
+      if (store.state.token) {
+      console.log(store.state.token)
       next()
     } else {
       next({
