@@ -5,9 +5,9 @@ import com.aklry.domain.Result;
 import com.aklry.service.AdminService;
 import com.aklry.utils.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -20,9 +20,11 @@ public class AdminController {
         List<Admin> admins = adminService.listAdmin();
         return admins;
     }
-    @RequestMapping("/login")
-    public Result login(String username, String password) {
-        Admin adminInfo = adminService.getAdminInfo(username, password);
+    @PostMapping("/login")
+    public Result login(@RequestBody Admin admin) {
+        System.out.println(admin);
+        Admin adminInfo = adminService.getAdminInfo(admin);
+//        List<Object> endResult = new ArrayList<>();
         Result result = new Result();
         if (adminInfo != null) {
             String name = adminInfo.getUsername();
@@ -31,6 +33,8 @@ public class AdminController {
                 result.flag = true;
                 result.message = "登录成功";
                 result.token = Utils.getUUID();
+//                endResult.add(adminInfo);
+//                endResult.add(result);
             }
         } else {
             result.flag = false;
@@ -38,6 +42,7 @@ public class AdminController {
             result.token = null;
         }
 
+//        return endResult;
         return result;
     }
 }

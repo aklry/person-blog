@@ -20,15 +20,17 @@
 
 <script>
 import mixin from '@/mixins/login.js'
-import api from '@/api'
+import api from '@/api' 
 export default {
     name: 'Login',
     mixins: [mixin],
     methods: {
         submitForm () {
+            const username = this.$data.form.username
+            const password = this.$data.form.password
             api.getAdminInfo({
-                username: this.$data.username,
-                password: this.$data.password
+                username,
+                password
             })
                 .then(res => {
                 console.log(res.data)

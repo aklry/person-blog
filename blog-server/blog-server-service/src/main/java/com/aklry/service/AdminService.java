@@ -2,6 +2,7 @@ package com.aklry.service;
 
 import com.aklry.dao.AdminDao;
 import com.aklry.domain.Admin;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,8 +17,8 @@ public class AdminService {
         return adminDao.listAdmin();
     }
 
-    public Admin getAdminInfo(String username, String password) {
-        return adminDao.findByParams(username, password);
+    public Admin getAdminInfo(Admin admin) {
+        return adminDao.findByParams(admin);
     }
     @Transactional
     public String addAdmin(Admin admin) {

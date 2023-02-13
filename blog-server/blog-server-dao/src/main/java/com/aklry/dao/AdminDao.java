@@ -39,5 +39,5 @@ public interface AdminDao {
     @Insert("insert into admin(id,username,password) values(default,#{username},#{password}) ")
     String addAdmin(Admin admin);
     @Select("select * from admin where username=#{username} and password=#{password}")
-    Admin findByParams(@Param("username") String username, @Param("password") String password);
+    Admin findByParams(Admin admin);
 }

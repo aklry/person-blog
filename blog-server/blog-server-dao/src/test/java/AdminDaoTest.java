@@ -1,5 +1,6 @@
 import com.aklry.dao.AdminDao;
 import com.aklry.domain.Admin;
+import jdk.swing.interop.SwingInterOpUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +16,11 @@ public class AdminDaoTest {
     private AdminDao adminDao;
     @Test
     public void testFindByParams() {
-        Admin admin = adminDao.findByParams("张三", "12345678");
-        System.out.println(admin);
+//        Admin admin = adminDao.findByParams("张三", "12345678");
+//        System.out.println(admin);
+        Admin admin = new Admin("张三","12345678");
+        Admin byParams = adminDao.findByParams(admin);
+        System.out.println(byParams);
     }
     @Test
     public void testListAdmins() {
