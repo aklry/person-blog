@@ -20,11 +20,13 @@
 
 <script>
 import mixin from '@/mixins/login.js'
-import api from '@/api' 
+import api from '@/api'
+import { mapMutations } from 'vuex'
 export default {
     name: 'Login',
     mixins: [mixin],
     methods: {
+        ...mapMutations(['setAdminInfo']),
         submitForm () {
             const username = this.$data.form.username
             const password = this.$data.form.password
@@ -33,9 +35,10 @@ export default {
                 password
             })
                 .then(res => {
-                console.log(res.data)
+                    this.setAdminInfo(res.data[1].token, res.data[0])
+                    localStorage.setItem('token', res.data[1].token)
                 })
-            .catch(error => console.log(error))
+                .catch(error => console.log(error))
 
         }
     }
@@ -62,6 +65,7 @@ export default {
     color: #fff;
     text-decoration: none;
 }
+
 .register:hover {
     color: red;
 }
