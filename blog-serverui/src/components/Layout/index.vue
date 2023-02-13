@@ -11,7 +11,7 @@
                         <!-- <span class="username"></span> -->
                         <el-dropdown>
                             <span class="el-dropdown-link">
-                               <i class="el-icon-arrow-down el-icon--right"></i>
+                                {{ adminInfo.username }}<i class="el-icon-arrow-down el-icon--right"></i>
                             </span>
                             <el-dropdown-menu slot="dropdown">
                                 <el-dropdown-item>
@@ -32,6 +32,7 @@
 
 <script>
 import NavMenu from '@/components/NavMenu.vue';
+import { mapState } from 'vuex';
 export default {
     data () {
         return {
@@ -45,6 +46,9 @@ export default {
         logout () {
             console.log('登出')
         }
+    },
+    computed: {
+        ...mapState(['token','adminInfo'])
     }
 }
 </script>
@@ -71,13 +75,14 @@ export default {
 }
 
 .user-info {
-  float: right;
-  margin-right: 20px;
-  margin-top: 10px;
+    float: right;
+    margin-right: 20px;
+    margin-top: 10px;
 }
+
 .avatar {
-  width: 30px;
-  height: 30px;
+    width: 30px;
+    height: 30px;
 }
 </style>>
 

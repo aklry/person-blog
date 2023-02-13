@@ -37,7 +37,12 @@ export default {
             })
                 .then(res => {
                     if (res.data) {
-                        this.setAdminInfo(res.data[1].token, res.data[0])
+                        let adminInfo = res.data[0]
+                        console.log(adminInfo)
+                        this.setAdminInfo({
+                            token: res.data[1].token,
+                            adminInfo: res.data[0]
+                        })
                         localStorage.setItem('token', res.data[1].token)
                         this.$router.push('/home')
                     } else {

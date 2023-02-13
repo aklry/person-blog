@@ -1,6 +1,6 @@
 export default {
-    setAdminInfo (state, token, adminInfo) {
-        state.adminInfo = adminInfo
-        state.token = token
+    setAdminInfo (state, params) {
+        state.adminInfo = params.adminInfo
+        state.token = params.token
     }
 }
