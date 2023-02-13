@@ -21,10 +21,10 @@ public class AdminController {
         return admins;
     }
     @PostMapping("/login")
-    public Result login(@RequestBody Admin admin) {
+    public List<Object> login(@RequestBody Admin admin) {
         System.out.println(admin);
         Admin adminInfo = adminService.getAdminInfo(admin);
-//        List<Object> endResult = new ArrayList<>();
+        List<Object> endResult = new ArrayList<>();
         Result result = new Result();
         if (adminInfo != null) {
             String name = adminInfo.getUsername();
@@ -33,8 +33,8 @@ public class AdminController {
                 result.flag = true;
                 result.message = "登录成功";
                 result.token = Utils.getUUID();
-//                endResult.add(adminInfo);
-//                endResult.add(result);
+                endResult.add(adminInfo);
+                endResult.add(result);
             }
         } else {
             result.flag = false;
@@ -42,7 +42,6 @@ public class AdminController {
             result.token = null;
         }
 
-//        return endResult;
-        return result;
+        return endResult;
     }
 }
