@@ -22,6 +22,7 @@
 import mixin from '@/mixins/login.js'
 import api from '@/api'
 import { mapMutations } from 'vuex'
+import utils from '@/util/utils'
 export default {
     name: 'Login',
     mixins: [mixin],
@@ -35,8 +36,14 @@ export default {
                 password
             })
                 .then(res => {
-                    this.setAdminInfo(res.data[1].token, res.data[0])
-                    localStorage.setItem('token', res.data[1].token)
+                    if (res.data) {
+                        this.setAdminInfo(res.data[1].token, res.data[0])
+                        localStorage.setItem('token', res.data[1].token)
+                        this.$router.push('/home')
+                    } else {
+                        utils.alert(this, '用户名或密码错误')
+                        this.$router.push('/login')
+                    }
                 })
                 .catch(error => console.log(error))
 
