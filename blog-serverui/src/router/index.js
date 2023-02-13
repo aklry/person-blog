@@ -1,13 +1,23 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-
+import store from '@/store'
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
-    name: 'Home',
-    component: () => import('@/components/Layout')
+    name: 'Index',
+    redirect: '/home',
+    meta: {
+      isLogin: true
+    },
+    component: () => import('@/components/Layout'),
+    children: [
+      {
+        path: '/home',
+        name:'Home'
+      }
+    ]
   },
   {
     path: '/login',
@@ -24,6 +34,20 @@ const routes = [
 
 const router = new VueRouter({
   routes
+})
+
+router.beforeEach((from, to, next) => {
+    if (to.meta.isLogin) {
+    if (store.state.token) {
+      next()
+    } else {
+      next({
+        path: '/login'
+      })
+    }
+  } else {
+    next()
+  }
 })
 
 export default router
