@@ -33,11 +33,12 @@ public interface AdminDao {
 
     /**
      * 添加管理员
-     * @param admin
+     * @param username
+     * @param password
      * @return --> 返回是否删除成功
      */
     @Insert("insert into admin(id,username,password) values(default,#{username},#{password}) ")
-    String addAdmin(Admin admin);
+    void addAdmin(@Param("username") String username, @Param("password") String password);
     @Select("select * from admin where username=#{username} and password=#{password}")
     Admin findByParams(Admin admin);
 }

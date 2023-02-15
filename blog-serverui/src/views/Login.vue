@@ -36,13 +36,13 @@ export default {
                 password
             })
                 .then(res => {
-                    if (res.data[0].flag) {
+                    if (res.data[0].flag && res.data[0].token) {
                         this.setAdminInfo({
-                            token: res.data[1].token,
-                            adminInfo: res.data[0]
+                            token: res.data[0].token,
+                            adminInfo: res.data[1]
                         })
-                        localStorage.setItem('token', res.data[1].token)
-                        this.$router.push('/home')
+                        localStorage.setItem('token', res.data[0].token)
+                        this.$router.push('home')
                     } else {
                         utils.alert(this, res.data[0].message)
                         this.$router.push('/login')

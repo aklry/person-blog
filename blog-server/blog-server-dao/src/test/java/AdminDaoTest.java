@@ -30,8 +30,8 @@ public class AdminDaoTest {
 
     @Test
     public void testAddAdmin() {
-        Admin admin = new Admin("王五","12345678");
-        int result = 1 / 0;
-        adminDao.addAdmin(admin);
+        Admin admin = new Admin("zhangsan","qweryu098");
+//        int result = 1 / 0;
+        adminDao.addAdmin(admin.getUsername(),admin.getPassword());
     }
 }

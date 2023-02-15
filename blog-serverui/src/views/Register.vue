@@ -9,7 +9,8 @@
                 <el-form-item label="密码" prop="password">
                     <el-input v-model="form.password" show-password></el-input>
                 </el-form-item>
-                <el-form-item style="text-align: center;">
+                <el-form-item style="text-align: center">
+                    <el-button type="primary" @click="rollback">返回</el-button>
                     <el-button type="primary" @click="registerForm">注册</el-button>
                 </el-form-item>
             </el-form>
@@ -18,32 +19,36 @@
 </template>
 
 <script>
-import mixin from '@/mixins/register'
-import utils from '@/util/utils'
-import api from '@/api'
+import mixin from "@/mixins/register";
+import utils from "@/util/utils";
+import api from "@/api";
 export default {
     mixins: [mixin],
     methods: {
         registerForm() {
-            const username = this.$data.form.username
-            const password = this.$data.form.password
-            api.adminRegister({
-                username,
-                password
-            })
-                .then(res => {
+            const username = this.$data.form.username;
+            const password = this.$data.form.password;
+            api
+                .adminRegister({
+                    username,
+                    password,
+                })
+                .then((res) => {
                     if (res.data.flag) {
-                        utils.alert(this, res.data.message)
-                        this.$router.push('/login')
+                        utils.alert(this, res.data.message);
+                        this.$router.push("/login");
                     } else {
-                        utils.alert(this, res.data.message)
-                        this.$router.push('/login')
+                        utils.alert(this, res.data.message);
+                        this.$router.push("/login");
                     }
                 })
-                .catch(error => console.log(error))
-        }
-    }
-}
+                .catch((error) => console.log(error));
+        },
+        rollback() {
+            this.$router.push("/login");
+        },
+    },
+};
 </script>
 
 <style scoped>

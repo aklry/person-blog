@@ -49,11 +49,13 @@ public class AdminController {
 
     @PostMapping("/register")
     public Result register(@RequestBody Admin admin) {
+        System.out.println(admin);
         if (admin != null) {
             Admin adminInfo = adminService.getAdminInfo(admin);
+            System.out.println(adminInfo);
             result = new Result();
             if (adminInfo == null) {
-                adminService.addAdmin(admin);
+                adminService.addAdmin(admin.getUsername(),admin.getPassword());
                 result.flag = true;
                 result.message = "注册成功";
             } else {
