@@ -15,6 +15,7 @@ import java.util.List;
 public class AdminController {
     @Autowired
     private AdminService adminService;
+    private Result result;
     @RequestMapping("/listAdmin")
     public List<Admin> listAdmin() {
         List<Admin> admins = adminService.listAdmin();
@@ -25,7 +26,7 @@ public class AdminController {
         System.out.println(admin);
         Admin adminInfo = adminService.getAdminInfo(admin);
         List<Object> endResult = new ArrayList<>();
-        Result result = new Result();
+        result = new Result();
         if (adminInfo != null) {
             String name = adminInfo.getUsername();
             String adminPassword = adminInfo.getPassword();
@@ -44,5 +45,22 @@ public class AdminController {
         }
 
         return endResult;
+    }
+
+    @PostMapping("/register")
+    public Result register(@RequestBody Admin admin) {
+        if (admin != null) {
+            Admin adminInfo = adminService.getAdminInfo(admin);
+            result = new Result();
+            if (adminInfo == null) {
+                adminService.addAdmin(admin);
+                result.flag = true;
+                result.message = "注册成功";
+            } else {
+                result.message = "该用户已注册";
+                result.flag = false;
+            }
+        }
+        return result;
     }
 }

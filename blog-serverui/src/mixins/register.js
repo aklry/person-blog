@@ -17,18 +17,5 @@ export default {
                 ]
             }
         }
-    },
-    methods: {
-        registerForm () {
-            this.$alert('注册成功', '提示', {
-                confirmButtonText: '确定',
-                callback: action => {
-                    this.$message({
-                        type: 'info',
-                        message: `action${action}`
-                    })
-                }
-            })
-        }
     }
 }

@@ -19,8 +19,30 @@
 
 <script>
 import mixin from '@/mixins/register'
+import utils from '@/util/utils'
+import api from '@/api'
 export default {
-    mixins: [mixin]
+    mixins: [mixin],
+    methods: {
+        registerForm() {
+            const username = this.$data.form.username
+            const password = this.$data.form.password
+            api.adminRegister({
+                username,
+                password
+            })
+                .then(res => {
+                    if (res.data.flag) {
+                        utils.alert(this, res.data.message)
+                        this.$router.push('/login')
+                    } else {
+                        utils.alert(this, res.data.message)
+                        this.$router.push('/login')
+                    }
+                })
+                .catch(error => console.log(error))
+        }
+    }
 }
 </script>
 
