@@ -33,13 +33,14 @@ public class AdminController {
                 result.flag = true;
                 result.message = "登录成功";
                 result.token = Utils.getUUID();
-                endResult.add(adminInfo);
                 endResult.add(result);
+                endResult.add(adminInfo);
             }
         } else {
             result.flag = false;
             result.message = "没有该用户";
             result.token = null;
+            endResult.add(result);
         }
 
         return endResult;
