@@ -32,7 +32,7 @@
 
 <script>
 import NavMenu from '@/components/NavMenu.vue';
-import { mapState } from 'vuex';
+import { mapState, mapMutations } from 'vuex';
 export default {
     data () {
         return {
@@ -43,8 +43,10 @@ export default {
         NavMenu
     },
     methods: {
+        ...mapMutations(['handleLogOut']),
         logout () {
-            console.log('登出')
+            this.handleLogOut()
+            this.$router.push('/login')
         }
     },
     computed: {
