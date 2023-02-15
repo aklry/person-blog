@@ -9,9 +9,6 @@
                 <el-form-item label="密码" prop="password">
                     <el-input v-model="form.password" show-password></el-input>
                 </el-form-item>
-                <el-form-item label="邮箱" prop="email">
-                    <el-input v-model="form.email" show-email></el-input>
-                </el-form-item>
                 <el-form-item style="text-align: center;">
                     <el-button type="primary" @click="registerForm">注册</el-button>
                 </el-form-item>

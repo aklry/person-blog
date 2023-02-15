@@ -12,12 +12,8 @@ export default {
                     { min: 3, max: 10, message: "长度在3到10个字符", trigger: "blur" },
                 ],
                 password: [
-                    { required: true, message: "请输入至少八个字符，至少一个字母和一个数字", trigger: "blur" },
-                    {pattern: '^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$',message:'密码格式不正确',trigger:'change'}
-                ],
-                email: [
-                    { required: true, message: "请输入正确的邮箱格式", trigger: "blur" },
-                    {pattern: '^[a-zA-Z0-9]+([-_.][a-zA-Z0-9]+)*@[a-zA-Z0-9]+([-_.][a-zA-Z0-9]+)*\.[a-z]{2,}$',message:'邮箱格式不正确',trigger:'change'}
+                    { required: true, message: "请输入至少六位包含数字和字母的组合", trigger: "blur" },
+                    {pattern: '^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,16}$',message:'密码格式不正确',trigger:'blur'}
                 ]
             }
         }
