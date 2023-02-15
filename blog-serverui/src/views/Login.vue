@@ -36,9 +36,7 @@ export default {
                 password
             })
                 .then(res => {
-                    if (res.data && res.data.length !== 0) {
-                        let adminInfo = res.data[0]
-                        console.log(adminInfo)
+                    if (res.data[0].flag) {
                         this.setAdminInfo({
                             token: res.data[1].token,
                             adminInfo: res.data[0]
@@ -46,7 +44,7 @@ export default {
                         localStorage.setItem('token', res.data[1].token)
                         this.$router.push('/home')
                     } else {
-                        utils.alert(this, '用户名或密码错误')
+                        utils.alert(this, res.data[0].message)
                         this.$router.push('/login')
                     }
                 })
