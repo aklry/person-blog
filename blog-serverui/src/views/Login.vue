@@ -36,7 +36,7 @@ export default {
                 password
             })
                 .then(res => {
-                    if (res.data) {
+                    if (res.data && res.data.length !== 0) {
                         let adminInfo = res.data[0]
                         console.log(adminInfo)
                         this.setAdminInfo({
