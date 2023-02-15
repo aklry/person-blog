@@ -48,7 +48,10 @@ const instance = axios.create({
  */
 //请求拦截器
 instance.interceptors.request.use(
-    config => config, error => Promise.reject(error))
+    config => {
+        config.data = JSON.stringify(config.data)
+        return config
+    }, error => Promise.reject(error))
 
 //响应拦截器
 instance.interceptors.response.use(

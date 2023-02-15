@@ -8,7 +8,7 @@ const api = {
     getAdminInfo (params) {
         // console.log(JSON.stringify(params))
         // console.log(JSON.stringify(params))
-        return axios.post(base.login,utils.serialize(params))
+        return axios.post(base.login,params)
     }
 }
 
