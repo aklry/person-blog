@@ -12,7 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/blog")
-public class AdminController {
+public class LoginController {
     @Autowired
     private AdminService adminService;
     private Result result;
