@@ -16,11 +16,6 @@ public class LoginController {
     @Autowired
     private AdminService adminService;
     private Result result;
-    @RequestMapping("/listAdmin")
-    public List<Admin> listAdmin() {
-        List<Admin> admins = adminService.listAdmin();
-        return admins;
-    }
     @PostMapping("/login")
     public List<Object> login(@RequestBody Admin admin) {
         List<Object> endResult = new ArrayList<>();
