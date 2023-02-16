@@ -21,6 +21,14 @@ const routes = [
         meta: {
           isLogin: true
         }
+      },
+      {
+        path: '/admin',
+        name: 'Admin',
+        component: () => import('@/views/admin'),
+        meta: {
+          isLogin: true
+        }
       }
     ]
   },
