@@ -1,8 +1,8 @@
 import axios from '@/util/request'
-import utils from '@/util/utils'
 const base = {
     login: '/login',
-    register: '/register'
+    register: '/register',
+    listAllAdmin: '/listAllAdmin'
 }
 
 const api = {
@@ -13,6 +13,9 @@ const api = {
     },
     adminRegister(params) {
         return axios.post(base.register,params)
+    },
+    getAllAdmin() {
+        return axios.get(base.listAllAdmin)
     }
 }
 
