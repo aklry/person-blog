@@ -28,4 +28,8 @@ public class AdminService {
     public void deleteById(Integer id) {
         adminDao.deleteAdmin(id);
     }
+    @Transactional
+    public void updateAdmin(String username, String password) {
+        adminDao.updateAdmin(username, password);
+    }
 }

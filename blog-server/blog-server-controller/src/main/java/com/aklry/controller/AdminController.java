@@ -48,15 +48,33 @@ public class AdminController {
         }
         return endResult;
     }
+
+    /**
+     * 根据id删除管理员
+     * @param id
+     * @return
+     */
     @PostMapping("/delete")
     public Result deleteById(@RequestBody Integer id) {
         result = new Result();
-        System.out.println(id);
         adminService.deleteById(id);
 
         result.flag = true;
         result.message = "删除成功";
 
+        return result;
+    }
+    @PostMapping("/update")
+    public Result updateAdmin(@RequestBody Admin admin) {
+        result = new Result();
+        if (admin.getUsername().length() != 0 && admin.getPassword().length() != 0) {
+           adminService.updateAdmin(admin.getUsername(), admin.getPassword());
+           result.message = "修改成功";
+           result.flag = true;
+        } else {
+            result.flag = false;
+            result.message = "请输入用户名和密码";
+        }
         return result;
     }
 }

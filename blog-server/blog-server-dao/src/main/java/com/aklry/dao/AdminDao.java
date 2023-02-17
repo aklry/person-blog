@@ -25,11 +25,12 @@ public interface AdminDao {
 
     /**
      * 根据id修改管理员信息
-     * @param admin
+     * @param username
+     * @param password
      * @return --> 返回是否删除成功
      */
     @Update("update admin set username=#{username},password=#{password} where id = #{id}")
-    String updateAdmin(Admin admin);
+    void updateAdmin(@Param("username") String username, @Param("password") String password);
 
     /**
      * 添加管理员
