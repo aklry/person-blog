@@ -19,7 +19,7 @@
             </template>
             <template slot-scope="scope">
                 <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">Edit</el-button>
-                <EditDialog :isShow="isShow" @changeIsShow="changeIsShow" :id="id" />
+                <EditDialog :isVisible="isVisible" @changeIsVisible="changeIsVisible" :id="id" />
                 <el-button size="mini" type="danger" @click="handleDelete(scope.$index, scope.row)">Delete</el-button>
             </template>
         </el-table-column>
@@ -38,7 +38,7 @@ export default {
     methods: {
         handleEdit(index, row) {
             console.log(index, row)
-            this.$data.isShow = true
+            this.$data.isVisible = true
             this.$data.id = row.id
         },
         handleDelete(index, row) {
