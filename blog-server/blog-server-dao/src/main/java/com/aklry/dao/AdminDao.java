@@ -30,7 +30,7 @@ public interface AdminDao {
      * @return --> 返回是否删除成功
      */
     @Update("update admin set username=#{username},password=#{password} where id = #{id}")
-    void updateAdmin(@Param("username") String username, @Param("password") String password);
+    void updateAdmin(@Param("username") String username, @Param("password") String password, @Param("id") Integer id);
 
     /**
      * 添加管理员

@@ -29,7 +29,7 @@ public class AdminService {
         adminDao.deleteAdmin(id);
     }
     @Transactional
-    public void updateAdmin(String username, String password) {
-        adminDao.updateAdmin(username, password);
+    public void updateAdmin(String username, String password, Integer id) {
+        adminDao.updateAdmin(username, password, id);
     }
 }

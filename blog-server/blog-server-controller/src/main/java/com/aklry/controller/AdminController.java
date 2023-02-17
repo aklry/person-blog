@@ -68,7 +68,7 @@ public class AdminController {
     public Result updateAdmin(@RequestBody Admin admin) {
         result = new Result();
         if (admin.getUsername().length() != 0 && admin.getPassword().length() != 0) {
-           adminService.updateAdmin(admin.getUsername(), admin.getPassword());
+           adminService.updateAdmin(admin.getUsername(), admin.getPassword(), admin.getId());
            result.message = "修改成功";
            result.flag = true;
         } else {
