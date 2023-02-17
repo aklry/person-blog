@@ -19,7 +19,7 @@
             </template>
             <template slot-scope="scope">
                 <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">Edit</el-button>
-                <EditDialog :isShow="isShow" @changeIsShow="changeIsShow" />
+                <EditDialog :isShow="isShow" @changeIsShow="changeIsShow" :id="id" />
                 <el-button size="mini" type="danger" @click="handleDelete(scope.$index, scope.row)">Delete</el-button>
             </template>
         </el-table-column>
@@ -39,6 +39,7 @@ export default {
         handleEdit(index, row) {
             console.log(index, row)
             this.$data.isShow = true
+            this.$data.id = row.id
         },
         handleDelete(index, row) {
             this.$confirm('此操作将永久删除该管理员, 是否继续?', '提示', {

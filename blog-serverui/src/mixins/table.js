@@ -5,7 +5,8 @@ export default {
             search: "",
             isShow: false,
             formLabelWidth: '120px',
-            isRouterAlive: true
+            isRouterAlive: true,
+            id: 0
         }
     },
     methods: {

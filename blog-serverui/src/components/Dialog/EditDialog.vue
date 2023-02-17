@@ -29,6 +29,9 @@ export default {
             default() {
                 return false
             }
+        },
+        id: {
+            type: Number
         }
     },
     methods: {
@@ -38,7 +41,9 @@ export default {
         submit() {
             const username = this.$data.form.username
             const password = this.$data.form.password
+            const id = this.id
             api.update({
+                id,
                 username,
                 password
             }).then(res => {
