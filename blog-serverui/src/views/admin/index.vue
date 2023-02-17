@@ -12,13 +12,14 @@
             <template slot="header" slot-scope="scope">
                 <div class="container">
                     <el-input v-model="search" size="mini" placeholder="输入关键字搜索" />
-                    <el-button size="mini" @click="isShowHandle">Add</el-button>
+                    <el-button size="mini" @click="isShowHandle()">Add</el-button>
                 </div>
                 <!-- 弹出框 -->
                 <Dialog :isShow="isShow" @changeIsShow="changeIsShow" />
             </template>
             <template slot-scope="scope">
                 <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">Edit</el-button>
+                <EditDialog :isShow="isShow" @changeIsShow="changeIsShow" />
                 <el-button size="mini" type="danger" @click="handleDelete(scope.$index, scope.row)">Delete</el-button>
             </template>
         </el-table-column>
@@ -29,6 +30,7 @@
 import api from "@/api"
 import mixin from '@/mixins/table'
 import Dialog from "@/components/Dialog"
+import EditDialog from '@/components/Dialog/EditDialog.vue'
 import utils from "@/util/utils"
 export default {
     mixins: [mixin],
@@ -39,7 +41,7 @@ export default {
             this.$data.isShow = true
         },
         handleDelete(index, row) {
-            this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
+            this.$confirm('此操作将永久删除该管理员, 是否继续?', '提示', {
                 confirmButtonText: '确定',
                 cancelButtonText: '取消',
                 type: 'warning'
@@ -52,7 +54,8 @@ export default {
         }
     },
     components: {
-        Dialog
+        Dialog,
+        EditDialog
     },
     mounted() {
         api
