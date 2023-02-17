@@ -4,7 +4,8 @@ const base = {
     register: '/register',
     listAllAdmin: '/listAllAdmin',
     add: '/add',
-    deleteById: '/delete'
+    deleteById: '/delete',
+    update: '/update'
 }
 
 const api = {
@@ -24,6 +25,9 @@ const api = {
     },
     delete(id) {
         return axios.post(base.deleteById,id)
+    },
+    update(params) {
+        return axios.post(base.update,params)
     }
 }
 
