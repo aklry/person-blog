@@ -2,7 +2,7 @@
     <el-table :data="
         tableData.filter(
             (data) =>
-                !search || data.name.toLowerCase().includes(search.toLowerCase())
+                !search || data.username.includes(search)
         )
     " style="width: 100%">
         <el-table-column label="id" prop="id"> </el-table-column>
