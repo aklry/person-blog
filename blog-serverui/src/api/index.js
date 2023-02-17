@@ -2,7 +2,8 @@ import axios from '@/util/request'
 const base = {
     login: '/login',
     register: '/register',
-    listAllAdmin: '/listAllAdmin'
+    listAllAdmin: '/listAllAdmin',
+    add: '/add'
 }
 
 const api = {
@@ -16,6 +17,9 @@ const api = {
     },
     getAllAdmin() {
         return axios.get(base.listAllAdmin)
+    },
+    add(params) {
+        return axios.post(base.add, params)
     }
 }
 

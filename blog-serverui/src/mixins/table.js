@@ -4,7 +4,8 @@ export default {
             tableData: [],
             search: "",
             isShow: false,
-            formLabelWidth: '120px'
+            formLabelWidth: '120px',
+            isRouterAlive: true
         }
     }
 }

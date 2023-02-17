@@ -12,18 +12,22 @@
       <el-button @click="cancel">取 消</el-button>
       <el-button type="primary" @click="submit">确 定</el-button>
     </div>
-</el-dialog>
+  </el-dialog>
 </template>
 
 <script>
-import mixin from '@/mixins/dialog';
+import mixin from '@/mixins/dialog'
+import api from '@/api';
+
+import utils from '@/util/utils';
 export default {
+  inject: ['reload'],
   mixins: [mixin],
   props: {
     isShow: {
       type: Boolean,
       default() {
-        return false;
+        return false
       }
     }
   },
@@ -35,8 +39,17 @@ export default {
       this.$emit("changeIsShow", false);
       const username = this.$data.form.username
       const password = this.$data.form.password
-
-      console.log(username,password)
+      api.add({
+        username,
+        password
+      }).then(res => {
+        if (res.data[0].flag) {
+          utils.alert(this, res.data[0].message)
+          this.reload()
+        } else {
+          utils.alert(this, res.data[0].message)
+        }
+      })
     }
   }
 }

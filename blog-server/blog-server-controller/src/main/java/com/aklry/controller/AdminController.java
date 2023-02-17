@@ -35,7 +35,7 @@ public class AdminController {
                 result.flag = true;
                 result.message = "添加成功";
                 endResult.add(result);
-                endResult.add(adminInfo);
+                endResult.add(admin);
             } else {
                 result.message = "该用户已存在";
                 result.flag = false;
