@@ -48,10 +48,10 @@ export default {
                 password
             }).then(res => {
                 if (res.data.flag) {
-                    utils.alert(res.data.message)
+                    utils.alert(this, res.data.message)
                     this.reload()
                 } else {
-                    utils.alert(res.data.message)
+                    utils.alert(this, res.data.message)
                 }
             })
         }
