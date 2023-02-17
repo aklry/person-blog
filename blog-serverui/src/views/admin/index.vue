@@ -51,9 +51,9 @@ export default {
         api
             .getAllAdmin()
             .then((res) => {
-                this.$data.tableData = res.data;
+                this.$data.tableData = res.data
             })
-            .catch((error) => console.log(error));
-    },
+            .catch((error) => console.log(error))
+    }
 };
 </script>
