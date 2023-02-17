@@ -6,6 +6,7 @@ import com.aklry.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -24,7 +25,8 @@ public class AdminController {
     }
 
     @PostMapping("/add")
-    public Result addAdmin(@RequestBody Admin admin) {
+    public List<Object> addAdmin(@RequestBody Admin admin) {
+        List<Object> endResult = new ArrayList<>();
         if (admin.getUsername().length() != 0 && admin.getPassword().length() != 0) {
             Admin adminInfo = adminService.getAdminInfo(admin);
             result = new Result();
@@ -32,14 +34,18 @@ public class AdminController {
                 adminService.addAdmin(admin.getUsername(),admin.getPassword());
                 result.flag = true;
                 result.message = "添加成功";
+                endResult.add(result);
+                endResult.add(adminInfo);
             } else {
                 result.message = "该用户已存在";
                 result.flag = false;
+                endResult.add(result);
             }
         } else {
             result.message = "请输入用户名或密码";
             result.flag = false;
+            endResult.add(result);
         }
-        return result;
+        return endResult;
     }
 }
