@@ -43,15 +43,6 @@ export default {
                 utils.alert(this, res.data.message)
                 this.reload()
            })
-        },
-        isShowHandle() {
-            this.$data.isShow = true
-        },
-        changeIsShow(val) {
-            this.isShow = val
-        },
-        changeData(val) {
-            this.tableData = this.tableData.push(val)
         }
     },
     components: {
