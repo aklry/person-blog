@@ -21,7 +21,7 @@ public interface AdminDao {
      * @return --> 返回是否删除成功
      */
     @Delete("delete from admin where id = #{id}")
-    String deleteAdmin(int id);
+    void deleteAdmin(@Param("id") Integer id);
 
     /**
      * 根据id修改管理员信息
@@ -29,7 +29,7 @@ public interface AdminDao {
      * @return --> 返回是否删除成功
      */
     @Update("update admin set username=#{username},password=#{password} where id = #{id}")
-    String updataAdmin(Admin admin);
+    String updateAdmin(Admin admin);
 
     /**
      * 添加管理员

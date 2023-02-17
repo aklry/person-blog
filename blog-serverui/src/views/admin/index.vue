@@ -29,15 +29,20 @@
 import api from "@/api"
 import mixin from '@/mixins/table'
 import Dialog from "@/components/Dialog"
+import utils from "@/util/utils"
 export default {
     mixins: [mixin],
+    inject: ['reload'],
     methods: {
         handleEdit(index, row) {
             console.log(index, row)
             this.$data.isShow = true
         },
         handleDelete(index, row) {
-            console.log(index, row);
+            api.delete(row.id).then(res => {
+                utils.alert(this, res.data.message)
+                this.reload()
+           })
         },
         isShowHandle() {
             this.$data.isShow = true

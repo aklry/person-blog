@@ -24,4 +24,8 @@ public class AdminService {
     public void addAdmin(String username, String password) {
         adminDao.addAdmin(username,password);
     }
+    @Transactional
+    public void deleteById(Integer id) {
+        adminDao.deleteAdmin(id);
+    }
 }

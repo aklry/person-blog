@@ -3,7 +3,8 @@ const base = {
     login: '/login',
     register: '/register',
     listAllAdmin: '/listAllAdmin',
-    add: '/add'
+    add: '/add',
+    deleteById: '/delete'
 }
 
 const api = {
@@ -20,6 +21,9 @@ const api = {
     },
     add(params) {
         return axios.post(base.add, params)
+    },
+    delete(id) {
+        return axios.post(base.deleteById,id)
     }
 }
 

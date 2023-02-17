@@ -48,4 +48,15 @@ public class AdminController {
         }
         return endResult;
     }
+    @PostMapping("/delete")
+    public Result deleteById(@RequestBody Integer id) {
+        result = new Result();
+        System.out.println(id);
+        adminService.deleteById(id);
+
+        result.flag = true;
+        result.message = "删除成功";
+
+        return result;
+    }
 }
