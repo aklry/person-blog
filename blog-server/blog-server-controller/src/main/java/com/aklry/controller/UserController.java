@@ -22,7 +22,7 @@ public class UserController {
         return users;
     }
 
-    @PostMapping("/update")
+    @PostMapping("/updateUser")
     public Result updateUser(@RequestBody User user) {
         result = new Result();
         if (user.getName().length() != 0 && user.getAddress().length() != 0 && user.getPassword().length() != 0 && user.getSex().length() != 0 && user.getPhoneNumber().length() != 0) {

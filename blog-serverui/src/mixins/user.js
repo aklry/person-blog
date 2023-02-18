@@ -15,7 +15,7 @@ export default {
                 role: ''
             },
             rules: {
-                username: [
+                name: [
                     { required: true, message: "请输入用户名", trigger: "blur" },
                     { min: 3, max: 10, message: "长度在3到10个字符", trigger: "blur" },
                 ],
@@ -25,14 +25,14 @@ export default {
                 ],
                 phoneNumber: [
                     { required: true, message: "请输入11位电话号码", trigger: "blur" },
-                    {pattern: '0?(13|14|15|17|18)[0-9]{9}',message: '请输入正确的电话号码',trigger: 'blur'}
+                    { pattern: '0?(13|14|15|17|18)[0-9]{9}', message: '请输入正确的电话号码', trigger: 'blur' }
                 ],
                 address: [
                     { required: true, message: "请输入你的地址", trigger: "blur" },
                 ],
                 sex: [
                     { required: true, message: "请输入你的性别", trigger: "blur" },
-                    {pattern: '^(男|女){1}$',message: '请输入性别格式(男或女)',trigger: 'blur'}
+                    { pattern: '^(男|女){1}$', message: '请输入性别格式(男或女)', trigger: 'blur' }
                 ]
             },
         }
@@ -49,9 +49,6 @@ export default {
         },
         cancel() {
             this.isVisible = false
-        },
-        submit() {
-            console.log('submit')
         }
     }
 }

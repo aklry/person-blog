@@ -20,8 +20,8 @@
           <EditDialog :isVisible="isVisible" @changeIsVisible="changeIsVisible" :id="id">
             <template #input>
               <el-form :model="form" :rules="rules">
-                <el-form-item label="用户名" :label-width="formLabelWidth" prop="username">
-                  <el-input v-model="form.username" autocomplete="off" ref="username"></el-input>
+                <el-form-item label="用户名" :label-width="formLabelWidth" prop="name">
+                  <el-input v-model="form.name" autocomplete="off" ref="name"></el-input>
                 </el-form-item>
                 <el-form-item label="性别" :label-width="formLabelWidth" prop="sex">
                   <el-input v-model="form.sex" autocomplete="off" ref="sex"></el-input>
@@ -56,19 +56,46 @@ import Breadcrumb from '@/components/Breadcrumb'
 import user from '@/mixins/user'
 import api from '@/api/user'
 import EditDialog from '@/components/Dialog/EditDialog.vue'
+import utils from '@/util/utils'
 export default {
   mixins: [user],
+  inject: ['reload'],
   components: {
     Breadcrumb,
     EditDialog
   },
+  methods: {
+    submit() {
+      this.$data.isVisible = false
+      const name = this.$refs.name.value
+      const password = this.$refs.password.value
+      const sex = this.$refs.sex.value
+      const address = this.$refs.address.value
+      const phoneNumber = this.$refs.phoneNumber.value
+      api.updateUser({
+        name,
+        password,
+        sex,
+        address,
+        phoneNumber
+      })
+        .then(res => {
+          if (res.data.flag) {
+            utils.alert(this, res.data.message)
+            this.reload()
+          } else {
+            utils.alert(this, res.data.message)
+          }
+        })
+        .catch(error => console.log(error))
+    }
+  },
   mounted() {
     api.getAllUsers().then(res => {
-      console.log(res.data)
       if (res.data.length != 0) {
-          this.$data.userList = res.data
-        }
-      })
+        this.$data.userList = res.data
+      }
+    })
   }
 }
 </script>
