@@ -8,7 +8,7 @@
                 <el-header>
                     <div class="welcome">
                         <Home>
-                            欢迎 {{ adminInfo.username }}登录个人博客系统
+                            欢迎 {{ adminInfo.username }}登录个人博客后台管理系统
                         </Home>
                     </div>
                     <div class="user-info">
