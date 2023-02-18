@@ -25,11 +25,11 @@ public class AdminService {
         adminDao.addAdmin(username,password);
     }
     @Transactional
-    public void deleteById(Integer id) {
+    public void deleteById(int id) {
         adminDao.deleteAdmin(id);
     }
     @Transactional
-    public void updateAdmin(String username, String password, Integer id) {
+    public void updateAdmin(String username, String password, int id) {
         adminDao.updateAdmin(username, password, id);
     }
 }
