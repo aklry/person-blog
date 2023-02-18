@@ -29,6 +29,22 @@ const routes = [
         meta: {
           isLogin: true
         }
+      },
+      {
+        path: '/user',
+        name: 'User',
+        component: () => import('@/views/user'),
+        meta: {
+          isLogin: true
+        }
+      },
+      {
+        path: '/authority',
+        name: 'Authority',
+        component: () => import('@/views/authority'),
+        meta: {
+          isLogin: true
+        }
       }
     ]
   },

@@ -15,13 +15,13 @@
                     <i class="el-icon-setting"></i>
                     <span slot="title">系统设置</span>
                 </template>
-                <el-menu-item index="/role">
+                <el-menu-item index="/user">
                     <span slot="title">用户管理</span>
                 </el-menu-item>
                 <el-menu-item index="/admin">
                     <span slot="title">管理员管理</span>
                 </el-menu-item>
-                <el-menu-item index="/banner">
+                <el-menu-item index="/authority">
                     <span slot="title">权限管理</span>
                 </el-menu-item>
             </el-submenu>
