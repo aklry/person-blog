@@ -15,17 +15,27 @@
                     <i class="el-icon-setting"></i>
                     <span slot="title">系统设置</span>
                 </template>
-                <el-menu-item index="/menu">
-                    <span slot="title">菜单管理</span>
-                </el-menu-item>
                 <el-menu-item index="/role">
-                    <span slot="title">角色管理</span>
+                    <span slot="title">用户管理</span>
                 </el-menu-item>
                 <el-menu-item index="/admin">
                     <span slot="title">管理员管理</span>
                 </el-menu-item>
                 <el-menu-item index="/banner">
-                    <span slot="title">轮播图管理</span>
+                    <span slot="title">权限管理</span>
+                </el-menu-item>
+            </el-submenu>
+
+            <el-submenu index="blogMenu">
+                <template slot="title">
+                    <i class="el-icon-setting"></i>
+                    <span slot="title">博客设置</span>
+                </template>
+                <el-menu-item index="/blogManage">
+                    <span slot="title">博客管理</span>
+                </el-menu-item>
+                <el-menu-item index="/comment">
+                    <span slot="title">评论管理</span>
                 </el-menu-item>
             </el-submenu>
         </el-menu>
