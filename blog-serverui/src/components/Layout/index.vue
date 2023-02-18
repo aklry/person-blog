@@ -6,6 +6,11 @@
             </el-aside>
             <el-main>
                 <el-header>
+                    <div class="welcome">
+                        <Home>
+                            欢迎 {{ adminInfo.username }}登录个人博客系统
+                        </Home>
+                    </div>
                     <div class="user-info">
                         <img class="avatar" src="@/assets/a1.png" alt="">
                         <!-- <span class="username"></span> -->
@@ -32,6 +37,7 @@
 
 <script>
 import NavMenu from '@/components/NavMenu.vue';
+import Home from '@/views/home'
 import { mapState, mapMutations } from 'vuex';
 export default {
     data () {
@@ -40,7 +46,8 @@ export default {
         }
     },
     components: {
-        NavMenu
+        NavMenu,
+        Home
     },
     methods: {
         ...mapMutations(['handleLogOut']),
@@ -69,6 +76,9 @@ export default {
 }
 
 .el-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     box-shadow: 0 0 5px #ccc;
 }
 
@@ -76,16 +86,8 @@ export default {
     padding: 20px;
 }
 
-.user-info {
-    float: right;
-    margin-right: 20px;
-    margin-top: 10px;
-}
-
 .avatar {
     width: 30px;
     height: 30px;
 }
-</style>>
-
 </style>
