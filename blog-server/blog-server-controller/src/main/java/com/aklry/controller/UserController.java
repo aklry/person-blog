@@ -14,15 +14,25 @@ import java.util.List;
 public class UserController {
     @Autowired
     private UserService userService;
+    private Result result;
+
     @RequestMapping("/listUser")
     public List<User> listUser() {
         List<User> users = userService.ListUser();
         return users;
     }
 
-    @PostMapping("/addUser")
-    public Result addUser(User user) {
-        Result result = new Result(true,"添加学生成功");
+    @PostMapping("/update")
+    public Result updateUser(@RequestBody User user) {
+        result = new Result();
+        if (user.getName().length() != 0 && user.getAddress().length() != 0 && user.getPassword().length() != 0 && user.getSex().length() != 0 && user.getPhoneNumber().length() != 0) {
+            userService.updateUser(user);
+            result.message = "修改成功";
+            result.flag = true;
+        } else {
+            result.flag = false;
+            result.message = "请完整填写表单";
+        }
         return result;
     }
 }
