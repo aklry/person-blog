@@ -39,9 +39,17 @@ const routes = [
         }
       },
       {
-        path: '/authority',
-        name: 'Authority',
-        component: () => import('@/views/authority'),
+        path: '/blogManage',
+        name: 'BlogManage',
+        component: () => import('@/views/blogManage'),
+        meta: {
+          isLogin: true
+        }
+      },
+      {
+        path: '/comment',
+        name: 'Comment',
+        component: () => import('@/views/comment'),
         meta: {
           isLogin: true
         }

@@ -21,9 +21,6 @@
                 <el-menu-item index="/admin">
                     <span slot="title">管理员管理</span>
                 </el-menu-item>
-                <el-menu-item index="/authority">
-                    <span slot="title">权限管理</span>
-                </el-menu-item>
             </el-submenu>
 
             <el-submenu index="blogMenu">
