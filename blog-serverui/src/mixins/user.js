@@ -44,9 +44,6 @@ export default {
         handleEdit(index, row) {
             this.isVisible = true
         },
-        handleDelete(index, row) {
-            console.log(row)
-        },
         cancel() {
             this.isVisible = false
         }

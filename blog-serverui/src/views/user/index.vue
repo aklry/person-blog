@@ -88,7 +88,26 @@ export default {
           }
         })
         .catch(error => console.log(error))
-    }
+    },
+    handleDelete(index, row) {
+      this.$confirm("此操作将永久删除该用户, 是否继续?", "提示", {
+        confirmButtonText: "确定",
+        cancelButtonText: "取消",
+        type: "warning"
+      })
+        .then(() => {
+          api.deleteUserById(row.id)
+            .then(res => {
+              if (res.data.flag) {
+                utils.alert(this, res.data.message)
+                this.reload()
+              } else {
+                utils.alert(this, res.data.message)
+              }
+            })
+        })
+        .catch((error) => { console.log(error) })
+    },
   },
   mounted() {
     api.getAllUsers().then(res => {
