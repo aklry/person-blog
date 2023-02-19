@@ -3,6 +3,7 @@ package com.aklry.controller;
 import com.aklry.domain.Admin;
 import com.aklry.domain.Result;
 import com.aklry.service.AdminService;
+import com.aklry.utils.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,7 +30,7 @@ public class AdminController {
         List<Object> endResult = new ArrayList<>();
         if (admin.getUsername().length() != 0 && admin.getPassword().length() != 0) {
             Admin adminInfo = adminService.getAdminInfo(admin);
-            result = new Result();
+            result = Utils.getResult();
             if (adminInfo == null) {
                 adminService.addAdmin(admin.getUsername(),admin.getPassword());
                 result.flag = true;
@@ -56,7 +57,7 @@ public class AdminController {
      */
     @PostMapping("/delete")
     public Result deleteById(@RequestBody Integer id) {
-        result = new Result();
+        result = Utils.getResult();
         adminService.deleteById(id.intValue());
 
         result.flag = true;
@@ -66,7 +67,7 @@ public class AdminController {
     }
     @PostMapping("/update")
     public Result updateAdmin(@RequestBody Admin admin) {
-        result = new Result();
+        result = Utils.getResult();
         if (admin.getUsername().length() != 0 && admin.getPassword().length() != 0) {
            adminService.updateAdmin(admin.getUsername(), admin.getPassword(), admin.getId());
            result.message = "修改成功";

@@ -3,6 +3,7 @@ package com.aklry.controller;
 import com.aklry.domain.Result;
 import com.aklry.domain.User;
 import com.aklry.service.UserService;
+import com.aklry.utils.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -24,7 +25,7 @@ public class UserController {
 
     @PostMapping("/updateUser")
     public Result updateUser(@RequestBody User user) {
-        result = new Result();
+        result = Utils.getResult();
         if (user.getName().length() != 0 && user.getAddress().length() != 0 && user.getPassword().length() != 0 && user.getSex().length() != 0 && user.getPhoneNumber().length() != 0) {
             userService.updateUser(user);
             result.message = "修改成功";
