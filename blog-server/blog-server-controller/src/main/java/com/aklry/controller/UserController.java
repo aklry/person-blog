@@ -36,4 +36,19 @@ public class UserController {
         }
         return result;
     }
+
+    @PostMapping("/deleteUser")
+    public Result deleteUserById(@RequestBody Integer id) {
+        result = Utils.getResult();
+
+        if (id != null) {
+            userService.deleteUser(id.intValue());
+            result.flag = true;
+            result.message = "删除成功";
+        } else {
+            result.flag = false;
+            result.message = "删除失败";
+        }
+        return result;
+    }
 }

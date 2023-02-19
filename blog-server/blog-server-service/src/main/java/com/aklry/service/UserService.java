@@ -4,6 +4,7 @@ import com.aklry.dao.UserDao;
 import com.aklry.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -19,8 +20,12 @@ public class UserService {
     public void addUser(User user) {
         userDao.addUser(user);
     }
-
+    @Transactional
     public void updateUser(User user) {
         userDao.updateUser(user);
+    }
+    @Transactional
+    public void deleteUser(int id) {
+        userDao.deleteUserById(id);
     }
 }
