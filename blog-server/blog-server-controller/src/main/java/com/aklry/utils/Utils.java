@@ -9,6 +9,10 @@ public class Utils {
         return UUID.randomUUID().toString();
     }
 
+    /**
+     * 工厂类
+     * @return
+     */
     public static Result getResult() {
         return new Result();
     }
