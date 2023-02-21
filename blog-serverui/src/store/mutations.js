@@ -6,5 +6,8 @@ export default {
     handleLogOut(state) {
         state.token = ''
         window.localStorage.removeItem('token')
+    },
+    changePageNum(state, pageNum) {
+        state.pageNum = pageNum
     }
 }

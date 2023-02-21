@@ -9,7 +9,7 @@ const base = {
 }
 
 const api = {
-    getAdminInfo (params) {
+    getAdminInfo(params) {
         // console.log(JSON.stringify(params))
         // console.log(JSON.stringify(params))
         return axios.post(base.login,params)
@@ -17,8 +17,8 @@ const api = {
     adminRegister(params) {
         return axios.post(base.register,params)
     },
-    getAllAdmin() {
-        return axios.get(base.listAllAdmin)
+    getAllAdmin(params) {
+        return axios.post(base.listAllAdmin,params)
     },
     add(params) {
         return axios.post(base.add, params)

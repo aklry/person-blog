@@ -42,6 +42,11 @@
         </template>
       </el-table-column>
     </el-table>
+    <div class="block">
+      <el-pagination @current-change="handleCurrentChange" :current-page="pageNum" :page-size="pageInfo.size"
+        layout="total, prev, pager, next, jumper" :total="pageInfo.total">
+      </el-pagination>
+    </div>
   </div>
 </template>
   
@@ -53,10 +58,14 @@ import Dialog from "@/components/Dialog";
 import EditDialog from "@/components/Dialog/EditDialog.vue"
 import utils from "@/util/utils"
 import Breadcrumb from "@/components/Breadcrumb"
+import {
+  mapMutations, mapState
+} from "vuex";
 export default {
   mixins: [table, editDialog],
   inject: ["reload"],
   methods: {
+    ...mapMutations(['changePageNum']),
     handleEdit(index, row) {
       this.$data.isVisible = true
       this.$data.id = row.id
@@ -95,6 +104,10 @@ export default {
           utils.alert(this, res.data.message)
         }
       })
+    },
+    handleCurrentChange(val) {
+      this.changePageNum(val)
+      this.reload()
     }
   },
   components: {
@@ -104,16 +117,29 @@ export default {
   },
   mounted() {
     api
-      .getAllAdmin()
+      .getAllAdmin({
+        pageNum: this.$store.state.pageNum,
+        size: 5
+      })
       .then((res) => {
-        this.$data.tableData = res.data;
+        this.$data.tableData = res.data.list;
+        this.$data.pageInfo = res.data
       })
       .catch((error) => console.log(error));
   },
+  computed: {
+    ...mapState(['pageNum'])
+  }
 };
 </script>
 <style scoped>
 .container {
   display: flex;
+}
+
+.block {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
 }
 </style>

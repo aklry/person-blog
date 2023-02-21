@@ -1,9 +1,12 @@
 package com.aklry.controller;
 
 import com.aklry.domain.Admin;
+import com.aklry.domain.Page;
 import com.aklry.domain.Result;
 import com.aklry.service.AdminService;
 import com.aklry.utils.Utils;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,9 +23,17 @@ public class AdminController {
      * 获取所有管理员
      * @return
      */
-    @GetMapping ("/listAllAdmin")
-    public List<Admin> listAllAdmin() {
-        return adminService.listAdmin();
+    @PostMapping ("/listAllAdmin")
+    public PageInfo listAllAdmin(@RequestBody Page page) {
+        System.out.println(page);
+        //查询前设置参数 参数1：页数（从1开始） 参数2：每页条数
+        PageHelper.startPage(page.getPageNum(),page.getSize());
+        //正常查询
+        List<Admin> admins = adminService.listAdmin();
+        //创建页面对象，创建时将查询结果传入构造方法
+        PageInfo pageInfo = new PageInfo(admins);
+
+        return pageInfo;
     }
 
     @PostMapping("/add")

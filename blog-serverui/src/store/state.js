@@ -1,4 +1,5 @@
 export default {
     token: '',
-    adminInfo: {}
+    adminInfo: {},
+    pageNum: 1
 }
