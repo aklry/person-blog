@@ -48,8 +48,4 @@ export default {
   border: 1px solid transparent !important;
   border-bottom: 1px solid #fff;
 }
-
-.el-form-item .el-form-item__label {
-  color: #fff !important;
-}
 </style>
