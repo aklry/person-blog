@@ -7,7 +7,7 @@ const routes = [
   {
     path: '/',
     name: 'Home',
-    component: () => import('@/views/index'),
+    component: () => import('@/components/Layout'),
     meta: {
       isLogin: true
     }
