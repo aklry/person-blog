@@ -57,6 +57,6 @@ export default {
 }
 
 .login {
-  padding: 0 10px;
+  padding: 0 20px;
 }
 </style>
