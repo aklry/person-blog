@@ -8,16 +8,23 @@
           <router-link to="/register" class="register">注册</router-link>
         </div>
       </el-header>
-      <el-main>Main</el-main>
+      <el-main>
+        <Carrousel></Carrousel>
+        <Card></Card>
+      </el-main>
     </el-container>
   </div>
 </template>
 
 <script>
-import NavMenu from '../NavMenu.vue';
+import NavMenu from '../NavMenu.vue'
+import Carrousel from '../Carrousel'
+import Card from '../Card'
 export default {
   components: {
-    NavMenu
+    NavMenu,
+    Carrousel,
+    Card
   }
 }
 </script>
@@ -44,10 +51,11 @@ export default {
 
 
 .el-main {
-  background-color: #E9EEF3;
+  /* background-color: #E9EEF3; */
   color: #333;
   text-align: center;
-  line-height: 160px;
+  padding: 0;
+  /* line-height: 160px; */
 }
 
 .login,
