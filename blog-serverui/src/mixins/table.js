@@ -8,7 +8,7 @@ export default {
             formLabelWidth: '120px',
             isRouterAlive: true,
             id: 0,
-            pageInfo: {}
+            pageInfo: {},
         }
     },
     methods: {

@@ -44,7 +44,7 @@
     </el-table>
     <div class="block">
       <el-pagination @current-change="handleCurrentChange" :current-page="pageNum" :page-size="pageInfo.size"
-        layout="total, prev, pager, next, jumper" :total="pageInfo.total">
+        layout="total, prev, pager, next, jumper" :page-count="pageInfo.pages">
       </el-pagination>
     </div>
   </div>
@@ -124,6 +124,7 @@ export default {
       .then((res) => {
         this.$data.tableData = res.data.list;
         this.$data.pageInfo = res.data
+        console.log(this.$data.pageInfo)
       })
       .catch((error) => console.log(error));
   },
