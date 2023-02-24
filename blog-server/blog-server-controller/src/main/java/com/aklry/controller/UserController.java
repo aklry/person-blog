@@ -5,7 +5,6 @@ import com.aklry.domain.User;
 import com.aklry.service.UserService;
 import com.aklry.utils.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -48,6 +47,30 @@ public class UserController {
         } else {
             result.flag = false;
             result.message = "删除失败";
+        }
+        return result;
+    }
+
+    @PostMapping("/addUser")
+    public Result addUser(@RequestBody User user) {
+        result = Utils.getResult();
+        if (user != null && user.getName().length() != 0
+                && user.getPhoneNumber().length() != 0
+                && user.getSex().length() != 0
+                && user.getPassword().length() != 0
+                && user.getAddress().length() != 0) {
+            User u = userService.findUser(user.getName(), user.getPassword());
+            if (u != null) {
+                userService.addUser(user);
+                result.flag = true;
+                result.message = "注册成功";
+            } else {
+                result.flag = false;
+                result.message = "该用户已存在";
+            }
+        } else {
+            result.flag = false;
+            result.message = "请正确填写个人信息";
         }
         return result;
     }

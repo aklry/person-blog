@@ -14,7 +14,8 @@ public interface UserDao {
      */
     @Select("select * from user")
     List<User> listUser();
-
+    @Select("select * from user where name = #{name} and password = #{password}")
+    User findByCondition(@Param("name") String name, @Param("password") String password);
     /**
      * 添加用户
      * @param user

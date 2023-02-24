@@ -6,28 +6,25 @@ public class User {
     private String sex;
     private String address;
     private String phoneNumber;
-    private int role;
     private String password;
 
     public User() {
     }
 
-    public User(int id, String name, String sex, String address, String phoneNumber, int role, String password) {
+    public User(int id, String name, String sex, String address, String phoneNumber, String password) {
         this.id = id;
         this.name = name;
         this.sex = sex;
         this.address = address;
         this.phoneNumber = phoneNumber;
-        this.role = role;
         this.password = password;
     }
 
-    public User(String name, String sex, String address, String phoneNumber, int role, String password) {
+    public User(String name, String sex, String address, String phoneNumber, String password) {
         this.name = name;
         this.sex = sex;
         this.address = address;
         this.phoneNumber = phoneNumber;
-        this.role = role;
         this.password = password;
     }
 
@@ -71,14 +68,6 @@ public class User {
         this.phoneNumber = phoneNumber;
     }
 
-    public int getRole() {
-        return role;
-    }
-
-    public void setRole(int role) {
-        this.role = role;
-    }
-
     public String getPassword() {
         return password;
     }
@@ -95,7 +84,6 @@ public class User {
                 ", sex='" + sex + '\'' +
                 ", address='" + address + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
-                ", role=" + role +
                 ", password='" + password + '\'' +
                 '}';
     }

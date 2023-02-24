@@ -28,4 +28,8 @@ public class UserService {
     public void deleteUser(int id) {
         userDao.deleteUserById(id);
     }
+
+    public User findUser(String name, String password) {
+        return userDao.findByCondition(name, password);
+    }
 }
