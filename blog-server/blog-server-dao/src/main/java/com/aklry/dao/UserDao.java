@@ -20,7 +20,7 @@ public interface UserDao {
      * 添加用户
      * @param user
      */
-    @Insert("insert into user values(null,#{name},#{sex},#{address},#{phoneNumber})")
+    @Insert("insert into user(id,name,sex,address,phoneNumber) values(default,#{name},#{sex},#{address},#{phoneNumber})")
     void addUser(User user);
     @Update("update user set name=#{name},sex=#{sex},password=#{password},phoneNumber=#{phoneNumber},address=#{address}")
     void updateUser(User user);
