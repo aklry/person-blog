@@ -16,7 +16,7 @@ public class UserService {
     public List<User> ListUser() {
         return userDao.listUser();
     }
-
+    @Transactional
     public void addUser(User user) {
         userDao.addUser(user);
     }

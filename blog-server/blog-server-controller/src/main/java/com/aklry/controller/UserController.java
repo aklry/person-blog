@@ -60,7 +60,7 @@ public class UserController {
                 && user.getPassword().length() != 0
                 && user.getAddress().length() != 0) {
             User u = userService.findUser(user.getName(), user.getPassword());
-            if (u != null) {
+            if (u == null) {
                 userService.addUser(user);
                 result.flag = true;
                 result.message = "注册成功";
