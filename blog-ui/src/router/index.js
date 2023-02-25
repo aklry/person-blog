@@ -7,7 +7,17 @@ const routes = [
   {
     path: '/',
     name: 'Home',
-    component: () => import('@/views/index.vue')
+    component: () => import('@/views/index.vue'),
+    children: [
+      {
+        path: '/user',
+        name: 'User',
+        component: () => import('@/views/user/index.vue'),
+        meta: {
+          isLogin: true
+        }
+      }
+    ]
   },
   {
     path: '/login',
@@ -24,7 +34,6 @@ const routes = [
 const router = new VueRouter({
   routes
 })
-
 
 router.beforeEach((to, from, next) => {
   if (to.meta.isLogin) {
