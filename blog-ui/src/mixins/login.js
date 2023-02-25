@@ -31,11 +31,14 @@ export default {
                     if (res.data[0].flag) {
                         this.set({
                             token: res.data[0].token,
-                            userInfo: res.data[1]
+                            userInfo: res.data[1],
+                            flag: res.data[0].flag
                         })
                         localStorage.setItem('token', res.data[0].token)
                         utils.alert(this, res.data[0].message)
-                        this.$router.push({name: 'Home'})
+                        setTimeout(() => {
+                            this.$router.push({name: 'Home'})
+                        },2000)
                 }
             }).catch(error => console.log(error))
         }
