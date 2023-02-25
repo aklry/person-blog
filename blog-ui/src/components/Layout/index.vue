@@ -2,7 +2,20 @@
   <div class="layout">
     <el-container>
       <el-header>
-        <NavMenu></NavMenu>
+        <NavMenu>
+          <template #header>
+            <el-menu-item index="/home">首页</el-menu-item>
+            <el-submenu index="menu">
+              <template slot="title">vue</template>
+              <el-menu-item index="/router">vue-router</el-menu-item>
+              <el-menu-item index="/net">axios</el-menu-item>
+              <el-menu-item index="/stateTool">vuex</el-menu-item>
+              <el-menu-item index="/tools">开发工具</el-menu-item>
+            </el-submenu>
+            <el-menu-item index="/webpack">webpack</el-menu-item>
+            <el-menu-item index="/user">个人中心</el-menu-item>
+          </template>
+        </NavMenu>
         <div class="userinfo" v-if="flag === true ? false : true">
           <router-link to="/login" class="login">登录</router-link>
           <router-link to="/register" class="register">注册</router-link>
@@ -92,8 +105,8 @@ export default {
 }
 
 .avatar {
-    width: 30px;
-    height: 30px;
+  width: 30px;
+  height: 30px;
 }
 
 .user-info {
