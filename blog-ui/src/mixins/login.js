@@ -1,3 +1,5 @@
+import api from "@/api/user"
+import utils from "@/utils/utils"
 export default {
     data() {
         return {
@@ -19,7 +21,15 @@ export default {
     },
     methods: {
         submitForm() {
-            console.log('登录')
+            api.findUser({
+                name: this.form.username,
+                password: this.form.password
+            })
+                .then(res => {
+                    if (res.data[0].flag) {
+                    utils.alert(this, res.data[0].message)
+                }
+            }).catch(error => console.log(error))
         }
     }
 }
