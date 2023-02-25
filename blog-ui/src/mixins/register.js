@@ -1,4 +1,5 @@
 import api from "@/api/user"
+import utils from "@/utils/utils"
 export default {
     data() {
         return {
@@ -46,10 +47,10 @@ export default {
             })
                 .then(res => {
                     if (res.data.flag) {
-                        alert(res.data.message)
+                        utils.alert(this, res.data.message)
                         this.$router.push({name: 'Login'})
                     } else {
-                        alert(res.data.message)
+                        utils.alert(this, res.data.message)
                         this.$router.push({name: 'Register'})
                     }
                 }).catch(error => console.log(error))
