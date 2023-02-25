@@ -12,16 +12,6 @@ const routes = [
     path: '/',
     name: 'Home',
     component: () => import('@/views/index.vue'),
-    children: [
-      {
-        path: '/user',
-        name: 'User',
-        component: () => import('@/views/user/index.vue'),
-        meta: {
-          isLogin: true
-        }
-      }
-    ]
   },
   {
     path: '/login',
@@ -32,6 +22,14 @@ const routes = [
     path: '/register',
     name: 'Register',
     component: () => import('@/views/register.vue')
+  },
+  {
+    path: '/user',
+    name: 'User',
+    component: () => import('@/views/user'),
+    meta: {
+      isLogin: true
+    }
   }
 ]
 
