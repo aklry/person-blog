@@ -1,5 +1,6 @@
 package com.aklry.controller;
 
+import com.aklry.domain.Admin;
 import com.aklry.domain.Result;
 import com.aklry.domain.User;
 import com.aklry.service.UserService;
@@ -7,6 +8,7 @@ import com.aklry.utils.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -73,5 +75,36 @@ public class UserController {
             result.message = "请正确填写个人信息";
         }
         return result;
+    }
+
+    @PostMapping("/userLogin")
+    public List<Object> findUser(@RequestBody User user) {
+        List<Object> endResult = new ArrayList<>();
+        result = Utils.getResult();
+        if (user.getName().length() != 0 && user.getPassword().length() != 0) {
+            User u = userService.findUser(user.getName(), user.getPassword());
+            if (u != null) {
+                String name = u.getName();
+                String password = u.getPassword();
+                if (name != null && password != null && name.length() != 0 && password.length() != 0) {
+                    result.flag = true;
+                    result.message = "登录成功";
+                    result.token = Utils.getUUID();
+                    endResult.add(result);
+                    endResult.add(u);
+                }
+            } else {
+                result.flag = false;
+                result.message = "没有该用户";
+                result.token = null;
+                endResult.add(result);
+            }
+        } else {
+            result.flag = false;
+            result.message = "请输入用户名或密码";
+            result.token = null;
+            endResult.add(result);
+        }
+        return endResult;
     }
 }
