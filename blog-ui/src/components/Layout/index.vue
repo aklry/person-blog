@@ -33,7 +33,7 @@
 import NavMenu from '../NavMenu.vue'
 import Carrousel from '../Carrousel'
 import Card from '../Card'
-import { mapState } from 'vuex'
+import { mapState, mapMutations } from 'vuex'
 export default {
   components: {
     NavMenu,
@@ -44,8 +44,10 @@ export default {
     ...mapState(['flag', 'userInfo', 'token'])
   },
   methods: {
+    ...mapMutations(['handleLogout']),
     logout() {
-      console.log('退出')
+      this.handleLogout()
+      this.$router.push('/login')
     }
   }
 }
