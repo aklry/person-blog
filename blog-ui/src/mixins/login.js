@@ -33,7 +33,9 @@ export default {
                             token: res.data[0].token,
                             userInfo: res.data[1]
                         })
-                    utils.alert(this, res.data[0].message)
+                        localStorage.setItem('token', res.data[0].token)
+                        utils.alert(this, res.data[0].message)
+                        this.$router.push({name: 'Home'})
                 }
             }).catch(error => console.log(error))
         }
