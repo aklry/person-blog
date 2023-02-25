@@ -1,5 +1,6 @@
 import api from "@/api/user"
 import utils from "@/utils/utils"
+import { mapMutations } from "vuex"
 export default {
     data() {
         return {
@@ -20,6 +21,7 @@ export default {
         }
     },
     methods: {
+        ...mapMutations(['set']),
         submitForm() {
             api.findUser({
                 name: this.form.username,
@@ -27,6 +29,10 @@ export default {
             })
                 .then(res => {
                     if (res.data[0].flag) {
+                        this.set({
+                            token: res.data[0].token,
+                            userInfo: res.data[1]
+                        })
                     utils.alert(this, res.data[0].message)
                 }
             }).catch(error => console.log(error))
