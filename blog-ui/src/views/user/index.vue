@@ -17,26 +17,26 @@
         <el-button size="mini" @click="handleSearch()">搜索</el-button>
       </div>
     </template>
-
-    <template #main>
-      <el-menu default-active="2" class="el-menu-vertical-demo" router @open="handleOpen" @close="handleClose"
-        background-color="#fff" text-color="#999" active-text-color="#CD7F32" mode="vertical" style="width: 200px;">
-        <el-menu-item index="/info">
-          <span slot="title">个人资料</span>
-        </el-menu-item>
-        <el-menu-item index="/changePassword">
-          <span slot="title">密码修改</span>
-        </el-menu-item>
-        <el-menu-item index="/private">
-          <span slot="title">悄悄话</span>
-        </el-menu-item>
-        <el-menu-item index="/callback">
-          <span slot="title">评论回复</span>
-        </el-menu-item>
-      </el-menu>
+      <template #main>
+        <el-menu default-active="2" class="el-menu-vertical-demo" router @open="handleOpen" @close="handleClose"
+          background-color="#fff" text-color="#999" active-text-color="#CD7F32" mode="vertical" style="width: 200px;">
+          <el-menu-item index="/info">
+            <span slot="title">个人资料</span>
+          </el-menu-item>
+          <el-menu-item index="/changePassword">
+            <span slot="title">密码修改</span>
+          </el-menu-item>
+          <el-menu-item index="/private">
+            <span slot="title">悄悄话</span>
+          </el-menu-item>
+          <el-menu-item index="/callback">
+            <span slot="title">评论回复</span>
+          </el-menu-item>
+        </el-menu>
     </template>
     <template #content>
       <div class="content">
+        <img src="@/assets/bg.jpg" alt="">
         <router-view />
       </div>
     </template>
@@ -71,9 +71,10 @@ export default {
   float: right;
   position: absolute;
   top: 10%;
-  right: 30%;
-  width: 500px;
+  left: 30%;
+}
+.content img {
+  width: 600px;
   height: 300px;
-  background-color: #fff;
 }
 </style>
