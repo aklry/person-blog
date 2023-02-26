@@ -5,11 +5,9 @@
         <slot name="NavMenu"></slot>
         <slot name="userInfo"></slot>
       </el-header>
-      <el-main>
+      <el-main class="main">
         <slot name="main" />
-        <div class="content">
-          <router-view />
-        </div>
+        <slot name="content" />
       </el-main>
     </el-container>
   </div>

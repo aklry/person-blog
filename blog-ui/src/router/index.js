@@ -29,7 +29,29 @@ const routes = [
     component: () => import('@/views/user'),
     meta: {
       isLogin: true
-    }
+    },
+    children: [
+      {
+        path: '/info',
+        name: 'Info',
+        component: () => import('@/views/user/info.vue')
+      },
+      {
+        path: '/changePassword',
+        name: 'ChangePassword',
+        component: () => import('@/views/user/changePassword.vue')
+      },
+      {
+        path: '/private',
+        name: 'Private',
+        component: () => import('@/views/user/private.vue')
+      },
+      {
+        path: '/callback',
+        name: 'Callback',
+        component: () => import('@/views/user/callback.vue')
+      }
+    ]
   }
 ]
 
