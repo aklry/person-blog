@@ -7,6 +7,9 @@
       </el-header>
       <el-main>
         <slot name="main" />
+        <div class="content">
+          <router-view />
+        </div>
       </el-main>
     </el-container>
   </div>

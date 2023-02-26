@@ -3,7 +3,7 @@
     <template #NavMenu>
       <NavMenu>
         <template #header>
-          <el-menu-item index="/home">首页</el-menu-item>
+          <el-menu-item index="/">首页</el-menu-item>
           <el-submenu index="menu">
             <template slot="title">vue</template>
             <el-menu-item index="/router">vue-router</el-menu-item>
@@ -39,6 +39,9 @@
       <Carrousel></Carrousel>
       <Card></Card>
     </template>
+    <div class="content">
+      <router-view></router-view>
+    </div>
   </Layout>
 </template>
 
