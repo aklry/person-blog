@@ -112,4 +112,23 @@ public class UserController {
         }
         return result;
     }
+
+    @PostMapping("/updateName")
+    public Result updateName(@RequestBody User user) {
+        if (user != null && user.getName().length() != 0 && user.getName() != null) {
+            String nameById = userService.findNameById(user.getId());
+            if (nameById.equals(user.getName())) {
+                result.flag = false;
+                result.message = "该昵称与原昵称一致";
+            } else {
+                userService.updateNameById(user.getName(), user.getId());
+                result.flag = true;
+                result.message = "修改成功";
+            }
+        } else {
+            result.flag = false;
+            result.message = "请正确填写信息";
+        }
+        return result;
+    }
 }

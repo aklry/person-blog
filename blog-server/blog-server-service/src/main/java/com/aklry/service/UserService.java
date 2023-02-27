@@ -36,4 +36,12 @@ public class UserService {
     public String findPasswordById(int id) {
         return userDao.findPasswordById(id);
     }
+    @Transactional
+    public void updateNameById(String name, int id) {
+        userDao.updateNameById(name, id);
+    }
+
+    public String findNameById(int id) {
+        return userDao.findNameById(id);
+    }
 }

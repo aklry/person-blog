@@ -52,4 +52,10 @@ public interface UserDao {
      */
     @Select("select password from user where id = #{id}")
     String findPasswordById(@Param("id") int id);
+
+    @Update("update user set name = #{name} where id = #{id}")
+    void updateNameById(@Param("name") String name, @Param("id") int id);
+
+    @Select("select name from user where id = #{id}")
+    String findNameById(@Param("id") int id);
 }
