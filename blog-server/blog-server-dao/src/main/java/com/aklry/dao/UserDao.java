@@ -9,11 +9,18 @@ import java.util.List;
 @Repository
 public interface UserDao {
     /**
-     * 查询所有学生
+     * 查询所有用户
      * @return
      */
     @Select("select * from user")
     List<User> listUser();
+
+    /**
+     * 根据用户名字和密码查询用户
+     * @param name
+     * @param password
+     * @return
+     */
     @Select("select * from user where name = #{name} and password = #{password}")
     User findByCondition(@Param("name") String name, @Param("password") String password);
     /**
@@ -22,8 +29,19 @@ public interface UserDao {
      */
     @Insert("insert into user(id,name,sex,address,phoneNumber,password) values(default,#{name},#{sex},#{address},#{phoneNumber},#{password})")
     void addUser(User user);
-    @Update("update user set name=#{name},sex=#{sex},password=#{password},phoneNumber=#{phoneNumber},address=#{address}")
-    void updateUser(User user);
+
+    /**
+     * 根据id删除用户
+     * @param id
+     */
     @Delete("delete from user where id = #{id}")
     void deleteUserById(int id);
+
+    /**
+     * 根据id修改密码
+     * @param password
+     * @param id
+     */
+    @Update("update user set password = #{password} where id = #{id}")
+    void updatePasswordById(@Param("password") String password, @Param("id") int id);
 }

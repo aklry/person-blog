@@ -24,20 +24,6 @@ public class UserController {
         return users;
     }
 
-    @PostMapping("/updateUser")
-    public Result updateUser(@RequestBody User user) {
-        result = Utils.getResult();
-        if (user.getName().length() != 0 && user.getAddress().length() != 0 && user.getPassword().length() != 0 && user.getSex().length() != 0 && user.getPhoneNumber().length() != 0) {
-            userService.updateUser(user);
-            result.message = "修改成功";
-            result.flag = true;
-        } else {
-            result.flag = false;
-            result.message = "请完整填写表单";
-        }
-        return result;
-    }
-
     @PostMapping("/deleteUser")
     public Result deleteUserById(@RequestBody Integer id) {
         result = Utils.getResult();
@@ -106,5 +92,18 @@ public class UserController {
             endResult.add(result);
         }
         return endResult;
+    }
+
+    @PostMapping("/updatePassword")
+    public Result updatePassword(@RequestBody User user) {
+        if (user.getPassword().length() != 0 && user.getPassword() != null) {
+            userService.updatePassword(user.getPassword(),user.getId());
+            result.flag = true;
+            result.message = "修改成功";
+        } else {
+            result.flag = false;
+            result.message = "请正确填写信息";
+        }
+        return result;
     }
 }

@@ -21,15 +21,15 @@ public class UserService {
         userDao.addUser(user);
     }
     @Transactional
-    public void updateUser(User user) {
-        userDao.updateUser(user);
-    }
-    @Transactional
     public void deleteUser(int id) {
         userDao.deleteUserById(id);
     }
 
     public User findUser(String name, String password) {
         return userDao.findByCondition(name, password);
+    }
+    @Transactional
+    public void updatePassword(String password, int id) {
+        userDao.updatePasswordById(password, id);
     }
 }
