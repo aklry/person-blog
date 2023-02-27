@@ -15,7 +15,7 @@ export default {
                 ],
                 password: [
                     { required: true, message: "请输入至少六位包含数字和字母的组合", trigger: "blur" },
-                    {pattern: '^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,16}$',message:'密码格式不正确',trigger:'blur'}
+                    { pattern: '^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,16}$', message: '密码格式不正确', trigger: 'blur' }
                 ]
             }
         }
@@ -37,10 +37,12 @@ export default {
                         localStorage.setItem('token', res.data[0].token)
                         utils.alert(this, res.data[0].message)
                         setTimeout(() => {
-                            this.$router.push({name: 'Home'})
-                        },2000)
-                }
-            }).catch(error => console.log(error))
+                            this.$router.push({ name: 'Home' })
+                        }, 2000)
+                    } else {
+                        utils.alert(this, res.data[0].message)
+                    }
+                }).catch(error => console.log(error))
         }
     }
 }
