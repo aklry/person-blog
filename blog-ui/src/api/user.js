@@ -4,7 +4,8 @@ const base = {
     addUser: '/addUser',
     login: '/userLogin',
     updatePassword: '/updatePassword',
-    updateName: '/updateName'
+    updateName: '/updateName',
+    findUserByName: '/findUserByName'
 }
 
 const api = {
@@ -19,6 +20,9 @@ const api = {
     },
     updateName(params) {
         return axios.post(base.updateName, params)
+    },
+    findUserByName(params) {
+        return axios.post(base.findUserByName, params)
     }
 }
 

@@ -15,6 +15,7 @@
 import api from '@/api/user';
 import utils from '@/utils/utils'
 import store from '@/store'
+import { mapMutations } from 'vuex';
 export default {
     data() {
         return {
@@ -30,6 +31,7 @@ export default {
         }
     },
     methods: {
+        ...mapMutations(['changeUserInfo']),
         submitForm() {
             api.updateName({
                 name: this.form.newName,
@@ -38,11 +40,16 @@ export default {
                 .then(res => {
                     if (res.data.flag) {
                         utils.alert(this, res.data.message)
-                        
+
                     } else {
                         utils.alert(this, res.data.message)
                     }
-                })
+                }).catch(error => console.log(error))
+            api.findUserByName({
+                name: this.form.newName
+            }).then(res => {
+                this.changeUserInfo(res.data)
+            }).catch(error => console.log(error))
         }
     }
 }
