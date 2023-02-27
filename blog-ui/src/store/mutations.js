@@ -7,6 +7,7 @@ export default {
     handleLogout(state) {
         state.token = ''
         window.localStorage.removeItem('token')
+        window.localStorage.removeItem('userInfo')
     },
     changeUserInfo(state, userInfo) {
         state.userInfo = userInfo

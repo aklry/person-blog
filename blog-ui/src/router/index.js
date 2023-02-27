@@ -64,18 +64,21 @@ const router = new VueRouter({
   routes
 })
 
+// 添加路由守卫, 实现权限控制
 router.beforeEach((to, from, next) => {
-  if (to.meta.isLogin) {
-    if (store.state.token) {
-      next()
-    } else {
-      next({
-        path: '/login'
-      })
-    }
-  } else {
-    next()
+  // 1.如果访问的是注册或者登录, 那么就放行
+  if (to.path === '/login' || to.path === '/register') {
+    return next();
   }
+  // 2.获取当前的登录状态
+  const token = localStorage.getItem('token');
+  // 3.如果访问的是其它路由地址, 那么就需要判断是否已经登录
+  //   如果已经登录, 那么就放行, 如果没有登录, 那么就强制跳转到登录界面
+  if (!token) {
+    return next('/login');
+  }
+  next();
 })
+
 
 export default router

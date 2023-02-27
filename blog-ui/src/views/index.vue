@@ -25,7 +25,7 @@
         <img class="avatar" src="@/assets/a1.png" alt="" style="padding: 0 2px;">
         <el-dropdown>
           <span class="el-dropdown-link" style="color: #fff;">
-            {{ userInfo.name }}<i class="el-icon-arrow-down el-icon--right" style="color: rgba(255, 255, 255, .7);"></i>
+            {{ userInfo.name || user.name }}<i class="el-icon-arrow-down el-icon--right" style="color: rgba(255, 255, 255, .7);"></i>
           </span>
           <el-dropdown-menu slot="dropdown">
             <el-dropdown-item>
@@ -52,6 +52,11 @@ import Carrousel from '@/components/Carrousel'
 import Card from '@/components/Card'
 import { mapState, mapMutations } from 'vuex'
 export default {
+  data() {
+    return {
+      user: {}
+    }
+  },
   components: {
     Layout,
     NavMenu,
@@ -66,6 +71,14 @@ export default {
     logout() {
       this.handleLogout()
       this.$router.push('/login')
+    }
+  },
+  mounted() {
+    const token = localStorage.getItem('token')
+    const user = JSON.parse(localStorage.getItem('userInfo'))
+    if (token) {
+      this.$store.state.flag = true
+      this.user = user
     }
   }
 }

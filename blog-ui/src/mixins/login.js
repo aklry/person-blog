@@ -35,6 +35,7 @@ export default {
                             flag: res.data[0].flag
                         })
                         localStorage.setItem('token', res.data[0].token)
+                        localStorage.setItem('userInfo', JSON.stringify(res.data[1]))
                         utils.alert(this, res.data[0].message)
                         setTimeout(() => {
                             this.$router.push({ name: 'Home' })
