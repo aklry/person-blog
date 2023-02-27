@@ -1,18 +1,16 @@
 export default {
     data() {
         return {
-            search: ''
+            search: '',
+            isShow: false
         }
     },
     methods: {
         handleSearch() {
             console.log(this.search)
         },
-        handleOpen(key, keyPath) {
-            console.log(key, keyPath)
-        },
-        handleClose(key, keyPath) {
-            console.log(key, keyPath)
+        changeName() {
+            this.isShow = true
         }
     }
 }

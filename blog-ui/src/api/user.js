@@ -3,7 +3,8 @@ import axios from "../utils/request"
 const base = {
     addUser: '/addUser',
     login: '/userLogin',
-    updatePassword: '/updatePassword'
+    updatePassword: '/updatePassword',
+    updateName: '/updateName'
 }
 
 const api = {
@@ -15,6 +16,9 @@ const api = {
     },
     updatePassword(params) {
         return axios.post(base.updatePassword, params)
+    },
+    updateName(params) {
+        return axios.post(base.updateName, params)
     }
 }
 

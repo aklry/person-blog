@@ -3,11 +3,11 @@
     <template #NavMenu>
       <NavMenu>
         <template #header>
-            <el-menu-item index="/">首页</el-menu-item>
-            <el-submenu index="menu">
-              <template slot="title">账户设置</template>
-              <el-menu-item index="/net">修改昵称</el-menu-item>
-            </el-submenu>
+          <el-menu-item index="/">首页</el-menu-item>
+          <el-submenu index="menu">
+            <template slot="title">账户设置</template>
+            <el-menu-item index="/changeName">修改昵称</el-menu-item>
+          </el-submenu>
         </template>
       </NavMenu>
     </template>
@@ -17,22 +17,22 @@
         <el-button size="mini" @click="handleSearch()">搜索</el-button>
       </div>
     </template>
-      <template #main>
-        <el-menu default-active="2" class="el-menu-vertical-demo" router @open="handleOpen" @close="handleClose"
-          background-color="#fff" text-color="#999" active-text-color="#CD7F32" mode="vertical" style="width: 200px;">
-          <el-menu-item index="/info">
-            <span slot="title">个人资料</span>
-          </el-menu-item>
-          <el-menu-item index="/changePassword">
-            <span slot="title">密码修改</span>
-          </el-menu-item>
-          <el-menu-item index="/private">
-            <span slot="title">悄悄话</span>
-          </el-menu-item>
-          <el-menu-item index="/callback">
-            <span slot="title">评论回复</span>
-          </el-menu-item>
-        </el-menu>
+    <template #main>
+      <el-menu default-active="2" class="el-menu-vertical-demo" router background-color="#fff" text-color="#999"
+        active-text-color="#CD7F32" mode="vertical" style="width: 200px;">
+        <el-menu-item index="/info">
+          <span slot="title">个人资料</span>
+        </el-menu-item>
+        <el-menu-item index="/changePassword">
+          <span slot="title">密码修改</span>
+        </el-menu-item>
+        <el-menu-item index="/private">
+          <span slot="title">悄悄话</span>
+        </el-menu-item>
+        <el-menu-item index="/callback">
+          <span slot="title">评论回复</span>
+        </el-menu-item>
+      </el-menu>
     </template>
     <template #content>
       <div class="content">
@@ -73,6 +73,7 @@ export default {
   top: 10%;
   left: 30%;
 }
+
 .content img {
   width: 600px;
   height: 300px;

@@ -42,6 +42,11 @@ const routes = [
         component: () => import('@/views/user/changePassword.vue')
       },
       {
+        path: '/changeName',
+        name: 'ChangeName',
+        component: () => import('@/views/user/changeName.vue')
+      },
+      {
         path: '/private',
         name: 'Private',
         component: () => import('@/views/user/private.vue')
