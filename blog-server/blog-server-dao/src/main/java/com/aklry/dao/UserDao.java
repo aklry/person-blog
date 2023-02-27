@@ -44,4 +44,12 @@ public interface UserDao {
      */
     @Update("update user set password = #{password} where id = #{id}")
     void updatePasswordById(@Param("password") String password, @Param("id") int id);
+
+    /**
+     * 根据id查询用户密码
+     * @param id
+     * @return
+     */
+    @Select("select password from user where id = #{id}")
+    String findPasswordById(@Param("id") int id);
 }

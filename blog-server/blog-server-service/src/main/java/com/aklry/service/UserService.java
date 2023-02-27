@@ -32,4 +32,8 @@ public class UserService {
     public void updatePassword(String password, int id) {
         userDao.updatePasswordById(password, id);
     }
+
+    public String findPasswordById(int id) {
+        return userDao.findPasswordById(id);
+    }
 }

@@ -97,9 +97,15 @@ public class UserController {
     @PostMapping("/updatePassword")
     public Result updatePassword(@RequestBody User user) {
         if (user.getPassword().length() != 0 && user.getPassword() != null) {
-            userService.updatePassword(user.getPassword(),user.getId());
-            result.flag = true;
-            result.message = "修改成功";
+            String passwordById = userService.findPasswordById(user.getId());
+            if (passwordById.equals(user.getPassword())) {
+                result.flag = false;
+                result.message = "新密码与原密码一致";
+            } else {
+                userService.updatePassword(user.getPassword(),user.getId());
+                result.flag = true;
+                result.message = "修改成功";
+            }
         } else {
             result.flag = false;
             result.message = "请正确填写信息";
