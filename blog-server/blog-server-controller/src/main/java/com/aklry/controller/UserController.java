@@ -131,4 +131,9 @@ public class UserController {
         }
         return result;
     }
+    @PostMapping("/findUserByName")
+    public User findUserByName(@RequestBody User user) {
+        User userByName = userService.findUserByName(user.getName());
+        return userByName;
+    }
 }
