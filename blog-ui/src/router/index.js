@@ -67,7 +67,7 @@ const router = new VueRouter({
 // 添加路由守卫, 实现权限控制
 router.beforeEach((to, from, next) => {
   // 1.如果访问的是注册或者登录, 那么就放行
-  if (to.path === '/login' || to.path === '/register') {
+  if (to.path === '/login' || to.path === '/register' || to.path === '/') {
     return next();
   }
   // 2.获取当前的登录状态
