@@ -96,6 +96,7 @@ public class UserController {
 
     @PostMapping("/updatePassword")
     public Result updatePassword(@RequestBody User user) {
+        result = Utils.getResult();
         if (user.getPassword().length() != 0 && user.getPassword() != null) {
             String passwordById = userService.findPasswordById(user.getId());
             if (passwordById.equals(user.getPassword())) {
@@ -115,6 +116,7 @@ public class UserController {
 
     @PostMapping("/updateName")
     public Result updateName(@RequestBody User user) {
+        result = Utils.getResult();
         if (user != null && user.getName().length() != 0 && user.getName() != null) {
             String nameById = userService.findNameById(user.getId());
             if (nameById.equals(user.getName())) {
