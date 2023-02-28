@@ -14,7 +14,6 @@
 <script>
 import api from '@/api/user';
 import utils from '@/utils/utils'
-import store from '@/store'
 import { mapMutations } from 'vuex';
 export default {
     data() {
@@ -35,7 +34,7 @@ export default {
         submitForm() {
             api.updateName({
                 name: this.form.newName,
-                id: store.state.userInfo.id
+                id: this.$store.state.userInfo.id
             })
                 .then(res => {
                     if (res.data.flag) {
@@ -49,6 +48,7 @@ export default {
                 name: this.form.newName
             }).then(res => {
                 this.changeUserInfo(res.data)
+                localStorage.setItem('userInfo', JSON.stringify(res.data))
             }).catch(error => console.log(error))
         }
     }

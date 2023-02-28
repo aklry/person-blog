@@ -1,5 +1,5 @@
 export default {
     token: '',
-    userInfo: '',
+    userInfo: {},
     flag: false
 }
