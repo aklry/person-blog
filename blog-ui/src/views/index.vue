@@ -13,6 +13,7 @@
           </el-submenu>
           <el-menu-item index="/webpack">webpack</el-menu-item>
           <el-menu-item index="/user">个人中心</el-menu-item>
+          <el-menu-item index="/publishBlog">发表博客</el-menu-item>
         </template>
       </NavMenu>
     </template>
@@ -51,8 +52,6 @@ import Layout from '../components/Layout'
 import Carrousel from '@/components/Carrousel'
 import Card from '@/components/Card'
 import { mapState, mapMutations } from 'vuex'
-import store from '@/store'
-import utils from '@/utils/utils'
 export default {
   components: {
     Layout,
