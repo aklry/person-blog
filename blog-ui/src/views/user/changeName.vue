@@ -14,7 +14,7 @@
 <script>
 import api from '@/api/user';
 import utils from '@/utils/utils'
-import { mapMutations } from 'vuex';
+import { mapActions, mapMutations } from 'vuex';
 export default {
     data() {
         return {
@@ -31,7 +31,11 @@ export default {
     },
     methods: {
         ...mapMutations(['changeUserInfo']),
+        ...mapActions(['asynChangeUserInfo']),
         submitForm() {
+            /**
+             * 调用接口更新用户的昵称信息
+             */
             api.updateName({
                 name: this.form.newName,
                 id: this.$store.state.userInfo.id
@@ -44,12 +48,8 @@ export default {
                         utils.alert(this, res.data.message)
                     }
                 }).catch(error => console.log(error))
-            api.findUserByName({
-                name: this.form.newName
-            }).then(res => {
-                this.changeUserInfo(res.data)
-                localStorage.setItem('userInfo', JSON.stringify(res.data))
-            }).catch(error => console.log(error))
+            //更新vuex、localStorage中的userInfo数据
+            this.asynChangeUserInfo(this.form.newName)
         }
     }
 }
