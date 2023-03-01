@@ -52,6 +52,7 @@ import Carrousel from '@/components/Carrousel'
 import Card from '@/components/Card'
 import { mapState, mapMutations } from 'vuex'
 import store from '@/store'
+import utils from '@/utils/utils'
 export default {
   components: {
     Layout,
@@ -70,8 +71,8 @@ export default {
     }
   },
   mounted() {
-    const token = localStorage.getItem('token')
-    const user = JSON.parse(localStorage.getItem('userInfo'))
+    const token = utils.dataTransfer(localStorage, 'vuex').token
+    const user = utils.dataTransfer(localStorage, 'vuex').userInfo
     if (token) {
       store.state.flag = true
       store.state.userInfo = user
