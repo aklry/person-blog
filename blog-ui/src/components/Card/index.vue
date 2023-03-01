@@ -12,7 +12,7 @@
               以保证原生API中一切能做到的,二次封装后的新API也能做到,
               以避免在遇到上述的特殊情况时,你只能尴尬地修改新API,而且还会出现为了兼容因而改得特别难看那种写法。
             </article>
-            <el-button type="text" class="button">查看原文</el-button>
+            <el-button type="text" class="button" @click="viewArtical">查看原文</el-button>
           </div>
         </div>
       </el-card>
@@ -24,6 +24,11 @@ export default {
   data() {
     return {
       
+    }
+  },
+  methods: {
+    viewArtical() {
+      this.$router.push('/blog')
     }
   }
 }
