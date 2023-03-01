@@ -69,14 +69,6 @@ export default {
       this.handleLogout()
       this.$router.push('/login')
     }
-  },
-  mounted() {
-    const token = utils.dataTransfer(localStorage, 'vuex').token
-    const user = utils.dataTransfer(localStorage, 'vuex').userInfo
-    if (token) {
-      store.state.flag = true
-      store.state.userInfo = user
-    }
   }
 }
 </script>
