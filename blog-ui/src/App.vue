@@ -4,7 +4,7 @@
   </div>
 </template>
 <script>
-
+import store from './store'
 export default {
   data() {
     return {
@@ -20,6 +20,14 @@ export default {
   provide() {
     return {
       reload: this.reload
+    }
+  },
+  mounted() {
+    const token = localStorage.getItem('token')
+    const user = JSON.parse(localStorage.getItem('userInfo'))
+    if (token) {
+      store.state.flag = true
+      store.state.userInfo = user
     }
   }
 }
