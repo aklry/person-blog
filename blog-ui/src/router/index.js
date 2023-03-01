@@ -57,6 +57,11 @@ const routes = [
         component: () => import('@/views/user/callback.vue')
       }
     ]
+  },
+  {
+    path: '/blog',
+    name: 'Blog',
+    component: () => import('@/views/blog')
   }
 ]
 
