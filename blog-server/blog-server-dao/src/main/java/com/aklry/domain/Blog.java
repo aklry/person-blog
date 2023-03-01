@@ -11,16 +11,21 @@ public class Blog {
     private String title; // 博客标题
     private String author; // 博客作者
     private String content; // 博客内容
+    private String area; // 博客内容分区
+    private String type; // 博客类型 -> 自制或者转载
+
 
     public Blog() {
     }
 
-    public Blog(int id, Date publishTime, String title, String author, String content) {
+    public Blog(int id, Date publishTime, String title, String author, String content, String area, String type) {
         this.id = id;
         this.publishTime = publishTime;
         this.title = title;
         this.author = author;
         this.content = content;
+        this.area = area;
+        this.type = type;
     }
 
     public int getId() {
@@ -63,6 +68,22 @@ public class Blog {
         this.content = content;
     }
 
+    public String getArea() {
+        return area;
+    }
+
+    public void setArea(String area) {
+        this.area = area;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
     @Override
     public String toString() {
         return "Blog{" +
@@ -71,6 +92,8 @@ public class Blog {
                 ", title='" + title + '\'' +
                 ", author='" + author + '\'' +
                 ", content='" + content + '\'' +
+                ", area='" + area + '\'' +
+                ", type='" + type + '\'' +
                 '}';
     }
 }
