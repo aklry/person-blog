@@ -13,7 +13,7 @@ public interface BlogDao {
      * 添加一条博客
      * @param blog
      */
-    @Insert("insert into blog(id, publishTime, title, author, content) values(default, #{publishTime}, #{title}, #{author}, #{content})")
+    @Insert("insert into blog(id, publishTime, title, author, content, area, type) values(default, #{publishTime}, #{title}, #{author}, #{content}, #{area}, #{type})")
     void addBlog(Blog blog);
 
     /**
