@@ -21,10 +21,10 @@ public class BlogController {
         result = Utils.getResult();
         if (blog != null) {
             blogService.addBlog(blog);
-            result.message = "添加成功";
+            result.message = "发表成功";
             result.flag = true;
         } else {
-            result.message = "添加失败";
+            result.message = "发表失败";
             result.flag = false;
         }
         return result;
