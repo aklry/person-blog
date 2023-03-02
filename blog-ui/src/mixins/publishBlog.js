@@ -2,67 +2,48 @@ export default {
     data() {
         return {
             // 表单数据
-            formData: {},
-            formDesc: {
-                title: {
-                    type: 'input',
-                    label: '标题'
-                },
-                author: {
-                    type: 'input',
-                    label: '作者',
-                    required: true
-                },
-                content: {
-                    type: 'textarea',
-                    label: '内容',
-                    required: true // 必填简写
-                },
-                dateTime: {
-                    type: 'datetime',
-                    label: '发表时间',
-                    required: true
-                },
-                type: {
-                    type: 'radio',
-                    label: '类型',
-                    required: true,
-                    default: 1,
-                    options: [
-                        { text: '自制', value: 1 },
-                        { text: '转载', value: 0 }
-                    ]
-                },
-                category: {
-                    type: 'select',
-                    label: '分区',
-                    required: true,
-                    options: [
-                        {
-                            value: 'vue',
-                            label: 'vue',
-                        },
-                        {
-                            value: '数据库',
-                            label: '数据库'
-                        }
-                    ]
-                }
+            formData: {
+                title: '',
+                author: '',
+                dateTime: '',
+                content: '',
+                category: '',
+                type: ''
             },
             rules: {
-                title: { required: true, type: 'string', message: '必须填写标题' },
-                label: { required: true, message: '标签必须填写标题' }
+                title: [
+                    { required: true, message: "请输入文章标题", trigger: "blur" },
+                    { min: 3, max: 10, message: "长度在3到10个字符", trigger: "blur" },
+                ],
+                author: [
+                    { required: true, message: "请输入作者", trigger: "blur" },
+                ],
+                dateTime: [
+                    { required: true }
+                ],
+                content: [
+                    { required: true, message: "必须填写博客内容", trigger: "blur" }
+                ],
+                type: [
+                    { required: true }
+                ],
+                category: [
+                    { required: true }
+                ]
             }
         }
     },
     methods: {
-        handleSubmit(data) {
-            // eslint-disable-next-line no-console
-            console.log(data)
-            return Promise.resolve()
-        },
-        handleSuccess() {
-            this.$message.success('创建成功')
+        handleSubmit(formName) {
+            this.$refs[formName].validate((valid) => {
+                if (valid) {
+                    alert('submit!')
+                    this.$refs[formName].resetFields();
+                } else {
+                    console.log('error submit!!')
+                    return false
+                }
+            })
         }
     }
 }
