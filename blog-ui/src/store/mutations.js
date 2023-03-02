@@ -7,8 +7,7 @@ export default {
     //退出功能
     handleLogout(state) {
         state.token = ''
-        window.localStorage.removeItem('token')
-        window.localStorage.removeItem('userInfo')
+       localStorage.clear()
     },
     //当完成用户信息的修改后，更新vuex保存的用户信息
     changeUserInfo(state, userInfo) {
@@ -16,6 +15,6 @@ export default {
     },
     //发表博客时，将博客信息保存在vuex
     setBlogInfo(state, blogInfo) {
-        state.blogInfo = blogInfo
+        state.blogInfo.push(blogInfo)
     }
 }
