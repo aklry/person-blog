@@ -1,3 +1,4 @@
+import blogApi from "@/api/blog"
 export default {
     data() {
         return {
@@ -5,7 +6,7 @@ export default {
             formData: {
                 title: '',
                 author: '',
-                dateTime: '',
+                publishTime: '',
                 content: '',
                 category: '',
                 type: ''
@@ -13,7 +14,6 @@ export default {
             rules: {
                 title: [
                     { required: true, message: "请输入文章标题", trigger: "blur" },
-                    { min: 3, max: 10, message: "长度在3到10个字符", trigger: "blur" },
                 ],
                 author: [
                     { required: true, message: "请输入作者", trigger: "blur" },
@@ -34,11 +34,26 @@ export default {
         }
     },
     methods: {
+        //实现发表博客的功能
         handleSubmit(formName) {
             this.$refs[formName].validate((valid) => {
                 if (valid) {
-                    alert('submit!')
-                    this.$refs[formName].resetFields();
+                    blogApi.publishBlog({
+                        publishTime: this.formData.publishTime,
+                        title: this.formData.title,
+                        author: this.formData.author,
+                        content: this.formData.content,
+                        category: this.formData.category,
+                        type: this.formData.type
+                    }).then(res => {
+                        if (res.status === 200 && res.data.flag) {
+                            this.$message.success(res.data.message)
+                            this.$refs[formName].resetFields()
+                        } else {
+                            this.$message.success(res.data.message)
+                            this.$refs[formName].resetFields()
+                        }
+                    }) .catch(error => console.log(error))
                 } else {
                     console.log('error submit!!')
                     return false

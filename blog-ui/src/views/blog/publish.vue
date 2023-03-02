@@ -7,8 +7,8 @@
             <el-form-item label="作者" prop="author">
                 <el-input v-model="formData.author"></el-input>
             </el-form-item>
-            <el-form-item label="发表时间" prop="dateTime">
-                <el-date-picker v-model="formData.dateTime" type="datetime" placeholder="请输入发表时间">
+            <el-form-item label="发表时间" prop="publishTime">
+                <el-date-picker v-model="formData.publishTime" type="datetime" placeholder="请输入发表时间">
                 </el-date-picker>
             </el-form-item>
             <el-form-item label="内容" prop="content">
@@ -22,8 +22,12 @@
             </el-form-item>
             <el-form-item label="内容分区" prop="category">
                 <el-select v-model="formData.category" placeholder="请选择内容分区">
-                    <el-option label="vue" value="vuex"></el-option>
-                    <el-option label="数据库" value="数据库"></el-option>
+                    <el-option label="html5" value="html5"></el-option>
+                    <el-option label="css" value="css"></el-option>
+                    <el-option label="JavaScript" value="JavaScript"></el-option>
+                    <el-option label="vue" value="vue"></el-option>
+                    <el-option label="webpack" value="webpack"></el-option>
+                    <el-option label="nodejs" value="nodejs"></el-option>
                 </el-select>
             </el-form-item>
             <el-form-item>
