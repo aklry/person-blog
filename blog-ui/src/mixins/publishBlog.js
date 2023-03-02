@@ -1,5 +1,5 @@
 import blogApi from "@/api/blog"
-import { mapMutations } from "vuex"
+import { mapMutations, mapGetters } from "vuex"
 export default {
     data() {
         return {
@@ -59,15 +59,8 @@ export default {
                                 category: this.formData.category,
                                 type: this.formData.type
                             })
-                            localStorage.setItem('blogInfo', JSON.stringify({
-                                publishTime: this.formData.publishTime,
-                                title: this.formData.title,
-                                author: this.formData.author,
-                                content: this.formData.content,
-                                category: this.formData.category,
-                                type: this.formData.type
-                            }))
                             this.$refs[formName].resetFields()
+                            this.$router.push({ name: 'Home' })
                         } else {
                             this.$message.success(res.data.message)
                             this.$refs[formName].resetFields()
@@ -79,5 +72,8 @@ export default {
                 }
             })
         }
+    },
+    computed: {
+        ...mapGetters(['getBlogInfo'])
     }
 }
