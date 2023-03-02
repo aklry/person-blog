@@ -1,35 +1,46 @@
 <template>
-  <el-row style="height: 30%; padding: 20px;">
-    <el-col :span="8" v-for="(o, index) in 2" :key="o" :offset="index > 0 ? 2 : 0" style="width: 400px;height: 100%;">
-      <el-card :body-style="{ padding: '0px' }" style="height: 100%;">
-        <div style="padding: 14px;">
-          <span class="title">好吃的汉堡</span>
-          <div class="bottom clearfix">
-            <article class="artical">
-              有些开发者会说不会出现这种接口,已经约定好的所有post接口只需这三种参数就行。
-              对此我想反驳：一个有潜力的项目总会不断地加入更多的需求，如果你觉得你的项目是没有潜力的，那当我没说。
-              但如果你不敢肯定你的项目之后是否会加入更多特性,不敢保证是否会遇到这类特殊场景,那请你在二次封装时,尽可能地保持与原生API对齐,
-              以保证原生API中一切能做到的,二次封装后的新API也能做到,
-              以避免在遇到上述的特殊情况时,你只能尴尬地修改新API,而且还会出现为了兼容因而改得特别难看那种写法。
-            </article>
-            <el-button type="text" class="button" @click="viewArtical">查看原文</el-button>
-          </div>
+  <el-row>
+    <el-col :span="8" v-for="(item, index) in blogInfo" :key="index">
+      <el-card :body-style="{ padding: '0px'}" style="height: 100%;">
+      <div style="padding: 14px;">
+        <span class="title">{{ item.title }}</span>
+        <div class="bottom clearfix">
+          <article class="artical">
+            <p>{{ item.content }}</p>
+          </article>
+          <el-button type="text" class="button" @click="viewArtical">查看原文</el-button>
         </div>
-      </el-card>
+      </div>
+    </el-card>
     </el-col>
   </el-row>
+  
 </template>
 <script>
+import { mapState } from 'vuex'
+import blogApi from '@/api/blog'
 export default {
   data() {
     return {
-      
+
     }
   },
   methods: {
     viewArtical() {
       this.$router.push('/blog')
     }
+  },
+  computed: {
+    ...mapState(['blogInfo'])
+  },
+  mounted() {
+    blogApi.listAllBlog()
+      .then(res => {
+        if (res.status === 200 && res.data != null) {
+          this.$store.state.blogInfo = res.data
+          localStorage.setItem('blogInfo', JSON.stringify(this.$store.state.blogInfo))
+        }
+      }).then(error => console.log(error))
   }
 }
 </script>
@@ -72,7 +83,19 @@ export default {
 }
 
 .el-card {
+  width: 350px;
+  height: 350px;
   box-shadow: 0 0 5px #999;
+}
+
+.el-row {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin: 20px 50px;
+}
+.el-col {
+  margin-bottom: 20px;
 }
 </style>
   
