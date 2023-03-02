@@ -47,8 +47,8 @@ export default {
 <style scoped>
 .artical {
   font-size: 13px;
-  line-height: 23px;
-  -webkit-line-clamp: 6;
+  line-height: 30px;
+  -webkit-line-clamp: 4;
   /*用来限制在一个块元素显示的文本的行数，2 表示最多显示 2 行。为了实现该效果，它需要组合其他的 WebKit 属性*/
   display: -webkit-box;
   /*和 1 结合使用，将对象作为弹性伸缩盒子模型显示 */
@@ -64,7 +64,6 @@ export default {
 
 .bottom {
   margin-top: 13px;
-  line-height: 12px;
 }
 
 .button {
