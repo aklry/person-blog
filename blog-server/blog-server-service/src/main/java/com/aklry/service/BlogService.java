@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 public class BlogService {
     @Autowired
@@ -18,5 +20,9 @@ public class BlogService {
     @Transactional
     public void addBlog(Blog blog) {
         blogDao.addBlog(blog);
+    }
+
+    public List<Blog> listAllBlog() {
+        return blogDao.listAllBlog();
     }
 }

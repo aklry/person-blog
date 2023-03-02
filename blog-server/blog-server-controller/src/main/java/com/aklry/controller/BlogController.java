@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/blog")
 public class BlogController {
@@ -28,5 +30,14 @@ public class BlogController {
             result.flag = false;
         }
         return result;
+    }
+
+    /**
+     * 查询所有博客
+     * @return
+     */
+    @PostMapping("/listAllBlog")
+    public List<Blog> listAllBlog() {
+        return blogService.listAllBlog();
     }
 }
