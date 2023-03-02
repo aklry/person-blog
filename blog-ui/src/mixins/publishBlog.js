@@ -1,4 +1,5 @@
 import blogApi from "@/api/blog"
+import { mapMutations } from "vuex"
 export default {
     data() {
         return {
@@ -34,6 +35,7 @@ export default {
         }
     },
     methods: {
+        ...mapMutations(['setBlogInfo']),
         //实现发表博客的功能
         handleSubmit(formName) {
             this.$refs[formName].validate((valid) => {
@@ -48,12 +50,29 @@ export default {
                     }).then(res => {
                         if (res.status === 200 && res.data.flag) {
                             this.$message.success(res.data.message)
+                            //将博客信息保存到vuex以及localStorage
+                            this.setBlogInfo({
+                                publishTime: this.formData.publishTime,
+                                title: this.formData.title,
+                                author: this.formData.author,
+                                content: this.formData.content,
+                                category: this.formData.category,
+                                type: this.formData.type
+                            })
+                            localStorage.setItem('blogInfo', JSON.stringify({
+                                publishTime: this.formData.publishTime,
+                                title: this.formData.title,
+                                author: this.formData.author,
+                                content: this.formData.content,
+                                category: this.formData.category,
+                                type: this.formData.type
+                            }))
                             this.$refs[formName].resetFields()
                         } else {
                             this.$message.success(res.data.message)
                             this.$refs[formName].resetFields()
                         }
-                    }) .catch(error => console.log(error))
+                    }).catch(error => console.log(error))
                 } else {
                     console.log('error submit!!')
                     return false

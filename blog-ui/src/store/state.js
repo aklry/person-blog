@@ -1,5 +1,6 @@
 export default {
     token: '',
     userInfo: {},
-    flag: false
+    flag: false,
+    blogInfo: {}
 }
