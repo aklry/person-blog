@@ -7,6 +7,8 @@ export default {
     //退出功能
     handleLogout(state) {
         state.token = ''
+        state.userInfo = {}
+        state.flag = false
        localStorage.clear()
     },
     //当完成用户信息的修改后，更新vuex保存的用户信息
