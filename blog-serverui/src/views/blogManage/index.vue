@@ -7,6 +7,7 @@
       <el-table-column label="id" prop="id"> </el-table-column>
       <el-table-column label="文章标题" prop="title"> </el-table-column>
       <el-table-column label="文章作者" prop="author"> </el-table-column>
+      <el-table-column label="内容" prop="content" :show-overflow-tooltip='true'> </el-table-column>
       <el-table-column label="分区" prop="category"> </el-table-column>
       <el-table-column label="发表时间" prop="publishTime"> </el-table-column>
       <el-table-column label="类型" prop="type"> </el-table-column>
@@ -37,7 +38,6 @@ import {
 } from 'vuex'
 export default {
   mixins: [blogMixins],
-  inject: ['reload'],
   components: {
     Breadcrumb
   },
@@ -70,10 +70,20 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
 .block {
   display: flex;
   justify-content: center;
   margin-top: 30px;
+}
+
+.el-tooltip__popper {
+  max-width: 20%;
+}
+
+.el-tooltip__popper,
+.el-tooltip__popper.is-dark {
+  background: rgb(48, 65, 86) !important;
+  line-height: 24px !important;
 }
 </style>
