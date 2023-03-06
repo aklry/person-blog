@@ -36,7 +36,7 @@ public class BlogController {
     }
 
     /**
-     * 查询所有博客
+     * 查询所有博客 -->分页查询
      * @return
      */
     @PostMapping("/listAllBlog")
@@ -49,5 +49,14 @@ public class BlogController {
         PageInfo pageInfo = new PageInfo(blogs);
 
         return pageInfo;
+    }
+
+    /**
+     * 查询所有博客
+     * @return
+     */
+    @PostMapping("/listBlog")
+    public List<Blog> listBlog() {
+        return blogService.listAllBlog();
     }
 }
