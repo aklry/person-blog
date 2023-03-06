@@ -25,4 +25,9 @@ public class BlogService {
     public List<Blog> listAllBlog() {
         return blogDao.listAllBlog();
     }
+
+    @Transactional
+    public void deleteBlogById(int id) {
+        blogDao.deleteBlogById(id);
+    }
 }
