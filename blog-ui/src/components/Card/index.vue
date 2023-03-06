@@ -34,7 +34,7 @@ export default {
     ...mapState(['blogInfo'])
   },
   mounted() {
-    blogApi.listAllBlog()
+    blogApi.listBlog()
       .then(res => {
         if (res.status === 200 && res.data != null) {
           this.$store.state.blogInfo = res.data
