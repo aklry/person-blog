@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.util.HtmlUtils;
 
 import java.util.List;
 
@@ -60,5 +59,18 @@ public class BlogController {
     @PostMapping("/listBlog")
     public List<Blog> listBlog() {
         return blogService.listAllBlog();
+    }
+    @PostMapping("/deleteBlogById")
+    public Result deleteBlogById(@RequestBody Integer id) {
+        result = Utils.getResult();
+        if (id != null) {
+            blogService.deleteBlogById(id.intValue());
+            result.flag = true;
+            result.message = "删除成功";
+        } else {
+            result.flag = false;
+            result.message = "删除失败";
+        }
+        return result;
     }
 }
