@@ -12,7 +12,9 @@
                 </el-date-picker>
             </el-form-item>
             <el-form-item label="内容" prop="content">
-                <el-input type="textarea" v-model="formData.content"></el-input>
+                <div class="content">
+                    <quill-editor v-model="formData.content" class="editor" :options="editorOptions" />
+                </div>
             </el-form-item>
             <el-form-item label="类型" prop="type">
                 <el-radio-group v-model="formData.type">
@@ -43,3 +45,11 @@ export default {
     mixins: [publishBlog]
 }
 </script>
+<style scoped>
+.content {
+    height: 200px;
+}
+.editor {
+    height: 100px;
+}
+</style>

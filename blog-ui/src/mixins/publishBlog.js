@@ -31,6 +31,10 @@ export default {
                 category: [
                     { required: true }
                 ]
+            },
+            editorOptions: {
+                placeholder: '请输入博客内容...',
+                theme: 'snow'
             }
         }
     },
