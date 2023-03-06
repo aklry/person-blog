@@ -20,6 +20,7 @@
     "vue-awesome-swiper": "^4.1.1",
     "vue-ele-form": "^0.8.58",
     "vue-ele-form-image-uploader": "^0.1.9",
+    "vue-quill-editor": "^3.0.6",
     "vue-router": "^3.5.1",
     "vuex": "^3.6.2"
   },
