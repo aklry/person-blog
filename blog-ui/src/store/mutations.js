@@ -18,5 +18,9 @@ export default {
     //发表博客时，将博客信息保存在vuex
     setBlogInfo(state, blogInfo) {
         state.blogInfo.push(blogInfo)
+    },
+    //点击查看原文时，设置查看的博客的id
+    setBlogId(state, blogId) {
+        state.blogId = blogId
     }
 }
