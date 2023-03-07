@@ -3,7 +3,8 @@ import axios from "../utils/request"
 const base = {
     addBlog: '/publishBlog',
     listAllBlog: '/listAllBlog', //分页查询
-    listBlog: '/listBlog'
+    listBlog: '/listBlog',
+    findBlogById: '/findBlogById'
 }
 
 const blogApi = {
@@ -16,6 +17,9 @@ const blogApi = {
     },
     listBlog() {
         return axios.post(base.listBlog)
+    },
+    findBlogById(params) {
+        return axios.post(base.findBlogById,params)
     }
 }
 
