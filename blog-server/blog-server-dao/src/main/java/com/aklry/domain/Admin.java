@@ -5,6 +5,7 @@ public class Admin {
     private int id;
     private String username;
     private String password;
+    private String role;
 
     public Admin() {
     }
@@ -14,10 +15,11 @@ public class Admin {
         this.password = password;
     }
 
-    public Admin(int id, String username, String password) {
+    public Admin(int id, String username, String password, String role) {
         this.id = id;
         this.username = username;
         this.password = password;
+        this.role = role;
     }
 
     public int getId() {
@@ -44,12 +46,21 @@ public class Admin {
         this.password = password;
     }
 
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
     @Override
     public String toString() {
         return "Admin{" +
                 "id=" + id +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
+                ", role=" + role +
                 '}';
     }
 }
