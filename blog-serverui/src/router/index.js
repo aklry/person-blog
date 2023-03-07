@@ -39,6 +39,14 @@ const routes = [
         }
       },
       {
+        path: '/role',
+        name: 'Role',
+        component: () => import('@/views/role'),
+        meta: {
+          isLogin: true
+        }
+      },
+      {
         path: '/blogManage',
         name: 'BlogManage',
         component: () => import('@/views/blogManage'),

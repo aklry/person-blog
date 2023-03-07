@@ -18,8 +18,11 @@
                 <el-menu-item index="/user">
                     <span slot="title">用户管理</span>
                 </el-menu-item>
-                <el-menu-item index="/admin">
+                <el-menu-item index="/admin" v-if="adminInfo.role === '超级管理员'">
                     <span slot="title">管理员管理</span>
+                </el-menu-item>
+                <el-menu-item index="/role" v-if="adminInfo.role === '超级管理员'">
+                    <span slot="title">权限管理</span>
                 </el-menu-item>
             </el-submenu>
 
@@ -40,8 +43,12 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
 export default {
-    name: "NavBar"
+    name: "NavBar",
+    computed: {
+        ...mapState(['adminInfo'])
+    }
 };
 </script>
 

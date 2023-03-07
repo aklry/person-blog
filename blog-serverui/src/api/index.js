@@ -5,7 +5,8 @@ const base = {
     listAllAdmin: '/listAllAdmin',
     add: '/add',
     deleteById: '/delete',
-    update: '/update'
+    update: '/update',
+    updateRole: '/updateRole'
 }
 
 const api = {
@@ -28,6 +29,9 @@ const api = {
     },
     update(params) {
         return axios.post(base.update,params)
+    },
+    updateRole(params) {
+        return axios.post(base.updateRole, params)
     }
 }
 

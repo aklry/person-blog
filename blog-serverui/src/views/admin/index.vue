@@ -9,6 +9,7 @@
       <el-table-column label="id" prop="id"> </el-table-column>
       <el-table-column label="用户名" prop="username"> </el-table-column>
       <el-table-column label="密码" prop="password"> </el-table-column>
+      <el-table-column label="权限" prop="role"></el-table-column>
       <el-table-column align="right">
         <template slot="header" slot-scope="scope">
           <div class="container">
@@ -122,9 +123,9 @@ export default {
         size: 5
       })
       .then((res) => {
-        this.$data.tableData = res.data.list;
+        this.$data.tableData = res.data.list
         this.$data.pageInfo = res.data
-        console.log(this.$data.pageInfo)
+        console.log(res.data)
       })
       .catch((error) => console.log(error));
   },
