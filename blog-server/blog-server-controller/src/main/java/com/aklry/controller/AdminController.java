@@ -25,14 +25,12 @@ public class AdminController {
      */
     @PostMapping ("/listAllAdmin")
     public PageInfo listAllAdmin(@RequestBody Page page) {
-        System.out.println(page);
         //查询前设置参数 参数1：页数（从1开始） 参数2：每页条数
         PageHelper.startPage(page.getPageNum(),page.getSize());
         //正常查询
         List<Admin> admins = adminService.listAdmin();
         //创建页面对象，创建时将查询结果传入构造方法
         PageInfo pageInfo = new PageInfo(admins);
-
         return pageInfo;
     }
 
@@ -86,6 +84,20 @@ public class AdminController {
         } else {
             result.flag = false;
             result.message = "请输入用户名和密码";
+        }
+        return result;
+    }
+
+    @PostMapping("/updateRole")
+    public Result updateRole(@RequestBody Admin admin) {
+        result = Utils.getResult();
+        if (admin != null && admin.getUsername().length() != 0 && admin.getRole().length() != 0) {
+            adminService.updateRoleByUsername(admin.getUsername(), admin.getRole());
+            result.message = "授权成功";
+            result.flag = true;
+        } else {
+            result.message = "授权失败";
+            result.flag = false;
         }
         return result;
     }

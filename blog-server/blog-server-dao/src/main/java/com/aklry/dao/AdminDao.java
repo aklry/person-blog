@@ -42,4 +42,7 @@ public interface AdminDao {
     void addAdmin(@Param("username") String username, @Param("password") String password);
     @Select("select * from admin where username=#{username} and password=#{password}")
     Admin findByParams(Admin admin);
+
+    @Update("update admin set role = #{role} where username = #{username}")
+    void updateRoleByUsername(@Param("username") String username, @Param("role") String role);
 }

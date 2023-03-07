@@ -32,4 +32,9 @@ public class AdminService {
     public void updateAdmin(String username, String password, int id) {
         adminDao.updateAdmin(username, password, id);
     }
+
+    @Transactional
+    public void updateRoleByUsername(String username, String role) {
+        adminDao.updateRoleByUsername(username, role);
+    }
 }
