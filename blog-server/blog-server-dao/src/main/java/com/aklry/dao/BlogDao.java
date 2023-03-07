@@ -30,7 +30,7 @@ public interface BlogDao {
      */
 
     @Select("select content from blog where id = #{id}")
-    Blog findBlogById(@Param("id") int id);
+    Blog findBlogContentById(@Param("id") int id);
 
     /**
      * 根据id删除博客
@@ -47,4 +47,12 @@ public interface BlogDao {
 
     @Update("update blog set publishTime = #{publishTime}, content = #{content} where id = #{id}")
     void updateContentById(Blog blog);
+
+    /**
+     * 根据id查询博客
+     * @param id
+     * @return
+     */
+    @Select("select * from blog where id = #{id}")
+    Blog findBlogById(@Param("id") int id);
 }

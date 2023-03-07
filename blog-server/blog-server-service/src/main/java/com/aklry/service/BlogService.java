@@ -30,4 +30,8 @@ public class BlogService {
     public void deleteBlogById(int id) {
         blogDao.deleteBlogById(id);
     }
+
+    public Blog findBlogById(int id) {
+        return blogDao.findBlogById(id);
+    }
 }

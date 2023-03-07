@@ -73,4 +73,9 @@ public class BlogController {
         }
         return result;
     }
+
+    @PostMapping("/findBlogById")
+    public Blog findBlogById(@RequestBody Integer id) {
+        return blogService.findBlogById(id.intValue());
+    }
 }
