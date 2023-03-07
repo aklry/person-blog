@@ -34,6 +34,13 @@
                     </el-dropdown>
                 </div>
             </template>
+            <template #main>
+                <div class="blog">
+                    <h1 class="title">{{ blog.title }}</h1>
+                    <p class="author">{{ blog.author }}</p>
+                    <article class="article">{{ blog.content }}</article>
+                </div>
+            </template>
         </Layout>
     </div>
 </template>
@@ -43,6 +50,7 @@ import Layout from '@/components/Layout'
 import NavMenu from '@/components/NavMenu.vue'
 import { mapState, mapMutations } from 'vuex'
 import blogMixins from '@/mixins/blog'
+import blogApi from '@/api/blog'
 export default {
     mixins: [blogMixins],
     components: {
@@ -56,8 +64,14 @@ export default {
         ...mapMutations(['handleLogout']),
         logout() {
             this.handleLogout()
-            this.$router.push({name: 'Login'})
+            this.$router.push({ name: 'Login' })
         }
+    },
+    mounted() {
+        blogApi.findBlogById(this.$store.state.blogId)
+            .then(res => {
+                this.$data.blog = res.data
+            }).catch(error => console.log(error))
     }
 }
 </script>
@@ -70,5 +84,30 @@ export default {
 
 .user-info {
     padding-top: 5px;
+}
+
+.blog {
+    position: inherit;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(246, 248, 249);
+}
+
+
+.blog .title {
+    margin-top: 20px;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 20px;
+}
+
+.blog .author {
+    padding: 20px;
+}
+
+.blog .article {
+    width: 500px;
+    line-height: 30px;
+    margin: 0 auto;
 }
 </style>

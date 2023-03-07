@@ -5,10 +5,10 @@
       <div style="padding: 14px;">
         <span class="title">{{ item.title }}</span>
         <div class="bottom clearfix">
-          <article class="artical">
+          <article class="article">
             <p>{{ item.content }}</p>
           </article>
-          <el-button type="text" class="button" @click="viewArtical">查看原文</el-button>
+          <el-button type="text" class="button" @click="viewArticle(item.id)">查看原文</el-button>
         </div>
       </div>
     </el-card>
@@ -17,7 +17,7 @@
   
 </template>
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapMutations } from 'vuex'
 import blogApi from '@/api/blog'
 export default {
   data() {
@@ -26,7 +26,9 @@ export default {
     }
   },
   methods: {
-    viewArtical() {
+    ...mapMutations(['setBlogId']),
+    viewArticle(id) {
+      this.setBlogId(id)
       this.$router.push('/blog')
     }
   },
@@ -45,7 +47,7 @@ export default {
 }
 </script>
 <style scoped>
-.artical {
+.article {
   font-size: 13px;
   line-height: 30px;
   -webkit-line-clamp: 4;
