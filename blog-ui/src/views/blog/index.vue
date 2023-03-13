@@ -40,6 +40,16 @@
                     <p class="author">{{ blog.author }}</p>
                     <article class="article">{{ blog.content }}</article>
                 </div>
+                <div class="comment">
+                    <el-form :model="formData">
+                        <el-form-item>
+                            <el-input type="textarea" v-model="formData.comment" placeholder="请说说你的看法"></el-input>
+                        </el-form-item>
+                        <el-form-item>
+                            <el-button type="primary" style="text-align: right;">发表</el-button>
+                        </el-form-item>
+                    </el-form>
+                </div>
             </template>
         </Layout>
     </div>
@@ -58,7 +68,7 @@ export default {
         NavMenu
     },
     computed: {
-        ...mapState(['userInfo'])
+        ...mapState(['userInfo', 'blog'])
     },
     methods: {
         ...mapMutations(['handleLogout']),
@@ -68,10 +78,17 @@ export default {
         }
     },
     mounted() {
-        blogApi.findBlogById(this.$store.state.blogId)
-            .then(res => {
-                this.$data.blog = res.data
-            }).catch(error => console.log(error))
+        const blog = JSON.parse(localStorage.getItem('blog'))
+        if (!blog) {
+            blogApi.findBlogById(this.$store.state.blog.id)
+                .then(res => {
+                    if (res.data && res.status === 200) {
+                        this.$store.state.blog = res.data
+                        localStorage.setItem('blog', JSON.stringify(res.data))
+
+                    }
+                }).catch(error => console.log(error))
+        }
     }
 }
 </script>
@@ -87,9 +104,7 @@ export default {
 }
 
 .blog {
-    position: inherit;
     width: 100%;
-    height: 100%;
     background-color: rgb(246, 248, 249);
 
     .title {
@@ -108,5 +123,10 @@ export default {
         line-height: 30px;
         margin: 0 auto;
     }
+}
+
+.comment {
+    width: 500px;
+    margin: 20px auto;
 }
 </style>

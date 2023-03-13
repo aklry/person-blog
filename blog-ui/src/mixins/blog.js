@@ -2,7 +2,9 @@ import { mapMutations } from "vuex"
 export default {
     data() {
         return {
-            blog: {}
+            formData: {
+                content: ''
+            }
         }
     },
     methods: {
