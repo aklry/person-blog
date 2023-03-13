@@ -18,13 +18,14 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .info {
   margin: 50px auto;
   color: rgb(153, 153, 153);
-}
 
-.info p {
-  line-height: 50px;
+  p {
+    line-height: 50px;
+  }
+
 }
 </style>

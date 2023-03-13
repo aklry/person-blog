@@ -23,9 +23,8 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .login {
-  /* width: 100%; */
   height: 100%;
   color: #fff;
   background: url(@/assets/name.jpg) no-repeat;
@@ -37,10 +36,10 @@ export default {
   margin: 100px auto;
   padding: 20px;
   background-color: rgba(0, 0, 0, 0.6);
-}
 
-.login-content .el-form {
-  margin-top: 20px;
+  .el-form {
+    margin-top: 20px;
+  }
 }
 
 .el-input__inner {

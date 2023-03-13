@@ -76,7 +76,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .avatar {
     width: 30px;
     height: 30px;
@@ -91,23 +91,22 @@ export default {
     width: 100%;
     height: 100%;
     background-color: rgb(246, 248, 249);
-}
 
+    .title {
+        margin-top: 20px;
+        font-weight: 600;
+        font-size: 20px;
+        line-height: 20px;
+    }
 
-.blog .title {
-    margin-top: 20px;
-    font-weight: 600;
-    font-size: 20px;
-    line-height: 20px;
-}
+    .author {
+        padding: 20px;
+    }
 
-.blog .author {
-    padding: 20px;
-}
-
-.blog .article {
-    width: 500px;
-    line-height: 30px;
-    margin: 0 auto;
+    .article {
+        width: 500px;
+        line-height: 30px;
+        margin: 0 auto;
+    }
 }
 </style>

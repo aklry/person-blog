@@ -56,7 +56,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .layout {
   background-color: rgb(233, 236, 245) !important;
 }
@@ -72,10 +72,10 @@ export default {
   position: absolute;
   top: 10%;
   left: 30%;
-}
 
-.content img {
-  width: 600px;
-  height: 300px;
+  img {
+    width: 600px;
+    height: 300px;
+  }
 }
 </style>
