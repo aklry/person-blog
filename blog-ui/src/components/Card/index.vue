@@ -8,7 +8,7 @@
           <article class="article">
             <p>{{ item.content }}</p>
           </article>
-          <el-button type="text" class="button" @click="viewArticle(item.id)">查看原文</el-button>
+          <el-button type="text" class="button" @click="viewArticle(item)">查看原文</el-button>
         </div>
       </div>
     </el-card>
@@ -27,8 +27,8 @@ export default {
   },
   methods: {
     ...mapMutations(['setBlogId']),
-    viewArticle(id) {
-      this.setBlogId(id)
+    viewArticle(blog) {
+      this.setBlogId(blog)
       this.$router.push('/blog')
     }
   },

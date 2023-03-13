@@ -9,6 +9,7 @@ export default {
         state.token = ''
         state.userInfo = {}
         state.flag = false
+        state.blog = {}
        localStorage.clear()
     },
     //当完成用户信息的修改后，更新vuex保存的用户信息
@@ -19,8 +20,8 @@ export default {
     setBlogInfo(state, blogInfo) {
         state.blogInfo.push(blogInfo)
     },
-    //点击查看原文时，设置查看的博客的id
-    setBlogId(state, blogId) {
-        state.blogId = blogId
+    //点击查看原文时，设置查看的博客
+    setBlogId(state, blog) {
+        state.blog = blog
     }
 }

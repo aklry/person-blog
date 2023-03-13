@@ -3,5 +3,5 @@ export default {
     userInfo: {},
     flag: false,
     blogInfo: [],
-    blogId: 0
+    blog: {}
 }
