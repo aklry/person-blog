@@ -19,7 +19,7 @@ jackson：2.9.0
 
 blog-server：服务端（SSM）
 
-blog-serverui（vue2.0 + element ui + axios + vuex + vue-router）：后台管理系统
+blog-serverui（vue2.0全家桶 + element ui + axios）：后台管理系统
 
-blog-ui（vue2.0）：前台界面
+blog-ui（vue2.0全家桶 + element ui + axios）：前台界面
 
