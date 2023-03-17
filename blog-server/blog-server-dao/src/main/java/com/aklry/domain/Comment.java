@@ -9,16 +9,16 @@ public class Comment {
     private int id;
     private Date dateTime;
     private String content;
-    private int user_id;
+    private User user;
 
     public Comment() {
     }
 
-    public Comment(int id, Date dateTime, String content, int user_id) {
+    public Comment(int id, Date dateTime, String content, User user) {
         this.id = id;
         this.dateTime = dateTime;
         this.content = content;
-        this.user_id = user_id;
+        this.user = user;
     }
 
     public int getId() {
@@ -45,12 +45,12 @@ public class Comment {
         this.content = content;
     }
 
-    public int getUser_id() {
-        return user_id;
+    public User getUser() {
+        return user;
     }
 
-    public void setUser_id(int user_id) {
-        this.user_id = user_id;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     @Override
@@ -59,7 +59,7 @@ public class Comment {
                 "id=" + id +
                 ", dateTime=" + dateTime +
                 ", content='" + content + '\'' +
-                ", user_id=" + user_id +
+                ", user=" + user +
                 '}';
     }
 }
