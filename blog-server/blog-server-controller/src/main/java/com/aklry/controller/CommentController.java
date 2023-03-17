@@ -4,12 +4,11 @@ import com.aklry.domain.Result;
 import com.aklry.service.CommentService;
 import com.aklry.utils.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 @RestController
 @RequestMapping("/blog")
@@ -17,14 +16,24 @@ public class CommentController {
     @Autowired
     private CommentService commentService;
     private Result result;
+
     @PostMapping("/addComment")
-    public Result addComment(@RequestBody String content, @RequestBody Date dateTime, @RequestBody Integer uid) {
+    public Result addComment(@RequestBody Map<String, String> map) throws ParseException {
         result = Utils.getResult();
-        if (content.length() != 0 && dateTime != null && uid != null) {
-            commentService.addComment(content, dateTime, uid);
+        if (map != null) {
+            //获取前端发表评论参数
+            String content = (String) map.get("content");
+            String dateTime = map.get("dateTime");
+            Integer user_id = Integer.parseInt(map.get("user_id"));
+            System.out.println(content + " " + dateTime + " " + user_id);
+            //将日期字符串转为Date对象
+            SimpleDateFormat s1 = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+            Date date = s1.parse(dateTime);
+            //执行SQL语句，新增评论
+            commentService.addComment(content, date, user_id);
+            //封装结果集
             result.flag = true;
-        } else {
-            result.flag = false;
+            result.message = "发表成功";
         }
         return result;
     }
