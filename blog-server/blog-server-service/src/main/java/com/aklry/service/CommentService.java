@@ -1,6 +1,7 @@
 package com.aklry.service;
 
 import com.aklry.dao.CommentDao;
+import com.aklry.domain.Comment;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,7 +14,7 @@ public class CommentService {
     private CommentDao commentDao;
 
     @Transactional
-    public void addComment(String content, Date dateTime, Integer uid) {
-        commentDao.addComment(content, dateTime, uid);
+    public void addComment(String content, Date dateTime, Integer user_id) {
+        commentDao.addComment(content, dateTime, user_id);
     }
 }
