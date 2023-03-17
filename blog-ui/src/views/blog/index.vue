@@ -40,15 +40,25 @@
                     <p class="author">{{ blog.author }}</p>
                     <article class="article">{{ blog.content }}</article>
                 </div>
-                <div class="comment">
-                    <el-form :model="formData">
-                        <el-form-item>
-                            <el-input type="textarea" v-model="formData.comment" placeholder="请说说你的看法"></el-input>
+                <div class="publishComment">
+                    <el-form :model="formData" ref="userContent" :rules="rules">
+                        <el-form-item prop="content">
+                            <el-input type="textarea" v-model="formData.content" placeholder="请说说你的看法"></el-input>
                         </el-form-item>
                         <el-form-item>
-                            <el-button type="primary" style="text-align: right;">发表</el-button>
+                            <el-button type="primary" @click="comment(userInfo, 'userContent')">发表</el-button>
                         </el-form-item>
                     </el-form>
+                </div>
+                <div class="comment">
+                    <p class="comment_title">评论列表</p>
+                    <div class="comment_content">
+                        <div class="main">
+                            <p class="user">用户</p>
+                            <p class="content">内容</p>
+                        </div>
+                        <p class="time">时间</p>
+                    </div>
                 </div>
             </template>
         </Layout>
@@ -78,17 +88,14 @@ export default {
         }
     },
     mounted() {
-        const blog = JSON.parse(localStorage.getItem('blog'))
-        if (!blog) {
-            blogApi.findBlogById(this.$store.state.blog.id)
-                .then(res => {
-                    if (res.data && res.status === 200) {
-                        this.$store.state.blog = res.data
-                        localStorage.setItem('blog', JSON.stringify(res.data))
+        blogApi.findBlogById(this.$store.state.blog.id)
+            .then(res => {
+                if (res.data && res.status === 200) {
+                    this.$store.state.blog = res.data
+                    localStorage.setItem('blog', JSON.stringify(res.data))
 
-                    }
-                }).catch(error => console.log(error))
-        }
+                }
+            }).catch(error => console.log(error))
     }
 }
 </script>
@@ -105,7 +112,6 @@ export default {
 
 .blog {
     width: 100%;
-    background-color: rgb(246, 248, 249);
 
     .title {
         margin-top: 20px;
@@ -125,8 +131,27 @@ export default {
     }
 }
 
-.comment {
+.publishComment {
     width: 500px;
     margin: 20px auto;
+}
+
+.comment {
+    width: 500px;
+    margin: 10px auto;
+
+    .comment_content {
+        display: flex;
+        justify-content: space-between;
+        width: 500px;
+        height: 200px;
+        margin-top: 20px;
+
+        .main {
+            p {
+                padding: 10px;
+            }
+        }
+    }
 }
 </style>
