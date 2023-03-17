@@ -7,9 +7,9 @@ export default {
     //退出功能
     handleLogout(state) {
         state.token = ''
-        state.userInfo = {}
+        state.userInfo = null
         state.flag = false
-        state.blog = {}
+        state.blog = null
        localStorage.clear()
     },
     //当完成用户信息的修改后，更新vuex保存的用户信息
@@ -23,5 +23,12 @@ export default {
     //点击查看原文时，设置查看的博客
     setBlogId(state, blog) {
         state.blog = blog
+    },
+    //持久化数据
+    dataStorage(state, params) {
+        state.flag = params['flag']
+        state.userInfo = params['userInfo']
+        state.blogInfo = params['blogInfo']
+        state.blog = params['blog']
     }
 }

@@ -21,18 +21,6 @@ export default {
     return {
       reload: this.reload
     }
-  },
-  mounted() {
-    const token = localStorage.getItem('token')
-    const user = JSON.parse(localStorage.getItem('userInfo'))
-    const blogInfo = JSON.parse(localStorage.getItem('blogInfo'))
-    const blog = JSON.parse(localStorage.getItem('blog'))
-    if (token) {
-      store.state.flag = true
-      store.state.userInfo = user
-      store.state.blogInfo = blogInfo
-      store.state.blog = blog
-    }
   }
 }
 </script>
