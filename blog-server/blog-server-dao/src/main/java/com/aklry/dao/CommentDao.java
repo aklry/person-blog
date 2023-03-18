@@ -34,4 +34,11 @@ public interface CommentDao {
                     one = @One(select = "com.aklry.dao.UserDao.findUserById",fetchType = FetchType.EAGER))
     })
     List<Comment> findAll();
+
+    /**
+     * 根据id删除评论
+     * @param id -->评论id
+     */
+    @Delete("delete from comment where id = #{id}")
+    void deleteCommentById(Integer id);
 }
