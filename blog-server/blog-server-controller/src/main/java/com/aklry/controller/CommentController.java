@@ -1,5 +1,6 @@
 package com.aklry.controller;
 
+import com.aklry.domain.Comment;
 import com.aklry.domain.Result;
 import com.aklry.service.CommentService;
 import com.aklry.utils.Utils;
@@ -34,6 +35,21 @@ public class CommentController {
             //封装结果集
             result.flag = true;
             result.message = "发表成功";
+        }
+        return result;
+    }
+    @PostMapping("/getAllComment")
+    public List<Comment> listAllComment() {
+        return commentService.listAllComment();
+    }
+
+    @PostMapping("/deleteComment")
+    public Result deleteComment(@RequestBody Integer id) {
+        result = Utils.getResult();
+        if (id != null) {
+            commentService.deleteCommentById(id.intValue());
+            result.flag = true;
+            result.message = "删除成功";
         }
         return result;
     }
