@@ -16,6 +16,14 @@ public interface UserDao {
     List<User> listUser();
 
     /**
+     * 根据id查询用户
+     * @param id
+     * @return
+     */
+    @Select("select * from user where id = #{id}")
+    User findUserById(Integer id);
+
+    /**
      * 根据用户名字和密码查询用户
      * @param name
      * @param password
