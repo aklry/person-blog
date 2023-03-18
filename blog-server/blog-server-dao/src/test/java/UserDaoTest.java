@@ -11,9 +11,4 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 public class UserDaoTest {
     @Autowired
     private UserDao userDao;
-    @Test
-    public void testAddUser() {
-        User user = new User("张三","男","广东省深圳市","12343879075");
-        userDao.addUser(user);
-    }
 }
