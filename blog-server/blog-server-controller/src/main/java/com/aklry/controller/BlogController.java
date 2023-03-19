@@ -60,6 +60,12 @@ public class BlogController {
     public List<Blog> listBlog() {
         return blogService.listAllBlog();
     }
+
+    /**
+     * 根据博客id删除用户
+     * @param id
+     * @return
+     */
     @PostMapping("/deleteBlogById")
     public Result deleteBlogById(@RequestBody Integer id) {
         result = Utils.getResult();
@@ -74,6 +80,11 @@ public class BlogController {
         return result;
     }
 
+    /**
+     * 根据博客id获取博客信息
+     * @param id
+     * @return
+     */
     @PostMapping("/findBlogById")
     public Blog findBlogById(@RequestBody Integer id) {
         return blogService.findBlogById(id.intValue());
