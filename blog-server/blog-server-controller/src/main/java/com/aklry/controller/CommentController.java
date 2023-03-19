@@ -23,15 +23,15 @@ public class CommentController {
         result = Utils.getResult();
         if (map != null) {
             //获取前端发表评论参数
-            String content = (String) map.get("content");
+            String content = map.get("content");
             String dateTime = map.get("dateTime");
             Integer user_id = Integer.parseInt(map.get("user_id"));
-            System.out.println(content + " " + dateTime + " " + user_id);
+            Integer blog_id = Integer.parseInt(map.get("blog_id"));
             //将日期字符串转为Date对象
             SimpleDateFormat s1 = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
             Date date = s1.parse(dateTime);
             //执行SQL语句，新增评论
-            commentService.addComment(content, date, user_id);
+            commentService.addComment(content, date, user_id, blog_id);
             //封装结果集
             result.flag = true;
             result.message = "发表成功";
@@ -39,8 +39,8 @@ public class CommentController {
         return result;
     }
     @PostMapping("/getAllComment")
-    public List<Comment> listAllComment() {
-        return commentService.listAllComment();
+    public List<Comment> listAllComment(@RequestBody Integer Blog_id) {
+        return commentService.listAllComment(Blog_id);
     }
 
     @PostMapping("/deleteComment")
