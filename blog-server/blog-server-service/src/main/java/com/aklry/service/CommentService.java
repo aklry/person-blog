@@ -15,12 +15,12 @@ public class CommentService {
     private CommentDao commentDao;
 
     @Transactional
-    public void addComment(String content, Date dateTime, Integer user_id) {
-        commentDao.addComment(content, dateTime, user_id);
+    public void addComment(String content, Date dateTime, Integer user_id, Integer blog_id) {
+        commentDao.addComment(content, dateTime, user_id, blog_id);
     }
 
-    public List<Comment> listAllComment() {
-        return commentDao.findAll();
+    public List<Comment> listAllComment(Integer blog_id) {
+        return commentDao.findAll(blog_id);
     }
 
     @Transactional
