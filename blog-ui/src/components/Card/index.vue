@@ -42,7 +42,7 @@ export default {
           this.$store.state.blogInfo = res.data
           localStorage.setItem('blogInfo', JSON.stringify(this.$store.state.blogInfo))
         }
-      }).then(error => console.log(error))
+      }).catch(error => console.log(error))
   }
 }
 </script>
