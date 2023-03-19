@@ -15,7 +15,13 @@ public class CommentDaoTest {
     private CommentDao commentDao;
     @Test
     public void testFindComment() {
-        List<Comment> all = commentDao.findAll(4);
+        List<Comment> all = commentDao.findCommentByBlogId(4);
+        all.forEach(System.out::println);
+    }
+
+    @Test
+    public void testFindAll() {
+        List<Comment> all = commentDao.findAll();
         all.forEach(System.out::println);
     }
 }
