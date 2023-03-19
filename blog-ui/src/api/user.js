@@ -5,7 +5,8 @@ const base = {
     login: '/userLogin',
     updatePassword: '/updatePassword',
     updateName: '/updateName',
-    findUserByName: '/findUserByName'
+    findUserByName: '/findUserByName',
+    listCommentByUser: '/listCommentByUser'
 }
 
 const api = {
