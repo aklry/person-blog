@@ -1,6 +1,7 @@
 package com.aklry.service;
 
 import com.aklry.dao.CommentDao;
+import com.aklry.domain.Blog;
 import com.aklry.domain.Comment;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,8 +20,17 @@ public class CommentService {
         commentDao.addComment(content, dateTime, user_id, blog_id);
     }
 
-    public List<Comment> listAllComment(Integer blog_id) {
-        return commentDao.findAll(blog_id);
+    public List<Comment> listAllComment() {
+        return commentDao.findAll();
+    }
+
+    /**
+     * 根据博客id查询评论
+     * @param id
+     * @return
+     */
+    public List<Comment> findCommentByBlogId(Integer id) {
+        return commentDao.findCommentByBlogId(id);
     }
 
     @Transactional

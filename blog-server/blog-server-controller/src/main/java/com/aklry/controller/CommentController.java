@@ -38,9 +38,24 @@ public class CommentController {
         }
         return result;
     }
+
+    /**
+     * 获取所有评论信息
+     * @return
+     */
     @PostMapping("/getAllComment")
-    public List<Comment> listAllComment(@RequestBody Integer Blog_id) {
-        return commentService.listAllComment(Blog_id);
+    public List<Comment> listAllComment() {
+        return commentService.listAllComment();
+    }
+
+    /**
+     * 根据博客id查询相关评论
+     * @param id
+     * @return
+     */
+    @PostMapping("/listAllCommentByUser")
+    public List<Comment> listAllCommentByUser(@RequestBody Integer id) {
+        return commentService.findCommentByBlogId(id);
     }
 
     @PostMapping("/deleteComment")
