@@ -1,5 +1,6 @@
 package com.aklry.domain;
 
+
 import java.util.Date;
 
 /**
@@ -10,6 +11,7 @@ public class Comment {
     private Date dateTime;
     private String content;
     private User user;
+    private Blog blog;
 
     public Comment() {
     }
@@ -53,6 +55,14 @@ public class Comment {
         this.user = user;
     }
 
+    public Blog getBlog() {
+        return blog;
+    }
+
+    public void setBlog(Blog blog) {
+        this.blog = blog;
+    }
+
     @Override
     public String toString() {
         return "Comment{" +
@@ -60,6 +70,7 @@ public class Comment {
                 ", dateTime=" + dateTime +
                 ", content='" + content + '\'' +
                 ", user=" + user +
+                ", blog=" + blog +
                 '}';
     }
 }

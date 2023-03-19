@@ -1,10 +1,15 @@
 package com.aklry.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import java.util.Date;
+import java.util.List;
 
 /**
  * 博客实体类
  */
+//解决实体类中 发现有字段为null，在转化成json的时候，fasterxml.jackson将对象转换为json报错问题
+@JsonIgnoreProperties(value = { "hibernateLazyInitializer", "handler" })
 public class Blog {
     private int id; //博客id
     private Date publishTime; //博客发表时间
@@ -14,11 +19,12 @@ public class Blog {
     private String category; // 博客内容分区
     private String type; // 博客类型 -> 自制或者转载
 
+    private List<Comment> comments; //博客相关评论
 
     public Blog() {
     }
 
-    public Blog(int id, Date publishTime, String title, String author, String content, String category, String type) {
+    public Blog(int id, Date publishTime, String title, String author, String content, String category, String type, List<Comment> comments) {
         this.id = id;
         this.publishTime = publishTime;
         this.title = title;
@@ -26,6 +32,7 @@ public class Blog {
         this.content = content;
         this.category = category;
         this.type = type;
+        this.comments = comments;
     }
 
     public int getId() {
@@ -84,6 +91,14 @@ public class Blog {
         this.type = type;
     }
 
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
+    }
+
     @Override
     public String toString() {
         return "Blog{" +
@@ -94,6 +109,7 @@ public class Blog {
                 ", content='" + content + '\'' +
                 ", category='" + category + '\'' +
                 ", type='" + type + '\'' +
+                ", comments=" + comments +
                 '}';
     }
 }
