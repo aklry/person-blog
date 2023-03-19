@@ -29,7 +29,7 @@ public interface UserDao {
      * @param password
      * @return
      */
-    @Select("select * from user where name = #{name} and password = #{password}")
+    @Select("select * from user where binary name = #{name} and binary password = #{password}")
     User findByCondition(@Param("name") String name, @Param("password") String password);
     /**
      * 添加用户

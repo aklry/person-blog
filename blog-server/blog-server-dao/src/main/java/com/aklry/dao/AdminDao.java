@@ -40,7 +40,7 @@ public interface AdminDao {
      */
     @Insert("insert into admin(id,username,password) values(default,#{username},#{password}) ")
     void addAdmin(@Param("username") String username, @Param("password") String password);
-    @Select("select * from admin where username=#{username} and password=#{password}")
+    @Select("select * from admin where binary username=#{username} and binary password=#{password}")
     Admin findByParams(Admin admin);
 
     @Update("update admin set role = #{role} where username = #{username}")
