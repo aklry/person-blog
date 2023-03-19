@@ -46,18 +46,16 @@
                             <el-input type="textarea" v-model="formData.content" placeholder="请说说你的看法"></el-input>
                         </el-form-item>
                         <el-form-item>
-                            <el-button type="primary" @click="comment(userInfo, 'userContent')">发表</el-button>
+                            <el-button type="primary" @click="comment(userInfo, blog,'userContent')">发表</el-button>
                         </el-form-item>
                     </el-form>
                 </div>
                 <div class="comment">
                     <p class="comment_title">评论列表</p>
                     <div class="comment_content">
-                        <div class="main">
-                            <p class="user">用户</p>
-                            <p class="content">内容</p>
+                        <div class="main" v-for="(comment, index) in userInfoConComment" :key="index">
+                            <p class="user">{{ comment.user.name }}: {{ comment.content }}</p>
                         </div>
-                        <p class="time">时间</p>
                     </div>
                 </div>
             </template>
@@ -68,9 +66,8 @@
 <script>
 import Layout from '@/components/Layout'
 import NavMenu from '@/components/NavMenu.vue'
-import { mapState, mapMutations } from 'vuex'
+import { mapState } from 'vuex'
 import blogMixins from '@/mixins/blog'
-import blogApi from '@/api/blog'
 export default {
     mixins: [blogMixins],
     components: {
@@ -79,23 +76,6 @@ export default {
     },
     computed: {
         ...mapState(['userInfo', 'blog'])
-    },
-    methods: {
-        ...mapMutations(['handleLogout']),
-        logout() {
-            this.handleLogout()
-            this.$router.push({ name: 'Login' })
-        }
-    },
-    mounted() {
-        blogApi.findBlogById(this.$store.state.blog.id)
-            .then(res => {
-                if (res.data && res.status === 200) {
-                    this.$store.state.blog = res.data
-                    localStorage.setItem('blog', JSON.stringify(res.data))
-
-                }
-            }).catch(error => console.log(error))
     }
 }
 </script>
@@ -141,17 +121,21 @@ export default {
     margin: 10px auto;
 
     .comment_content {
-        display: flex;
-        justify-content: space-between;
         width: 500px;
         height: 200px;
         margin-top: 20px;
 
         .main {
-            p {
-                padding: 10px;
-            }
+           text-align: left;
+           p {
+            line-height: 30px;
+           }
         }
+    }
+
+    .comment_title {
+        text-align: left;
+        font-weight: 700;
     }
 }
 </style>
