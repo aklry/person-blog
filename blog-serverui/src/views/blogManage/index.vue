@@ -49,7 +49,7 @@ export default {
       .then(res => {
         if (res.status === 200 && res.data != null) {
           for (const data of res.data.list) {
-            data.publishTime = moment(data.publishTime).format('YYYY-MM-DD hh:mm:ss')
+            data.publishTime = moment(data.publishTime).format('YYYY-MM-DD HH:mm:ss')
           }
           this.$data.blogInfo = res.data.list
           this.$data.pageInfo = res.data

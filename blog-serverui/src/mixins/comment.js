@@ -35,7 +35,7 @@ export default {
             .then(res => {
                 if (res.status === 200) {
                     const data = res.data.map((item) => {
-                        item.dateTime = moment(item.dateTime).format('YYYY-MM-DD hh:mm:ss')
+                        item.dateTime = moment(item.dateTime).format('YYYY-MM-DD HH:mm:ss')
                         return item
                     })
                     this.commentList = data
