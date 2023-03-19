@@ -2,7 +2,7 @@ import axios from '../utils/request'
 
 const base = {
     addComment: '/addComment',
-    listUsersComment: '/getAllComment'
+    listUsersComment: '/listAllCommentByUser'
 }
 
 const commentApi = {
