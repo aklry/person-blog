@@ -3,9 +3,7 @@
     <Breadcrumb>
       <template>管理员管理</template>
     </Breadcrumb>
-    <el-table :data="
-      tableData.filter((data) => !search || data.username.includes(search))
-    " style="width: 100%">
+    <el-table :data="adminList" style="width: 100%">
       <el-table-column label="id" prop="id"> </el-table-column>
       <el-table-column label="用户名" prop="username"> </el-table-column>
       <el-table-column label="密码" prop="password"> </el-table-column>
@@ -14,7 +12,8 @@
         <template slot="header" slot-scope="scope">
           <div class="container">
             <el-input v-model="search" size="mini" placeholder="输入关键字搜索" />
-            <el-button size="mini" @click="isShowHandle()">Add</el-button>
+            <el-button size="mini" @click="isShowHandle()">增加</el-button>
+            <el-button size="mini" @click="searchHandler">搜索</el-button>
           </div>
           <!-- 弹出框 -->
           <Dialog :isShow="isShow" @changeIsShow="changeIsShow" />
@@ -109,6 +108,17 @@ export default {
     handleCurrentChange(val) {
       this.changePageNum(val)
       this.reload()
+    },
+    searchHandler() {
+      api.search({
+        keywords: '%' + this.$data.search + '%'
+      }).then(res => {
+        if (res.data.length > 0) {
+          this.$data.adminList = res.data
+        } else {
+          this.$data.adminList = []
+        }
+      }).catch(error => console.log(error))
     }
   },
   components: {
@@ -123,9 +133,8 @@ export default {
         size: 5
       })
       .then((res) => {
-        this.$data.tableData = res.data.list
+        this.$data.adminList = res.data.list
         this.$data.pageInfo = res.data
-        console.log(res.data)
       })
       .catch((error) => console.log(error));
   },

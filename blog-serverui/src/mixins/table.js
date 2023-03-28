@@ -1,7 +1,7 @@
 export default {
     data() {
         return {
-            tableData: [],
+            adminList: [],
             search: "",
             isShow: false,
             isVisible: false,
