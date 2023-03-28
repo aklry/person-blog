@@ -25,7 +25,7 @@ public class BlogController {
     public Result publishBlog(@RequestBody Blog blog) {
         result = Utils.getResult();
         if (blog != null) {
-            blog.setContent(Utils.removeHtmlTag(blog.getContent()));
+//            blog.setContent(Utils.removeHtmlTag(blog.getContent()));
             blogService.addBlog(blog);
             result.message = "发表成功";
             result.flag = true;
