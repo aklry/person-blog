@@ -35,7 +35,7 @@
                 </div>
             </template>
             <template #main>
-                <div class="blog">
+                <div class="blog-content">
                     <h1 class="title">{{ blog.title }}</h1>
                     <p class="author">{{ blog.author }}</p>
                     <article class="article">
@@ -93,6 +93,10 @@ export default {
 }
 
 .blog {
+    height: 100%;
+}
+
+.blog-content {
     width: 100%;
 
     .title {

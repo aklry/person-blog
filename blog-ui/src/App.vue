@@ -4,7 +4,6 @@
   </div>
 </template>
 <script>
-import store from './store'
 export default {
   data() {
     return {
@@ -30,4 +29,9 @@ export default {
   width: 100%;
   height: 100%;
 }
+
+.el-main {
+  background-color: rgb(233, 236, 245);
+}
+
 </style>

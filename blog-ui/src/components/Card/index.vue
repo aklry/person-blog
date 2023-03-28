@@ -89,22 +89,6 @@ export default {
   box-shadow: 0 0 5px #999;
 }
 
-.el-card::before {
-  content: '';
-  display: block;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0,0,0,.4);
-  transition: all .5s;
-}
-
-.el-card:hover::before {
-  height: 0;
-  margin-top: 80px;
-}
 
 .el-row {
   display: flex;
