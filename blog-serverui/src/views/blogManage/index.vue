@@ -7,7 +7,11 @@
       <el-table-column label="id" prop="id"> </el-table-column>
       <el-table-column label="文章标题" prop="title"> </el-table-column>
       <el-table-column label="文章作者" prop="author"> </el-table-column>
-      <el-table-column label="内容" prop="content" :show-overflow-tooltip='true'> </el-table-column>
+      <el-table-column label="内容" prop="content" show-overflow-tooltip width="300">
+        <template #default="scope">
+          <div v-html="scope.row.content"></div>
+        </template>
+      </el-table-column>
       <el-table-column label="分区" prop="category"> </el-table-column>
       <el-table-column label="发表时间" prop="publishTime"> </el-table-column>
       <el-table-column label="类型" prop="type"> </el-table-column>
