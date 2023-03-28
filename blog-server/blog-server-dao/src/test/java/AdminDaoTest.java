@@ -34,4 +34,10 @@ public class AdminDaoTest {
 //        int result = 1 / 0;
         adminDao.addAdmin(admin.getUsername(),admin.getPassword());
     }
+
+    @Test
+    public void testFindByUsernameLike() {
+        List<Admin> byUsernameLike = adminDao.findByUsernameLike("%张%");
+        byUsernameLike.forEach(System.out::println);
+    }
 }
