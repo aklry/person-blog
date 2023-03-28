@@ -38,7 +38,9 @@
                 <div class="blog">
                     <h1 class="title">{{ blog.title }}</h1>
                     <p class="author">{{ blog.author }}</p>
-                    <article class="article">{{ blog.content }}</article>
+                    <article class="article">
+                        <div v-html="blog.content"></div>
+                    </article>
                 </div>
                 <div class="publishComment">
                     <el-form :model="formData" ref="userContent" :rules="rules">

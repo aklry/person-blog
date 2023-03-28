@@ -9,7 +9,6 @@ const base = {
 
 const blogApi = {
     publishBlog(params) {
-        console.log(params)
         return axios.post(base.addBlog, params)
     },
     listAllBlog() {
