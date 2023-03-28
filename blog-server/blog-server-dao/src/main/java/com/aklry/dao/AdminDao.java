@@ -43,6 +43,20 @@ public interface AdminDao {
     @Select("select * from admin where binary username=#{username} and binary password=#{password}")
     Admin findByParams(Admin admin);
 
+    /**
+     * 根据用户名设置用户权限
+     * @param username
+     * @param role
+     */
     @Update("update admin set role = #{role} where username = #{username}")
     void updateRoleByUsername(@Param("username") String username, @Param("role") String role);
+
+    /**
+     *根据关键字模糊查询
+     * @param keywords
+     * @return
+     */
+
+    @Select("select * from admin where username like #{keywords}")
+    List<Admin> findByUsernameLike(@Param("keywords") String keywords);
 }

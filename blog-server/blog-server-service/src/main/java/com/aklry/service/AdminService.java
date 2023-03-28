@@ -37,4 +37,8 @@ public class AdminService {
     public void updateRoleByUsername(String username, String role) {
         adminDao.updateRoleByUsername(username, role);
     }
+
+    public List<Admin> findByUsernameLike(String keywords) {
+        return adminDao.findByUsernameLike(keywords);
+    }
 }

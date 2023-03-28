@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/blog")
@@ -100,5 +101,11 @@ public class AdminController {
             result.flag = false;
         }
         return result;
+    }
+
+    @PostMapping("/search")
+    public List<Admin> findByUsernameLike(@RequestBody Map<String, String> keywords) {
+        String value = keywords.get("keywords");
+        return adminService.findByUsernameLike(value);
     }
 }
