@@ -75,6 +75,9 @@ export default {
                     return false
                 }
             })
+        },
+        cancel() {
+            this.$router.push('/')
         }
     },
     computed: {
