@@ -1,20 +1,19 @@
 <template>
   <el-row>
     <el-col :span="8" v-for="(item, index) in blogInfo" :key="index">
-      <el-card :body-style="{ padding: '0px'}" style="height: 100%;">
-      <div style="padding: 14px;">
-        <span class="title">{{ item.title }}</span>
-        <div class="bottom clearfix">
-          <article class="article">
-            <p>{{ item.content }}</p>
-          </article>
-          <el-button type="text" class="button" @click="viewArticle(item)">查看原文</el-button>
+      <el-card :body-style="{ padding: '0px' }" style="height: 100%;">
+        <div style="padding: 14px;">
+          <span class="title">{{ item.title }}</span>
+          <div class="bottom clearfix">
+            <article class="article">
+              <div v-html="item.content"></div>
+            </article>
+            <el-button type="text" class="button" @click="viewArticle(item)">查看原文</el-button>
+          </div>
         </div>
-      </div>
-    </el-card>
+      </el-card>
     </el-col>
   </el-row>
-  
 </template>
 <script>
 import { mapState, mapMutations } from 'vuex'
@@ -84,19 +83,48 @@ export default {
 }
 
 .el-card {
+  position: relative;
   width: 350px;
   height: 350px;
   box-shadow: 0 0 5px #999;
 }
 
+.el-card::before {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,.4);
+  transition: all .5s;
+}
+
+.el-card:hover::before {
+  height: 0;
+  margin-top: 80px;
+}
+
 .el-row {
   display: flex;
-  justify-content: space-between;
   flex-wrap: wrap;
-  margin: 20px 50px;
+  margin: 20px;
 }
-.el-col {
-  margin-bottom: 20px;
+
+.el-row .el-col {
+  padding: 20px;
+  width: 500px;
+  height: 250px;
+  flex: 1;
+}
+
+.el-row .el-col:nth-child(1) {
+  margin-left: 0;
+}
+
+.el-row .el-col:last-child {
+  margin-right: 0;
 }
 </style>
   
