@@ -38,17 +38,17 @@ const routes = [
       {
         path: '/info',
         name: 'Info',
-        component: () => import('@/views/user/info.vue')
+        component: () => import('@/views/user/function/info.vue')
       },
       {
         path: '/changePassword',
         name: 'ChangePassword',
-        component: () => import('@/views/user/changePassword.vue')
+        component: () => import('@/views/user/function/changePassword.vue')
       },
       {
         path: '/changeName',
         name: 'ChangeName',
-        component: () => import('@/views/user/changeName.vue')
+        component: () => import('@/views/user/function/changeName.vue')
       }
     ]
   },
