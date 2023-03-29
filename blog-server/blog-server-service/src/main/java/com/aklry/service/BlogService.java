@@ -34,4 +34,8 @@ public class BlogService {
     public Blog findBlogById(int id) {
         return blogDao.findBlogById(id);
     }
+
+    public List<Blog> findBlogByCategory(String category) {
+        return blogDao.findBlogByCategory(category);
+    }
 }

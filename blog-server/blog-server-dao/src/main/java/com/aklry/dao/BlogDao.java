@@ -74,4 +74,12 @@ public interface BlogDao {
             )
     })
     Blog findBlogById(@Param("id") int id);
+
+    /**
+     * 根据博客分类查询博客信息
+     * @param category
+     * @return
+     */
+    @Select("select * from blog where category = #{category}")
+    List<Blog> findBlogByCategory(String category);
 }
