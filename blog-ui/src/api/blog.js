@@ -4,7 +4,8 @@ const base = {
     addBlog: '/publishBlog',
     listAllBlog: '/listAllBlog', //分页查询
     listBlog: '/listBlog',
-    findBlogById: '/findBlogById'
+    findBlogById: '/findBlogById',
+    findBlogByCategory: 'findBlogByCategory' //根据博客分类查询
 }
 
 const blogApi = {
@@ -19,6 +20,11 @@ const blogApi = {
     },
     findBlogById(params) {
         return axios.post(base.findBlogById,params)
+    },
+    findBlogByCategory(params) {
+        return axios.get(base.findBlogByCategory, {
+            params
+        })
     }
 }
 
