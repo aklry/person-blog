@@ -21,7 +21,7 @@ export default {
         state.blogInfo.push(blogInfo)
     },
     //点击查看原文时，设置查看的博客
-    setBlogId(state, blog) {
+    setBlog(state, blog) {
         state.blog = blog
     },
     //持久化数据
