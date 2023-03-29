@@ -22,7 +22,8 @@ export default {
         return {
             swiperOptions: {
                 loop: true,
-                speed: 1000,
+                speed: 2000,
+                effect: 'fade', //渐变效果
                 autoplay: {
                     // 隔×秒自动滑动一次
                     delay: 3000,
@@ -30,8 +31,7 @@ export default {
                     disableOnInteraction: false,
                 },
                 pagination: {
-                    el: '.el-pagination',
-                    type: 'progressbar'
+                    el: '.el-pagination'
                 },
                 navigation: {
                     nextEl: '.swiper-button-next',
