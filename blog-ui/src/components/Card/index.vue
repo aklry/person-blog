@@ -25,9 +25,9 @@ export default {
     }
   },
   methods: {
-    ...mapMutations(['setBlogId']),
+    ...mapMutations(['setBlog']),
     viewArticle(blog) {
-      this.setBlogId(blog)
+      this.setBlog(blog)
       this.$router.push('/blog')
     }
   },
