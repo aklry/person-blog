@@ -1,0 +1,86 @@
+<template>
+  <Layout>
+    <template #NavMenu>
+      <NavMenu />
+    </template>
+    <template #userInfo>
+      <div class="userinfo" v-if="flag === true ? false : true">
+        <router-link to="/login" class="login">登录</router-link>
+        <router-link to="/register" class="register">注册</router-link>
+      </div>
+      <div class="user-info" v-if="flag === true ? true : false">
+        <img class="avatar" src="@/assets/a1.png" alt="" style="padding: 0 2px;">
+        <el-dropdown>
+          <span class="el-dropdown-link" style="color: #fff;">
+            {{ userInfo.name }}<i class="el-icon-arrow-down el-icon--right" style="color: rgba(255, 255, 255, .7);"></i>
+          </span>
+          <el-dropdown-menu slot="dropdown">
+            <el-dropdown-item>
+              <span @click="logout">登出</span>
+            </el-dropdown-item>
+          </el-dropdown-menu>
+        </el-dropdown>
+      </div>
+    </template>
+    <template #main>
+      <Carrousel></Carrousel>
+      <Card></Card>
+    </template>
+    <div class="content">
+      <router-view></router-view>
+    </div>
+  </Layout>
+</template>
+
+<script>
+import NavMenu from '@/components/NavMenu.vue'
+import Layout from '@/components/Layout'
+import Carrousel from '@/components/Carrousel'
+import Card from '@/components/Card'
+import { mapState, mapMutations } from 'vuex'
+export default {
+  components: {
+    Layout,
+    NavMenu,
+    Carrousel,
+    Card
+  },
+  computed: {
+    ...mapState(['flag', 'userInfo'])
+  },
+  methods: {
+    ...mapMutations(['handleLogout']),
+    logout() {
+      this.handleLogout()
+      this.$router.push('/login')
+    }
+  }
+}
+</script>
+
+<style scoped>
+.login,
+.register {
+  text-decoration: none;
+  color: #fff;
+}
+
+.login {
+  padding: 0 20px;
+}
+
+.avatar {
+  width: 30px;
+  height: 30px;
+}
+
+.user-info {
+  padding-top: 5px;
+}
+
+.content {
+  text-decoration: none;
+  color: #fff;
+  padding: 10px;
+}
+</style>
