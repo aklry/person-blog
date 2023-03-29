@@ -1,15 +1,7 @@
 <template>
   <Layout>
     <template #NavMenu>
-      <NavMenu>
-        <template #header>
-          <el-menu-item index="/">首页</el-menu-item>
-          <el-submenu index="menu">
-            <template slot="title">账户设置</template>
-            <el-menu-item index="/changeName">修改昵称</el-menu-item>
-          </el-submenu>
-        </template>
-      </NavMenu>
+      <NavMenu />
     </template>
     <template #userInfo>
       <div class="search">
@@ -26,11 +18,8 @@
         <el-menu-item index="/changePassword">
           <span slot="title">密码修改</span>
         </el-menu-item>
-        <el-menu-item index="/private">
-          <span slot="title">悄悄话</span>
-        </el-menu-item>
-        <el-menu-item index="/callback">
-          <span slot="title">评论回复</span>
+        <el-menu-item index="/changeName">
+          <span slot="title">昵称修改</span>
         </el-menu-item>
       </el-menu>
     </template>
