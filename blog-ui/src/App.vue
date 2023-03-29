@@ -34,4 +34,8 @@ export default {
   background-color: rgb(233, 236, 245);
 }
 
+.content {
+  text-decoration: none;
+}
+
 </style>
