@@ -9,7 +9,7 @@
         <router-link to="/register" class="register">注册</router-link>
       </div>
       <div class="user-info" v-if="flag === true ? true : false">
-        <img class="avatar" src="@/assets/a1.png" alt="" style="padding: 0 2px;">
+        <img class="avatar" :src="url" alt="" style="padding: 0 2px;">
         <el-dropdown>
           <span class="el-dropdown-link" style="color: #fff;">
             {{ userInfo.name }}<i class="el-icon-arrow-down el-icon--right" style="color: rgba(255, 255, 255, .7);"></i>
@@ -23,8 +23,8 @@
       </div>
     </template>
     <template #main>
-      <Carrousel></Carrousel>
-      <Card></Card>
+      <Carrousel />
+      <Card />
     </template>
     <div class="content">
       <router-view></router-view>
@@ -39,6 +39,11 @@ import Carrousel from '@/components/Carrousel'
 import Card from '@/components/Card'
 import { mapState, mapMutations } from 'vuex'
 export default {
+  data() {
+    return {
+      url: ''
+    }
+  },
   components: {
     Layout,
     NavMenu,
@@ -53,6 +58,16 @@ export default {
     logout() {
       this.handleLogout()
       this.$router.push('/login')
+    }
+  },
+  mounted() {
+    const imageUrl = localStorage.getItem('imageUrl')
+    if (imageUrl) {
+      this.url = imageUrl
+    } else if (this.$store.state.userInfo.url) {
+      this.url = this.$store.state.userInfo.url
+    } else {
+      this.url = require('@/assets/a1.png')
     }
   }
 }
