@@ -16,10 +16,12 @@ public class UserService {
     public List<User> ListUser() {
         return userDao.listUser();
     }
+
     @Transactional
     public void addUser(User user) {
         userDao.addUser(user);
     }
+
     @Transactional
     public void deleteUser(int id) {
         userDao.deleteUserById(id);
@@ -28,6 +30,7 @@ public class UserService {
     public User findUser(String name, String password) {
         return userDao.findByCondition(name, password);
     }
+
     @Transactional
     public void updatePassword(String password, int id) {
         userDao.updatePasswordById(password, id);
@@ -36,6 +39,7 @@ public class UserService {
     public String findPasswordById(int id) {
         return userDao.findPasswordById(id);
     }
+
     @Transactional
     public void updateNameById(String name, int id) {
         userDao.updateNameById(name, id);
@@ -47,5 +51,10 @@ public class UserService {
 
     public User findUserByName(String name) {
         return userDao.findUserByName(name);
+    }
+
+    @Transactional
+    public void updateUserURL(Integer id, String url) {
+        userDao.updateUserURL(id, url);
     }
 }

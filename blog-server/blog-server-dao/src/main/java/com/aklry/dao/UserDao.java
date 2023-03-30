@@ -69,4 +69,12 @@ public interface UserDao {
 
     @Select("select * from user where name = #{name}")
     User findUserByName(@Param("name") String name);
+
+    /**
+     * 根据用户id更新用户头像
+     * @param id
+     * @param url
+     */
+    @Update("update user set url = #{url} where id = #{id}")
+    void updateUserURL(@Param("id") Integer id, @Param("url") String url);
 }
