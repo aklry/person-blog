@@ -1,14 +1,18 @@
 package com.aklry.controller;
 
-import com.aklry.domain.Admin;
 import com.aklry.domain.Result;
 import com.aklry.domain.User;
 import com.aklry.service.UserService;
 import com.aklry.utils.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 @RestController
@@ -137,5 +141,42 @@ public class UserController {
     public User findUserByName(@RequestBody User user) {
         User userByName = userService.findUserByName(user.getName());
         return userByName;
+    }
+
+    /**
+     * 头像上传
+     */
+    @PostMapping("/uploadAvatar")
+    @CrossOrigin
+    public String getUploadAvatar(HttpServletRequest request, MultipartFile file) throws IOException {
+        // 创建文件夹，存放上传文件。
+        String realPath = request.getSession().getServletContext().getRealPath("/upload");
+        File dir = new File(realPath);
+        if (!dir.exists()) {
+            dir.mkdirs();
+        }
+        String filename = file.getOriginalFilename();
+        filename = Utils.getUUID() + "_" + filename;
+        //创建空文件
+        File newFile = new File(dir, filename);
+
+        // 将上传的文件写到空文件中
+        file.transferTo(newFile);
+        //返回文件路径
+        return  "upload/" + filename;
+    }
+
+    /**
+     * 更新用户url
+     */
+    @PostMapping("/updateUserURL")
+    public Result updateUserURL(@RequestBody HashMap<String, String> userInfo) {
+        result = Utils.getResult();
+        int id = Integer.parseInt(userInfo.get("id"));
+        String url = userInfo.get("url");
+
+        userService.updateUserURL(id, url);
+        result.message = "修改成功";
+        return result;
     }
 }
