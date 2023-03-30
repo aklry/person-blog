@@ -21,6 +21,9 @@
         <el-menu-item index="/changeName">
           <span slot="title">昵称修改</span>
         </el-menu-item>
+        <el-menu-item index="/changeAvatar">
+          <span slot="title">上传头像</span>
+        </el-menu-item>
       </el-menu>
     </template>
     <template #content>
