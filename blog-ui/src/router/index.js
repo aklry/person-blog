@@ -49,6 +49,11 @@ const routes = [
         path: '/changeName',
         name: 'ChangeName',
         component: () => import('@/views/user/function/changeName.vue')
+      },
+      {
+        path: '/changeAvatar',
+        name: 'ChangeAvatar',
+        component: () => import('@/views/user/function/changeAvatar.vue')
       }
     ]
   },
