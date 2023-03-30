@@ -6,7 +6,8 @@ const base = {
     updatePassword: '/updatePassword',
     updateName: '/updateName',
     findUserByName: '/findUserByName',
-    listCommentByUser: '/listCommentByUser'
+    listCommentByUser: '/listCommentByUser',
+    updateUserURL: '/updateUserURL' //更新用户头像的URL
 }
 
 const api = {
@@ -24,6 +25,10 @@ const api = {
     },
     findUserByName(params) {
         return axios.post(base.findUserByName, params)
+    },
+    updateUserURL(params) {
+        console.log(params)
+        return axios.post(base.updateUserURL, params)
     }
 }
 
