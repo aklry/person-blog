@@ -7,6 +7,7 @@ public class User {
     private String address;
     private String phoneNumber;
     private String password;
+    private String url;
 
     public User() {
     }
@@ -20,12 +21,13 @@ public class User {
         this.password = password;
     }
 
-    public User(String name, String sex, String address, String phoneNumber, String password) {
+    public User(String name, String sex, String address, String phoneNumber, String password, String url) {
         this.name = name;
         this.sex = sex;
         this.address = address;
         this.phoneNumber = phoneNumber;
         this.password = password;
+        this.url = url;
     }
 
     public int getId() {
@@ -76,6 +78,14 @@ public class User {
         this.password = password;
     }
 
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -85,6 +95,7 @@ public class User {
                 ", address='" + address + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
                 ", password='" + password + '\'' +
+                ", url='" + url + '\'' +
                 '}';
     }
 }
