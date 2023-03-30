@@ -89,6 +89,7 @@ export default {
   height: 30px;
   margin: 6px;
   vertical-align: middle;
+  border-radius: 50%;
 }
 
 .user-info {
