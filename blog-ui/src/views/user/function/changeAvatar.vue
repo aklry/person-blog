@@ -34,7 +34,7 @@ export default {
                 url: res
             }).then(res => {
                 if (res.status === 200) {
-                    this.$success(res.data.message)
+                    this.$message(res.data.message)
                 }
             }).catch(error => console.log(error))
         },

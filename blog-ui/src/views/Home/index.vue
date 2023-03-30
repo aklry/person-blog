@@ -87,6 +87,8 @@ export default {
 .avatar {
   width: 30px;
   height: 30px;
+  margin: 6px;
+  vertical-align: middle;
 }
 
 .user-info {

@@ -27,7 +27,6 @@ const api = {
         return axios.post(base.findUserByName, params)
     },
     updateUserURL(params) {
-        console.log(params)
         return axios.post(base.updateUserURL, params)
     }
 }
