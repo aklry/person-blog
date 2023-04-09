@@ -28,4 +28,20 @@ export default {
 #app {
   height: 100%;
 }
+
+.block {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.el-tooltip__popper {
+  max-width: 20%;
+}
+
+.el-tooltip__popper,
+.el-tooltip__popper.is-dark {
+  background: rgb(48, 65, 86) !important;
+  line-height: 24px !important;
+}
 </style>

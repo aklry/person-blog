@@ -7,12 +7,12 @@
       <el-table-column label="id" prop="id"> </el-table-column>
       <el-table-column label="文章标题" prop="title"> </el-table-column>
       <el-table-column label="文章作者" prop="author"> </el-table-column>
-      <el-table-column label="内容" prop="content" show-overflow-tooltip width="300">
+      <el-table-column label="内容" prop="content" show-overflow-tooltip>
         <template #default="scope">
           <div v-html="scope.row.content"></div>
         </template>
       </el-table-column>
-      <el-table-column label="分区" prop="category"> </el-table-column>
+      <el-table-column label="分区" prop="category" align="center"> </el-table-column>
       <el-table-column label="发表时间" prop="publishTime"> </el-table-column>
       <el-table-column label="类型" prop="type"> </el-table-column>
       <el-table-column align="right">
@@ -75,19 +75,4 @@ export default {
 </script>
 
 <style>
-.block {
-  display: flex;
-  justify-content: center;
-  margin-top: 30px;
-}
-
-.el-tooltip__popper {
-  max-width: 20%;
-}
-
-.el-tooltip__popper,
-.el-tooltip__popper.is-dark {
-  background: rgb(48, 65, 86) !important;
-  line-height: 24px !important;
-}
 </style>
