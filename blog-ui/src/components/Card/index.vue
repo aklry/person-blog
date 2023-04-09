@@ -34,13 +34,12 @@ export default {
     }
   },
   methods: {
-    ...mapMutations(['setBlog', 'setPageNum']),
+    ...mapMutations(['setBlog']),
     viewArticle(blog) {
       this.setBlog(blog)
       this.$router.push('/blog')
     },
     handleCurrentChange(val) {
-      // this.setPageNum(val)
       this.pageNum = val
       this.http()
     },
@@ -60,7 +59,7 @@ export default {
     }
   },
   computed: {
-    ...mapState(['blogInfo', 'pageNum'])
+    ...mapState(['blogInfo'])
   },
   mounted() {
     this.http()
