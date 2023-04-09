@@ -6,7 +6,7 @@
             </template>
             <template #userInfo>
                 <div class="user-info">
-                    <img class="avatar" src="@/assets/a1.png" alt="" style="padding: 0 2px;">
+                    <img class="avatar" :src="url" alt="" style="padding: 0 2px;">
                     <el-dropdown>
                         <span class="el-dropdown-link" style="color: #fff;">
                             {{ userInfo.name }}<i class="el-icon-arrow-down el-icon--right"

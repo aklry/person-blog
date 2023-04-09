@@ -14,7 +14,8 @@ export default {
                     { required: true, message: "请输入你的评论", trigger: "blur" }
                 ]
             },
-            userInfoConComment: []
+            userInfoConComment: [],
+            url: ''
         }
     },
     inject: ['reload'],
@@ -50,6 +51,15 @@ export default {
         }
     },
     mounted() {
+        //加载用户头像
+        const imageUrl = localStorage.getItem('imageUrl')
+        if (imageUrl) {
+            this.url = imageUrl
+        } else if (this.$store.state.userInfo.url) {
+            this.url = this.$store.state.userInfo.url
+        } else {
+            this.url = require('@/assets/a1.png')
+        }
         axios.all([blogApi.findBlogById(this.$store.state.blog.id), commentApi.listUsersComment(this.$store.state.blog.id)])
             .then(axios.spread((acct, perms) => {
                 //查询所有博客之后，保存博客信息在vuex以及localStorage
