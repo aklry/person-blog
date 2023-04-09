@@ -1,5 +1,5 @@
 <template>
-    <swiper ref="mySwiper" :options="swiperOptions" style="width:100%; height: 70%;">
+    <swiper ref="mySwiper" :options="swiperOptions" style="width:100%; height: 62%;">
         <swiper-slide style="width:100%;height: 100%">
             <img src="../../assets/yao.png" alt="" style="width:100%;height: 100%;">
         </swiper-slide>
@@ -9,7 +9,6 @@
         <swiper-slide>
             <img src="../../assets/sishen.jpg" alt="" style="width:100%;height: 100%;">
         </swiper-slide>
-        <div class="swiper-pagination" slot="pagination"></div>
         <div class="swiper-button-prev" slot="button-prev"></div>
         <div class="swiper-button-next" slot="button-next"></div>
     </swiper>
@@ -29,9 +28,6 @@ export default {
                     delay: 3000,
                     // 设置为false，用户操作swiper之后自动切换不会停止，每次都会重新启动autoplay。默认为true
                     disableOnInteraction: false,
-                },
-                pagination: {
-                    el: '.el-pagination'
                 },
                 navigation: {
                     nextEl: '.swiper-button-next',
