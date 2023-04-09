@@ -30,7 +30,7 @@ export default {
     return {
       pageInfo: {},
       pageNum: 1,
-      size: 4
+      size: 3
     }
   },
   methods: {
@@ -104,7 +104,6 @@ export default {
 }
 
 .el-card {
-  position: relative;
   width: 350px;
   height: 350px;
   box-shadow: 0 0 5px #999;
@@ -113,7 +112,7 @@ export default {
 
 .el-row {
   display: flex;
-  flex-wrap: wrap;
+  justify-content: space-around;
   margin: 20px;
 }
 
@@ -121,7 +120,6 @@ export default {
   padding: 20px;
   width: 500px;
   height: 250px;
-  flex: 1;
 }
 
 .el-row .el-col:nth-child(1) {
