@@ -5,7 +5,9 @@ export default {
         return {
             blogInfo: [],
             search: '',
-            pageInfo: ''
+            pageInfo: '',
+            pageNum: 1,
+            size: 5
         }
     },
     methods: {

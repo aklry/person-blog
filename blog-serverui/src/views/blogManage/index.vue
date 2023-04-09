@@ -9,7 +9,7 @@
       <el-table-column label="文章作者" prop="author"> </el-table-column>
       <el-table-column label="内容" prop="content" show-overflow-tooltip>
         <template #default="scope">
-          <div v-html="scope.row.content"></div>
+          <div class="content" v-html="scope.row.content"></div>
         </template>
       </el-table-column>
       <el-table-column label="分区" prop="category" align="center"> </el-table-column>
@@ -37,42 +37,53 @@ import Breadcrumb from '@/components/Breadcrumb'
 import blogMixins from '@/mixins/blog'
 import blogApi from '@/api/blog'
 import moment from 'moment'
-import {
-  mapState, mapMutations
-} from 'vuex'
 export default {
   mixins: [blogMixins],
   components: {
     Breadcrumb
   },
   mounted() {
-    blogApi.listAllBlog({
-      pageNum: this.$store.state.pageNum,
-      size: 5
-    })
-      .then(res => {
-        if (res.status === 200 && res.data != null) {
-          for (const data of res.data.list) {
-            data.publishTime = moment(data.publishTime).format('YYYY-MM-DD HH:mm:ss')
-          }
-          this.$data.blogInfo = res.data.list
-          this.$data.pageInfo = res.data
-        }
-      })
-      .catch(error => console.log(error))
-  },
-  computed: {
-    ...mapState(['pageNum'])
+    this.http()
   },
   methods: {
-    ...mapMutations(['changePageNum']),
     handleCurrentChange(val) {
-      this.changePageNum(val)
-      this.reload()
+      this.$data.pageNum = val
+      this.http()
+    },
+    http() {
+      blogApi.listAllBlog({
+        pageNum: this.$data.pageNum,
+        size: this.$data.size
+      })
+        .then(res => {
+          if (res.status === 200 && res.data != null) {
+            res.data.list.filter((item) => {
+              item.publishTime = moment(item.publishTime).format('YYYY-MM-DD HH:mm:ss')
+            })
+            this.$data.blogInfo = res.data.list
+            this.$data.pageInfo = res.data
+          }
+        })
+        .catch(error => console.log(error))
     }
   }
 }
 </script>
 
-<style>
+<style scoped>
+.content {
+  font-size: 13px;
+  line-height: 30px;
+  -webkit-line-clamp: 1;
+  /*用来限制在一个块元素显示的文本的行数，2 表示最多显示 2 行。为了实现该效果，它需要组合其他的 WebKit 属性*/
+  display: -webkit-box;
+  /*和 1 结合使用，将对象作为弹性伸缩盒子模型显示 */
+  -webkit-box-orient: vertical;
+  /*和 1 结合使用 ，设置或检索伸缩盒对象的子元素的排列方式 */
+  overflow: hidden;
+  /*文本溢出限定的宽度就隐藏内容*/
+  text-overflow: ellipsis;
+  /*多行文本的情况下，用省略号 “…” 隐藏溢出范围的文本*/
+  margin-bottom: 12px;
+}
 </style>

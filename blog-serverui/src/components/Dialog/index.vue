@@ -1,5 +1,5 @@
 <template>
-  <el-dialog :visible="isShow">
+  <el-dialog destroy-on-close :visible="isShow">
     <el-form :model="form" :rules="rules">
       <el-form-item label="用户名" :label-width="formLabelWidth" prop="username">
         <el-input v-model="form.username" autocomplete="off" ref="username"></el-input>
@@ -19,9 +19,7 @@
 import mixin from '@/mixins/dialog'
 import api from '@/api';
 
-import utils from '@/util/utils';
 export default {
-  inject: ['reload'],
   mixins: [mixin],
   props: {
     isShow: {
@@ -33,10 +31,10 @@ export default {
   },
   methods: {
     cancel() {
-      this.$emit("changeIsShow", false);
+      this.$emit("changeIsShow", false)
     },
     submit() {
-      this.$emit("changeIsShow", false);
+      this.$emit("changeIsShow", false)
       const username = this.$data.form.username
       const password = this.$data.form.password
       api.add({
@@ -44,10 +42,9 @@ export default {
         password
       }).then(res => {
         if (res.data[0].flag) {
-          utils.alert(this, res.data[0].message)
-          this.reload()
+          this.$message.success(res.data[0].message)
         } else {
-          utils.alert(this, res.data[0].message)
+          this.$message.error(res.data[0].message)
         }
       })
     }

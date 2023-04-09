@@ -19,7 +19,7 @@
         </template>
         <template slot-scope="scope">
           <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">Edit</el-button>
-          <EditDialog :isVisible="isVisible" @changeIsVisible="changeIsVisible" :id="id">
+          <EditDialog destroy-on-close :isVisible="isVisible" @changeIsVisible="changeIsVisible" :id="id">
             <template #input>
               <el-form :model="form" :rules="rules">
                 <el-form-item label="用户名" :label-width="formLabelWidth" prop="username">
@@ -55,20 +55,20 @@ import table from "@/mixins/table"
 import editDialog from '@/mixins/editDialog'
 import Dialog from "@/components/Dialog";
 import EditDialog from "@/components/Dialog/EditDialog.vue"
-import utils from "@/util/utils"
 import Breadcrumb from "@/components/Breadcrumb"
-import {
-  mapMutations, mapState
-} from "vuex";
 export default {
   mixins: [table, editDialog],
-  inject: ["reload"],
   methods: {
-    ...mapMutations(['changePageNum']),
+    /**
+     * 点击编辑
+     */
     handleEdit(index, row) {
       this.$data.isVisible = true
       this.$data.id = row.id
     },
+    /**
+     * 点击删除
+     */
     handleDelete(index, row) {
       this.$confirm("此操作将永久删除该管理员, 是否继续?", "提示", {
         confirmButtonText: "确定",
@@ -77,15 +77,21 @@ export default {
       })
         .then(() => {
           api.delete(row.id).then((res) => {
-            utils.alert(this, res.data.message);
-            this.reload();
-          });
+            this.$message.success(res.data.message)
+            this.http()
+          })
         })
-        .catch(() => { });
+        .catch((error) => console.log(error));
     },
+    /**
+     * 点击取消按钮
+     */
     cancel() {
       this.isVisible = false
     },
+    /**
+     * 确认修改
+     */
     submit() {
       this.isVisible = false
       const username = this.$data.form.username
@@ -97,16 +103,16 @@ export default {
         password
       }).then(res => {
         if (res.data.flag) {
-          utils.alert(this, res.data.message)
-          this.reload()
+          this.$message.success(res.data.message)
+          this.http()
         } else {
-          utils.alert(this, res.data.message)
+          this.$message.error(res.data.message)
         }
       })
     },
     handleCurrentChange(val) {
-      this.changePageNum(val)
-      this.reload()
+      this.$data.pageNum = val
+      this.http()
     },
     searchHandler() {
       api.search({
@@ -118,6 +124,19 @@ export default {
           this.$data.adminList = []
         }
       }).catch(error => console.log(error))
+    },
+    //获得所有用户
+    http() {
+      api
+        .getAllAdmin({
+          pageNum: this.$data.pageNum,
+          size: this.$data.size
+        })
+        .then((res) => {
+          this.$data.adminList = res.data.list
+          this.$data.pageInfo = res.data
+        })
+        .catch((error) => console.log(error));
     }
   },
   components: {
@@ -126,21 +145,9 @@ export default {
     Breadcrumb,
   },
   mounted() {
-    api
-      .getAllAdmin({
-        pageNum: this.$store.state.pageNum,
-        size: 5
-      })
-      .then((res) => {
-        this.$data.adminList = res.data.list
-        this.$data.pageInfo = res.data
-      })
-      .catch((error) => console.log(error));
-  },
-  computed: {
-    ...mapState(['pageNum'])
+    this.http()
   }
-};
+}
 </script>
 <style scoped>
 .container {

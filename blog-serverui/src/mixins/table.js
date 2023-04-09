@@ -6,9 +6,10 @@ export default {
             isShow: false,
             isVisible: false,
             formLabelWidth: '120px',
-            isRouterAlive: true,
             id: 0,
             pageInfo: {},
+            pageNum: 1,
+            size: 5
         }
     },
     methods: {

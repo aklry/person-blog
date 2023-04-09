@@ -11,7 +11,8 @@
       <el-table-column label="电话号码" prop="phoneNumber"> </el-table-column>
       <el-table-column label="头像" prop="url">
         <template #default="scope">
-          <img :src="scope.row.url ? scope.row.url : require('@/assets/a1.png')" style="width: 30px; height: 30px; border-radius: 50%;">
+          <img :src="scope.row.url ? scope.row.url : require('@/assets/a1.png')"
+            style="width: 30px; height: 30px; border-radius: 50%;">
         </template>
       </el-table-column>
       <el-table-column align="right">
@@ -30,10 +31,8 @@
 import Breadcrumb from '@/components/Breadcrumb'
 import user from '@/mixins/user'
 import api from '@/api/user'
-import utils from '@/util/utils'
 export default {
   mixins: [user],
-  inject: ['reload'],
   components: {
     Breadcrumb,
   },
@@ -48,22 +47,25 @@ export default {
           api.deleteUserById(row.id)
             .then(res => {
               if (res.data.flag) {
-                utils.alert(this, res.data.message)
-                this.reload()
+                this.$message.success(res.data.message)
+                this.http()
               } else {
-                utils.alert(this, res.data.message)
+                this.$message.error(res.data.message)
               }
             })
         })
         .catch((error) => { console.log(error) })
     },
+    http() {
+      api.getAllUsers().then(res => {
+        if (res.data.length != 0) {
+          this.$data.userList = res.data
+        }
+      })
+    }
   },
   mounted() {
-    api.getAllUsers().then(res => {
-      if (res.data.length != 0) {
-        this.$data.userList = res.data
-      }
-    })
+    this.http()
   }
 }
 </script>
