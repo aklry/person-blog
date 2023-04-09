@@ -22,7 +22,6 @@
 import mixin from '@/mixins/login.js'
 import api from '@/api'
 import { mapMutations } from 'vuex'
-import utils from '@/util/utils'
 export default {
     name: 'Login',
     mixins: [mixin],
@@ -44,7 +43,7 @@ export default {
                         localStorage.setItem('token', res.data[0].token)
                         this.$router.push('home')
                     } else {
-                        utils.alert(this, res.data[0].message)
+                        this.$message.error(res.data[0].message)
                         this.$router.push('/login')
                     }
                 })

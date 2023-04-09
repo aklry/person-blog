@@ -1,5 +1,5 @@
 <template>
-    <div class="regiser">
+    <div class="register">
         <div class="register-content">
             <h1 style="text-align: center">注册</h1>
             <el-form :rules="rules" :model="form" ref="form">
@@ -19,9 +19,8 @@
 </template>
 
 <script>
-import mixin from "@/mixins/register";
-import utils from "@/util/utils";
-import api from "@/api";
+import mixin from "@/mixins/register"
+import api from "@/api"
 export default {
     mixins: [mixin],
     methods: {
@@ -35,11 +34,10 @@ export default {
                 })
                 .then((res) => {
                     if (res.data.flag) {
-                        utils.alert(this, res.data.message);
+                        this.$message.success(res.data.message)
                         this.$router.push("/login");
                     } else {
-                        utils.alert(this, res.data.message);
-                        this.$router.push("/login");
+                        this.$message.error(res.data.message)
                     }
                 })
                 .catch((error) => console.log(error));
