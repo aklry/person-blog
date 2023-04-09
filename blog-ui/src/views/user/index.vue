@@ -10,7 +10,7 @@
       </div>
     </template>
     <template #main>
-      <el-menu default-active="2" class="el-menu-vertical-demo" router background-color="#fff" text-color="#999"
+      <el-menu default-active="/info" class="el-menu-vertical-demo" router background-color="#fff" text-color="#999"
         active-text-color="#CD7F32" mode="vertical" style="width: 200px;">
         <el-menu-item index="/info">
           <span slot="title">个人资料</span>

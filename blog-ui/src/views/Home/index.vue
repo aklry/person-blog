@@ -84,14 +84,6 @@ export default {
   padding: 0 20px;
 }
 
-.avatar {
-  width: 30px;
-  height: 30px;
-  margin: 6px;
-  vertical-align: middle;
-  border-radius: 50%;
-}
-
 .user-info {
   padding-top: 5px;
 }
