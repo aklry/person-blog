@@ -9,7 +9,6 @@
                 <el-form-item label="密码" prop="password">
                     <el-input v-model="form.password" show-password ref="password"></el-input>
                 </el-form-item>
-                <p>无账号,<router-link to="/register" class="register">去注册</router-link></p>
                 <el-form-item style="text-align: center;">
                     <el-button type="primary" @click="submitForm">登录</el-button>
                 </el-form-item>
