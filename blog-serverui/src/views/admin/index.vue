@@ -11,36 +11,60 @@
         <template slot="header" slot-scope="scope">
           <div class="container">
             <el-input v-model="search" size="mini" placeholder="输入关键字搜索" />
-            <el-button size="mini" @click="isShowHandle()">增加</el-button>
+            <el-button size="mini" @click="isShowHandle">增加</el-button>
             <el-button size="mini" @click="searchHandler">搜索</el-button>
           </div>
-          <!-- 弹出框 -->
-          <Dialog :isShow="isShow" @changeIsShow="changeIsShow" />
         </template>
         <template slot-scope="scope">
           <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">Edit</el-button>
-          <EditDialog destroy-on-close :isVisible="isVisible" @changeIsVisible="changeIsVisible" :id="id">
-            <template #input>
-              <el-form :model="form" :rules="rules">
-                <el-form-item label="用户名" :label-width="formLabelWidth" prop="username">
-                  <el-input v-model="form.username" autocomplete="off" ref="username"></el-input>
-                </el-form-item>
-                <el-form-item label="密码" prop="password" :label-width="formLabelWidth">
-                  <el-input v-model="form.password" show-password ref="password" autocomplete="off"></el-input>
-                </el-form-item>
-              </el-form>
-            </template>
-            <template #button>
-              <div slot="footer" class="dialog-footer">
-                <el-button @click="cancel">取 消</el-button>
-                <el-button type="primary" @click="submit">修 改</el-button>
-              </div>
-            </template>
-          </EditDialog>
           <el-button size="mini" type="danger" @click="handleDelete(scope.$index, scope.row)">Delete</el-button>
         </template>
       </el-table-column>
     </el-table>
+    <!-- 添加用户弹出框 -->
+    <Dialog :isShow="addVisible" :title="addTitle">
+      <template #input>
+        <el-form :model="addForm" :rules="rules" ref="addForm" :label-width="formLabelWidth">
+          <el-form-item label="用户名" prop="username">
+            <el-input v-model="addForm.username" autocomplete="off" />
+          </el-form-item>
+          <el-form-item label="密码" prop="password">
+            <el-input v-model="addForm.password" show-password autocomplete="off" />
+          </el-form-item>
+          <el-form-item label="权限" prop="role">
+            <el-radio-group v-model="addForm.role">
+              <el-radio label="普通管理员"></el-radio>
+              <el-radio label="超级管理员"></el-radio>
+            </el-radio-group>
+          </el-form-item>
+        </el-form>
+      </template>
+      <template #button>
+        <div slot="footer" class="dialog-footer">
+          <el-button @click="cancel('addForm')">取 消</el-button>
+          <el-button type="primary" @click="clickAddHandle('addForm')">添 加</el-button>
+        </div>
+      </template>
+    </Dialog>
+    <!-- 编辑用户弹出框 -->
+    <Dialog :isShow="editVisible" :title="editTitle">
+      <template #input>
+        <el-form :model="editForm" :rules="rules" ref="editForm" :label-width="formLabelWidth">
+          <el-form-item label="用户名" prop="username">
+            <el-input v-model="editForm.username" autocomplete="off" />
+          </el-form-item>
+          <el-form-item label="密码" prop="password">
+            <el-input v-model="editForm.password" show-password autocomplete="off" />
+          </el-form-item>
+        </el-form>
+      </template>
+      <template #button>
+        <div slot="footer" class="dialog-footer">
+          <el-button @click="cancel('editForm')">取 消</el-button>
+          <el-button type="primary" @click="clickEditHandle('editForm')">修 改</el-button>
+        </div>
+      </template>
+    </Dialog>
     <div class="block">
       <el-pagination @current-change="handleCurrentChange" :current-page="pageNum" :page-size="pageInfo.size"
         layout="total, prev, pager, next, jumper" :page-count="pageInfo.pages">
@@ -50,102 +74,19 @@
 </template>
   
 <script>
-import api from "@/api"
-import table from "@/mixins/table"
 import editDialog from '@/mixins/editDialog'
-import Dialog from "@/components/Dialog";
-import EditDialog from "@/components/Dialog/EditDialog.vue"
+import addDialog from '@/mixins/addDialog'
+import adminMixin from '@/mixins/admin'
+import Dialog from '@/components/Dialog'
 import Breadcrumb from "@/components/Breadcrumb"
 export default {
-  mixins: [table, editDialog],
+  mixins: [addDialog, editDialog, adminMixin],
   methods: {
-    /**
-     * 点击编辑
-     */
-    handleEdit(index, row) {
-      this.$data.isVisible = true
-      this.$data.id = row.id
-    },
-    /**
-     * 点击删除
-     */
-    handleDelete(index, row) {
-      this.$confirm("此操作将永久删除该管理员, 是否继续?", "提示", {
-        confirmButtonText: "确定",
-        cancelButtonText: "取消",
-        type: "warning"
-      })
-        .then(() => {
-          api.delete(row.id).then((res) => {
-            this.$message.success(res.data.message)
-            this.http()
-          })
-        })
-        .catch((error) => console.log(error));
-    },
-    /**
-     * 点击取消按钮
-     */
-    cancel() {
-      this.isVisible = false
-    },
-    /**
-     * 确认修改
-     */
-    submit() {
-      this.isVisible = false
-      const username = this.$data.form.username
-      const password = this.$data.form.password
-      const id = this.id
-      api.update({
-        id,
-        username,
-        password
-      }).then(res => {
-        if (res.data.flag) {
-          this.$message.success(res.data.message)
-          this.http()
-        } else {
-          this.$message.error(res.data.message)
-        }
-      })
-    },
-    handleCurrentChange(val) {
-      this.$data.pageNum = val
-      this.http()
-    },
-    searchHandler() {
-      api.search({
-        keywords: '%' + this.$data.search + '%'
-      }).then(res => {
-        if (res.data.length > 0) {
-          this.$data.adminList = res.data
-        } else {
-          this.$data.adminList = []
-        }
-      }).catch(error => console.log(error))
-    },
-    //获得所有用户
-    http() {
-      api
-        .getAllAdmin({
-          pageNum: this.$data.pageNum,
-          size: this.$data.size
-        })
-        .then((res) => {
-          this.$data.adminList = res.data.list
-          this.$data.pageInfo = res.data
-        })
-        .catch((error) => console.log(error));
-    }
+    
   },
   components: {
     Dialog,
-    EditDialog,
-    Breadcrumb,
-  },
-  mounted() {
-    this.http()
+    Breadcrumb
   }
 }
 </script>
@@ -158,5 +99,9 @@ export default {
   display: flex;
   justify-content: center;
   margin-top: 30px;
+}
+
+.dialog-footer {
+  text-align: center;
 }
 </style>
