@@ -38,11 +38,11 @@ public class AdminController {
     @PostMapping("/add")
     public List<Object> addAdmin(@RequestBody Admin admin) {
         List<Object> endResult = new ArrayList<>();
-        if (admin.getUsername().length() != 0 && admin.getPassword().length() != 0) {
+        if (admin.getUsername().length() != 0 && admin.getPassword().length() != 0 && admin.getRole().length() != 0) {
             Admin adminInfo = adminService.getAdminInfo(admin);
             result = Utils.getResult();
             if (adminInfo == null) {
-                adminService.addAdmin(admin.getUsername(),admin.getPassword());
+                adminService.addAdmin(admin.getUsername(),admin.getPassword(), admin.getRole());
                 result.flag = true;
                 result.message = "添加成功";
                 endResult.add(result);

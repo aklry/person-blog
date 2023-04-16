@@ -36,10 +36,9 @@ public interface AdminDao {
      * 添加管理员
      * @param username
      * @param password
-     * @return --> 返回是否删除成功
      */
-    @Insert("insert into admin(id,username,password) values(default,#{username},#{password}) ")
-    void addAdmin(@Param("username") String username, @Param("password") String password);
+    @Insert("insert into admin(id,username,password,role) values(default,#{username},#{password}, #{role}) ")
+    void addAdmin(@Param("username") String username, @Param("password") String password, @Param("role") String role);
     @Select("select * from admin where binary username=#{username} and binary password=#{password}")
     Admin findByParams(Admin admin);
 

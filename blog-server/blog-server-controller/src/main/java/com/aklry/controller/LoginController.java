@@ -46,21 +46,4 @@ public class LoginController {
        }
         return endResult;
     }
-
-    @PostMapping("/register")
-    public Result register(@RequestBody Admin admin) {
-        if (admin != null) {
-            Admin adminInfo = adminService.getAdminInfo(admin);
-            result = Utils.getResult();
-            if (adminInfo == null) {
-                adminService.addAdmin(admin.getUsername(),admin.getPassword());
-                result.flag = true;
-                result.message = "注册成功";
-            } else {
-                result.message = "该用户已注册";
-                result.flag = false;
-            }
-        }
-        return result;
-    }
 }

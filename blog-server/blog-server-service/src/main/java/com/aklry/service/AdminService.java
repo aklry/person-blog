@@ -21,8 +21,8 @@ public class AdminService {
         return adminDao.findByParams(admin);
     }
     @Transactional
-    public void addAdmin(String username, String password) {
-        adminDao.addAdmin(username,password);
+    public void addAdmin(String username, String password, String role) {
+        adminDao.addAdmin(username,password, role);
     }
     @Transactional
     public void deleteById(int id) {
