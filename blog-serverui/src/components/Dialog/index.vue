@@ -1,55 +1,22 @@
 <template>
-  <el-dialog destroy-on-close :visible="isShow">
-    <el-form :model="form" :rules="rules">
-      <el-form-item label="用户名" :label-width="formLabelWidth" prop="username">
-        <el-input v-model="form.username" autocomplete="off" ref="username"></el-input>
-      </el-form-item>
-      <el-form-item label="密码" prop="password" :label-width="formLabelWidth">
-        <el-input v-model="form.password" show-password ref="password" autocomplete="off"></el-input>
-      </el-form-item>
-    </el-form>
-    <div slot="footer" class="dialog-footer">
-      <el-button @click="cancel">取 消</el-button>
-      <el-button type="primary" @click="submit">确 定</el-button>
-    </div>
-  </el-dialog>
+    <el-dialog v-drag :visible="isShow" :show-close="false" :title="title" :center="true" width="600px">
+        <!-- 表单 -->
+        <slot name="input" />
+        <!-- 按钮 -->
+        <slot name="button" />
+    </el-dialog>
 </template>
-
 <script>
-import mixin from '@/mixins/dialog'
-import api from '@/api';
-
 export default {
-  mixins: [mixin],
-  props: {
-    isShow: {
-      type: Boolean,
-      default() {
-        return false
-      }
-    }
-  },
-  methods: {
-    cancel() {
-      this.$emit("changeIsShow", false)
-    },
-    submit() {
-      this.$emit("changeIsShow", false)
-      const username = this.$data.form.username
-      const password = this.$data.form.password
-      api.add({
-        username,
-        password
-      }).then(res => {
-        if (res.data[0].flag) {
-          this.$message.success(res.data[0].message)
-        } else {
-          this.$message.error(res.data[0].message)
+    props: {
+        isShow: {
+            type: Boolean,
+            default: false
+        },
+        title: {
+            type: String,
+            default: ''
         }
-      })
     }
-  }
 }
 </script>
-
-<style></style>
