@@ -5,8 +5,8 @@
     </template>
     <template #userInfo>
       <div class="search">
-        <el-input v-model="search" size="mini" placeholder="输入关键字搜索" style="width: 200px;" />
-        <el-button size="mini" @click="handleSearch()">搜索</el-button>
+        <el-input @keyup.enter.native="handleSearch" v-model="search" size="mini" placeholder="输入关键字搜索" style="width: 200px; margin-right: 5px;" />
+        <el-button :plain="true" size="mini" @click="handleSearch">搜索</el-button>
       </div>
     </template>
     <template #main>

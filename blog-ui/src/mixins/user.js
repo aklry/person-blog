@@ -1,16 +1,13 @@
 export default {
     data() {
         return {
-            search: '',
-            isShow: false
+            search: ''
         }
     },
     methods: {
         handleSearch() {
-            console.log(this.search)
-        },
-        changeName() {
-            this.isShow = true
+            const content = this.search
+            this.$router.push({name: 'Content', params: { content }})
         }
     }
 }
