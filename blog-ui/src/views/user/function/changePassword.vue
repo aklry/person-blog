@@ -16,7 +16,6 @@
 
 <script>
 import api from '@/api/user'
-import utils from '@/utils/utils'
 import store from '@/store'
 export default {
   data() {
@@ -44,16 +43,14 @@ export default {
           password: this.form.newPassword,
           id: store.state.userInfo.id
         }).then(res => {
-          console.log(res.data)
           if (res.data.flag) {
-            utils.alert(this, res.data.message)
+            this.$message.success(res.data.message)
           } else {
-            utils.alert(this, res.data.message)
-            this.$router.go(0)
+            this.$message.error(res.data.message)
           }
         }).catch(error => console.log(error))
       } else {
-        utils.alert(this, '两个密码不一致')
+        this.$message.error('两个密码不一致')
       }
     }
   }

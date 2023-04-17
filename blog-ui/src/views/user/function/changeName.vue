@@ -12,9 +12,8 @@
 </template>
 
 <script>
-import api from '@/api/user';
-import utils from '@/utils/utils'
-import { mapActions, mapMutations } from 'vuex';
+import api from '@/api/user'
+import { mapActions, mapMutations } from 'vuex'
 export default {
     data() {
         return {
@@ -42,10 +41,10 @@ export default {
             })
                 .then(res => {
                     if (res.data.flag) {
-                        utils.alert(this, res.data.message)
+                        this.$message.success(res.data.message)
 
                     } else {
-                        utils.alert(this, res.data.message)
+                        this.$message.error(res.data.message)
                     }
                 }).catch(error => console.log(error))
             //更新vuex、localStorage中的userInfo数据

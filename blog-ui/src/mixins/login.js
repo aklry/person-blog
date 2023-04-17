@@ -1,5 +1,4 @@
 import api from "@/api/user"
-import utils from "@/utils/utils"
 import { mapMutations } from "vuex"
 export default {
     data() {
@@ -36,12 +35,12 @@ export default {
                         })
                         localStorage.setItem('token', res.data[0].token)
                         localStorage.setItem('userInfo', JSON.stringify(res.data[1]))
-                        utils.alert(this, res.data[0].message)
+                        this.$message.success(res.data[0].message)
                         setTimeout(() => {
                             this.$router.push({ name: 'Home' })
                         }, 2000)
                     } else {
-                        utils.alert(this, res.data[0].message)
+                        this.$message.error(res.data[0].message)
                     }
                 }).catch(error => console.log(error))
         }
