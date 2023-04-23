@@ -13,7 +13,7 @@
 
 <script>
 import api from '@/api/user'
-import { mapActions, mapMutations } from 'vuex'
+import { mapMutations } from 'vuex'
 export default {
     data() {
         return {
@@ -30,7 +30,6 @@ export default {
     },
     methods: {
         ...mapMutations(['changeUserInfo']),
-        ...mapActions(['asynChangeUserInfo']),
         submitForm() {
             /**
              * 调用接口更新用户的昵称信息
@@ -38,17 +37,15 @@ export default {
             api.updateName({
                 name: this.form.newName,
                 id: this.$store.state.userInfo.id
-            })
-                .then(res => {
-                    if (res.data.flag) {
-                        this.$message.success(res.data.message)
-
-                    } else {
-                        this.$message.error(res.data.message)
-                    }
-                }).catch(error => console.log(error))
-            //更新vuex、localStorage中的userInfo数据
-            this.asynChangeUserInfo(this.form.newName)
+            }).then(res => {
+                if (res.data[0].flag) {
+                    this.$message.success(res.data[0].message)
+                    this.changeUserInfo(res.data[1])
+                    localStorage.setItem('userInfo', JSON.stringify(res.data[1]))
+                } else {
+                    this.$message.error(res.data[0].message)
+                }
+            }).catch(error => console.log(error))
         }
     }
 }
