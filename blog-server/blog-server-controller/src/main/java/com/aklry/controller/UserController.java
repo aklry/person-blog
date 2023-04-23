@@ -5,12 +5,14 @@ import com.aklry.domain.User;
 import com.aklry.service.UserService;
 import com.aklry.utils.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.datasource.DataSourceUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -21,6 +23,7 @@ public class UserController {
     @Autowired
     private UserService userService;
     private Result result;
+    private User userByName;
 
     @RequestMapping("/listUser")
     public List<User> listUser() {
@@ -31,7 +34,6 @@ public class UserController {
     @PostMapping("/deleteUser")
     public Result deleteUserById(@RequestBody Integer id) {
         result = Utils.getResult();
-
         if (id != null) {
             userService.deleteUser(id.intValue());
             result.flag = true;
@@ -119,28 +121,33 @@ public class UserController {
     }
 
     @PostMapping("/updateName")
-    public Result updateName(@RequestBody User user) {
+    public List<Object> updateName(@RequestBody User user) {
+        /**
+         * 当用户修改昵称时输入一个新的昵称，首先现在数据库搜索改昵称是否存在，如果不存在，则修改，否则提示用户改昵称已存在
+         */
         result = Utils.getResult();
+        List<Object> list = new ArrayList<>();
+        userByName = userService.findUserByName(user.getName());
         if (user != null && user.getName().length() != 0 && user.getName() != null) {
-            String nameById = userService.findNameById(user.getId());
-            if (nameById.equals(user.getName())) {
-                result.flag = false;
-                result.message = "该昵称与原昵称一致";
-            } else {
+            if (userByName == null) {
                 userService.updateNameById(user.getName(), user.getId());
                 result.flag = true;
                 result.message = "修改成功";
+                userByName = userService.findUserByName(user.getName());
+                list.add(result);
+                list.add(userByName);
+
+            } else {
+                result.flag = false;
+                result.message = "该昵称与原昵称一致";
+                list.add(result);
             }
         } else {
             result.flag = false;
             result.message = "请正确填写信息";
+            list.add(result);
         }
-        return result;
-    }
-    @PostMapping("/findUserByName")
-    public User findUserByName(@RequestBody User user) {
-        User userByName = userService.findUserByName(user.getName());
-        return userByName;
+        return list;
     }
 
     /**
