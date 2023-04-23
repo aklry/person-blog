@@ -1,7 +1,6 @@
 import commentApi from "@/api/comment"
 import moment from 'moment'
 export default {
-    inject: ['reload'],
     data() {
         return {
             commentList: [],
@@ -20,7 +19,7 @@ export default {
                         .then(res => {
                             if (res.status === 200 && res.data.flag) {
                                 this.$message.success(res.data.message)
-                                this.reload()
+                                this.http()
                             } else {
                                 return false
                             }
@@ -28,20 +27,23 @@ export default {
                         .catch(error => console.log(error))
                 })
                 .catch((error) => { console.log(error) })
+        },
+        http() {
+            commentApi.listAllComment()
+                .then(res => {
+                    if (res.status === 200) {
+                        const data = res.data.map((item) => {
+                            item.dateTime = moment(item.dateTime).format('YYYY-MM-DD HH:mm:ss')
+                            return item
+                        })
+                        this.commentList = data
+                    } else {
+                        return false
+                    }
+                })
         }
     },
     mounted() {
-        commentApi.listAllComment()
-            .then(res => {
-                if (res.status === 200) {
-                    const data = res.data.map((item) => {
-                        item.dateTime = moment(item.dateTime).format('YYYY-MM-DD HH:mm:ss')
-                        return item
-                    })
-                    this.commentList = data
-                } else {
-                    return false
-                }
-            })
+        this.http()
     }
 }
