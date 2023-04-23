@@ -1,6 +1,7 @@
 import blogApi from "@/api/blog"
+import blogApi from '@/api/blog'
+import moment from 'moment'
 export default {
-    inject: ['reload'],
     data() {
         return {
             blogInfo: [],
@@ -22,7 +23,7 @@ export default {
                         .then(res => {
                             if (res.data.flag && res.status === 200) {
                                 this.$message.success(res.data.message)
-                                this.reload()
+                                this.http()
                             } else {
                                 this.$message.success(res.data.message)
                             }
@@ -30,6 +31,29 @@ export default {
                 })
                 .catch((error) => { console.log(error) })
 
+        },
+        handleCurrentChange(val) {
+            this.pageNum = val
+            this.http()
+        },
+        http() {
+            blogApi.listAllBlog({
+                pageNum: this.pageNum,
+                size: this.size
+            })
+                .then(res => {
+                    if (res.status === 200 && res.data != null) {
+                        res.data.list.filter((item) => {
+                            item.publishTime = moment(item.publishTime).format('YYYY-MM-DD HH:mm:ss')
+                        })
+                        this.blogInfo = res.data.list
+                        this.pageInfo = res.data
+                    }
+                })
+                .catch(error => console.log(error))
         }
+    },
+    mounted() {
+        this.http()
     }
 }

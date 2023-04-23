@@ -35,37 +35,10 @@
 <script>
 import Breadcrumb from '@/components/Breadcrumb'
 import blogMixins from '@/mixins/blog'
-import blogApi from '@/api/blog'
-import moment from 'moment'
 export default {
   mixins: [blogMixins],
   components: {
     Breadcrumb
-  },
-  mounted() {
-    this.http()
-  },
-  methods: {
-    handleCurrentChange(val) {
-      this.$data.pageNum = val
-      this.http()
-    },
-    http() {
-      blogApi.listAllBlog({
-        pageNum: this.$data.pageNum,
-        size: this.$data.size
-      })
-        .then(res => {
-          if (res.status === 200 && res.data != null) {
-            res.data.list.filter((item) => {
-              item.publishTime = moment(item.publishTime).format('YYYY-MM-DD HH:mm:ss')
-            })
-            this.$data.blogInfo = res.data.list
-            this.$data.pageInfo = res.data
-          }
-        })
-        .catch(error => console.log(error))
-    }
   }
 }
 </script>
