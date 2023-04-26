@@ -1,5 +1,4 @@
 import blogApi from "@/api/blog"
-import blogApi from '@/api/blog'
 import moment from 'moment'
 export default {
     data() {
