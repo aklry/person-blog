@@ -10,6 +10,7 @@
         </el-form-item>
         <el-form-item style="text-align: center;">
           <el-button @click="submitForm" style="background-color: rgba(0, 0, 0, 0.6); border: none">登录</el-button>
+          <el-button @click="registerHandle" style="background-color: rgba(0, 0, 0, 0.6); border: none">注册</el-button>
         </el-form-item>
       </el-form>
     </div>

@@ -43,6 +43,9 @@ export default {
                         this.$message.error(res.data[0].message)
                     }
                 }).catch(error => console.log(error))
+        },
+        registerHandle() {
+            this.$router.push({name: 'Register'})
         }
     }
 }
