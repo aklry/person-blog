@@ -25,7 +25,9 @@
                     <h1 class="title">{{ blog.title }}</h1>
                     <p class="author">{{ blog.author }}</p>
                     <article class="article">
-                        <div v-html="blog.content"></div>
+                        <div class="article-content">
+                            <div v-html="blog.content"></div>
+                        </div>
                     </article>
                 </div>
                 <div class="publishComment">
@@ -100,6 +102,15 @@ export default {
         width: 500px;
         line-height: 30px;
         margin: 0 auto;
+        .article-content {
+            text-align: left;
+            text-indent: 2em;
+            &::first-letter {
+                float: left;
+                font-size: 2em;
+                margin-top: .5em;
+            }
+        }
     }
 }
 
