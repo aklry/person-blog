@@ -4,10 +4,12 @@
       <el-col :span="8" v-for="(item, index) in blogInfo" :key="index">
         <el-card :body-style="{ padding: '0px' }" style="height: 100%;">
           <div style="padding: 14px;">
-            <span class="title">{{ item.title }}</span>
+            <p class="title" show-overflow-tooltip="true">{{ item.title }}</p>
             <div class="bottom clearfix">
               <article class="article">
-                <div v-html="item.content"></div>
+                <div class="article-container">
+                  <div class="article-content" v-html="item.content"></div>
+                </div>
               </article>
               <el-button type="text" class="button" @click="viewArticle(item)">查看原文</el-button>
             </div>
@@ -30,7 +32,7 @@ export default {
     return {
       pageInfo: {},
       pageNum: 1,
-      size: 3
+      size: 4
     }
   },
   methods: {
@@ -53,6 +55,9 @@ export default {
           if (res.status === 200 && res.data != null) {
             this.pageInfo = res.data
             this.$store.state.blogInfo = res.data.list
+            res.data.list.filter(item => {
+              item.content = item.content.trim()
+            })
             localStorage.setItem('blogInfo', JSON.stringify(this.$store.state.blogInfo))
           }
         }).catch(error => console.log(error))
@@ -66,7 +71,7 @@ export default {
   }
 }
 </script>
-<style scoped>
+<style lang="scss" scoped>
 .article {
   font-size: 13px;
   line-height: 30px;
@@ -82,10 +87,19 @@ export default {
   /*多行文本的情况下，用省略号 “…” 隐藏溢出范围的文本*/
 
   margin-bottom: 12px;
+  .article-content {
+   text-align: left;
+  }
 }
-
 .bottom {
   margin-top: 13px;
+}
+
+.title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-weight: 700;
 }
 
 .button {
@@ -103,31 +117,28 @@ export default {
   clear: both
 }
 
-.el-card {
-  width: 350px;
-  height: 350px;
-  box-shadow: 0 0 5px #999;
-}
-
 
 .el-row {
   display: flex;
-  justify-content: space-around;
-  margin: 20px;
-}
+  margin: 20px auto;
 
-.el-row .el-col {
-  padding: 20px;
-  width: 500px;
-  height: 250px;
-}
+  .el-col {
+    padding: 20px;
+    width: 500px;
+    height: 250px;
 
-.el-row .el-col:nth-child(1) {
-  margin-left: 0;
-}
-
-.el-row .el-col:last-child {
-  margin-right: 0;
+    .el-card {
+      width: 350px;
+      height: 350px;
+      box-shadow: 0 0 5px #999;
+    }
+    &:nth-child(1) {
+      margin-left: 0;
+    }
+    &:last-child {
+      margin-right: 0;
+    }
+  }
 }
 </style>
   
