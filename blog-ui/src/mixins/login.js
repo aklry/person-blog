@@ -1,5 +1,6 @@
 import api from "@/api/user"
 import { mapMutations } from "vuex"
+import { debounce } from '@/utils/debounce'
 export default {
     data() {
         return {
@@ -21,31 +22,32 @@ export default {
     },
     methods: {
         ...mapMutations(['set']),
-        submitForm() {
-            api.findUser({
-                name: this.form.username,
-                password: this.form.password
-            })
-                .then(res => {
-                    if (res.data[0].flag) {
-                        this.set({
-                            token: res.data[0].token,
-                            userInfo: res.data[1],
-                            flag: res.data[0].flag
-                        })
-                        localStorage.setItem('token', res.data[0].token)
-                        localStorage.setItem('userInfo', JSON.stringify(res.data[1]))
-                        this.$message.success(res.data[0].message)
-                        setTimeout(() => {
-                            this.$router.push({ name: 'Home' })
-                        }, 2000)
-                    } else {
-                        this.$message.error(res.data[0].message)
-                    }
-                }).catch(error => console.log(error))
-        },
         registerHandle() {
-            this.$router.push({name: 'Register'})
+            this.$router.push({ name: 'Register' })
+        },
+        submitForm() {
+            let that = this
+            debounce(function () {
+                api.findUser({
+                    name: that.form.username,
+                    password: that.form.password
+                })
+                    .then(res => {
+                        if (res.data[0].flag) {
+                            that.set({
+                                token: res.data[0].token,
+                                userInfo: res.data[1],
+                                flag: res.data[0].flag
+                            })
+                            localStorage.setItem('token', res.data[0].token)
+                            localStorage.setItem('userInfo', JSON.stringify(res.data[1]))
+                            that.$router.push({ name: 'Home' })
+
+                        } else {
+                            that.$message.error(res.data[0].message)
+                        }
+                    }).catch(error => console.log(error))
+            }, 500)()
         }
     }
 }
