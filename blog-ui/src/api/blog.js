@@ -1,5 +1,5 @@
 import axios from "../utils/request"
-
+import url from './base.js'
 const base = {
     addBlog: '/publishBlog',
     listAllBlog: '/listAllBlog', //分页查询
@@ -9,16 +9,16 @@ const base = {
 
 const blogApi = {
     publishBlog(params) {
-        return axios.post(base.addBlog, params)
+        return axios.post(url.baseURL + base.addBlog, params)
     },
     listAllBlog(params) {
-        return axios.post(base.listAllBlog, params)
+        return axios.post(url.baseURL + base.listAllBlog, params)
     },
     findBlogById(params) {
-        return axios.post(base.findBlogById,params)
+        return axios.post(url.baseURL + base.findBlogById, params)
     },
     findBlogByCategory(params) {
-        return axios.get(base.findBlogByCategory, {
+        return axios.get(url.baseURL + base.findBlogByCategory, {
             params
         })
     }

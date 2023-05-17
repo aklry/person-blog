@@ -1,5 +1,5 @@
 import axios from "../utils/request"
-
+import url from './base.js'
 const base = {
     addUser: '/addUser',
     login: '/userLogin',
@@ -12,22 +12,22 @@ const base = {
 
 const api = {
     addUser(params) {
-        return axios.post(base.addUser, params)
+        return axios.post(url.baseURL + base.addUser, params)
     },
     findUser(params) {
-        return axios.post(base.login, params)
+        return axios.post(url.baseURL + base.login, params)
     },
     updatePassword(params) {
-        return axios.post(base.updatePassword, params)
+        return axios.post(url.baseURL + base.updatePassword, params)
     },
     updateName(params) {
-        return axios.post(base.updateName, params)
+        return axios.post(url.baseURL + base.updateName, params)
     },
     findUserByName(params) {
-        return axios.post(base.findUserByName, params)
+        return axios.post(url.baseURL + base.findUserByName, params)
     },
     updateUserURL(params) {
-        return axios.post(base.updateUserURL, params)
+        return axios.post(url.baseURL + base.updateUserURL, params)
     }
 }
 
