@@ -1,14 +1,47 @@
 <template>
-  <h3>
-    <slot />
-  </h3>
+  <div id="container">
+    <div id="pie" class="pie"></div>
+  </div>
 </template>
 
 <script>
-export default {};
+import api from '@/api/blog'
+export default {
+  methods: {
+    setChart(data) {
+      this.$pie('pie', {
+        type: 'pie',
+        data
+      })
+    }
+  },
+  mounted() {
+    api.listAllBlogNoPage()
+      .then(res => {
+        const data = res.data
+        const arr = []
+        Object.keys(data).filter(item => {
+          arr.push({
+            name: item,
+            value: data[item]
+          })
+        })
+        this.setChart(arr)
+      })
+      .catch(error => console.log(error))
+  }
+}
+
 </script>
 
-<style scoped>
-</style>>
+<style lang="scss" scoped>
+#container {
+  width: 800px;
+  height: 400px;
 
+  .pie {
+    width: 100%;
+    height: 100%;
+  }
+}
 </style>
