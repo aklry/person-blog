@@ -18,7 +18,6 @@ export default {
             url: ''
         }
     },
-    inject: ['reload'],
     methods: {
         ...mapMutations(['handleLogout']),
         logout() {
