@@ -5,6 +5,8 @@ export default {
     },
     handleLogOut(state) {
         state.token = ''
+        state.adminInfo = ''
         window.localStorage.removeItem('token')
+        window.localStorage.removeItem('adminInfo')
     }
 }
