@@ -84,7 +84,7 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
   // 1.如果访问的是注册或者登录, 那么就放行
-  if (to.path === '/login' || to.path === '/') {
+  if (to.path === '/login') {
     return next();
   }
   // 2.获取当前的登录状态
