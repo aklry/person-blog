@@ -2,7 +2,8 @@ import axios from '../util/request'
 
 const base = {
     listAllBlog: '/listAllBlog',
-    deleteBlogById: '/deleteBlogById'
+    deleteBlogById: '/deleteBlogById',
+    listAllBlogNoPage: '/listBlog'
 }
 
 const blogApi = {
@@ -11,6 +12,9 @@ const blogApi = {
     },
     deleteBlogById(params) {
         return axios.post(base.deleteBlogById, params)
+    },
+    listAllBlogNoPage() {
+        return axios.post(base.listAllBlogNoPage)
     }
 }
 
