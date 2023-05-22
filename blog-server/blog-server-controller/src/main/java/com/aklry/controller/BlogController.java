@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/blog")
@@ -19,6 +20,7 @@ public class BlogController {
     @Autowired
     private BlogService blogService;
     private Result result;
+
     @PostMapping("/publishBlog")
     public Result publishBlog(@RequestBody Blog blog) {
         result = Utils.getResult();
@@ -36,12 +38,13 @@ public class BlogController {
 
     /**
      * 查询所有博客 -->分页查询
+     *
      * @return
      */
     @PostMapping("/listAllBlog")
     public PageInfo listAllBlog(@RequestBody Page page) {
         //查询前设置参数 参数1：页数（从1开始） 参数2：每页条数
-        PageHelper.startPage(page.getPageNum(),page.getSize());
+        PageHelper.startPage(page.getPageNum(), page.getSize());
         //正常查询
         List<Blog> blogs = blogService.listAllBlog();
         //创建页面对象，创建时将查询结果传入构造方法
@@ -52,15 +55,22 @@ public class BlogController {
 
     /**
      * 查询所有博客
+     *
      * @return
      */
     @PostMapping("/listBlog")
-    public List<Blog> listBlog() {
-        return blogService.listAllBlog();
+    public Map<String, Integer> listBlog() {
+        List<Blog> blogs = blogService.listAllBlog();
+        Map<String, Integer> map = new HashMap<>();
+        for (Blog blog : blogs) {
+            map.put(blog.getAuthor(), map.getOrDefault(blog.getAuthor(), 0) + 1);
+        }
+        return map;
     }
 
     /**
      * 根据博客id删除用户
+     *
      * @param id
      * @return
      */
@@ -80,6 +90,7 @@ public class BlogController {
 
     /**
      * 根据博客id获取博客信息
+     *
      * @param id
      * @return
      */
