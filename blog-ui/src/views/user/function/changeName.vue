@@ -1,6 +1,6 @@
 <template>
     <div class="changePassword">
-        <el-form :rules="rules" :model="form" ref="form">
+        <el-form :inline="true" :rules="rules" :model="form" ref="form">
             <el-form-item label="新昵称" prop="newName">
                 <el-input v-model="form.newName"></el-input>
             </el-form-item>
@@ -51,4 +51,8 @@ export default {
 }
 </script>
 
-<style></style>
+<style lang="scss" scoped>
+.changePassword {
+    margin-top: 10px;
+}
+</style>
