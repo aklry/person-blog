@@ -105,11 +105,6 @@ export default {
         .article-content {
             text-align: left;
             text-indent: 2em;
-            &::first-letter {
-                float: left;
-                font-size: 2em;
-                margin-top: .5em;
-            }
         }
     }
 }
