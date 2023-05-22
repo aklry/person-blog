@@ -4,7 +4,7 @@ const base = {
     addBlog: '/publishBlog',
     listAllBlog: '/listAllBlog', //分页查询
     findBlogById: '/findBlogById',
-    findBlogByCategory: 'findBlogByCategory' //根据博客分类查询
+    findBlogByCategory: '/findBlogByCategory' //根据博客分类查询
 }
 
 const blogApi = {
