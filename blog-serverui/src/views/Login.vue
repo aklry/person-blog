@@ -40,6 +40,7 @@ export default {
                             adminInfo: res.data[1]
                         })
                         localStorage.setItem('token', res.data[0].token)
+                        localStorage.setItem('adminInfo', JSON.stringify(res.data[1]))
                         this.$router.push('home')
                     } else {
                         this.$message.error(res.data[0].message)
