@@ -7,9 +7,7 @@
             <el-main>
                 <el-header>
                     <div class="welcome">
-                        <Home>
-                            欢迎 {{ adminInfo.username }}登录个人博客后台管理系统
-                        </Home>
+                        欢迎 {{ adminInfo.username }}登录个人博客后台管理系统
                     </div>
                     <div class="user-info">
                         <img class="avatar" src="@/assets/a1.png" alt="">
@@ -37,27 +35,25 @@
 
 <script>
 import NavMenu from '@/components/NavMenu.vue';
-import Home from '@/views/home'
 import { mapState, mapMutations } from 'vuex';
 export default {
-    data () {
+    data() {
         return {
 
         }
     },
     components: {
-        NavMenu,
-        Home
+        NavMenu
     },
     methods: {
         ...mapMutations(['handleLogOut']),
-        logout () {
+        logout() {
             this.handleLogOut()
             this.$router.push('/login')
         }
     },
     computed: {
-        ...mapState(['token','adminInfo'])
+        ...mapState(['token', 'adminInfo'])
     }
 }
 </script>
