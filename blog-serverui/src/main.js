@@ -3,6 +3,7 @@ import App from './App.vue'
 import './registerServiceWorker'
 import router from './router'
 import store from './store'
+import tool from './util/tool'
 // 引入element ui
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
@@ -19,3 +20,4 @@ new Vue({
   store,
   render: h => h(App)
 }).$mount('#app')
+tool.dataStorage()
