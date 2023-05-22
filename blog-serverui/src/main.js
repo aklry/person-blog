@@ -9,9 +9,11 @@ import 'element-ui/lib/theme-chalk/index.css';
 import  '@/directive/drag.js'
 //引入公共样式
 import '@/common/css/reset.css'
-
+//引入echarts插件
+import echarts from '@/plugins/echarts'
 Vue.config.productionTip = false
-Vue.use(ElementUI);
+Vue.use(ElementUI)
+Vue.use(echarts)
 new Vue({
   router,
   store,
