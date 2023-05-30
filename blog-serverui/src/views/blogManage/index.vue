@@ -4,7 +4,7 @@
     <el-table :data="
       blogInfo.filter((data) => !search || data.title.includes(search))
     " style="width: 100%">
-      <el-table-column label="id" prop="id"> </el-table-column>
+      <el-table-column label="序号" type="index" width="200"> </el-table-column>
       <el-table-column label="文章标题" prop="title"> </el-table-column>
       <el-table-column label="文章作者" prop="author"> </el-table-column>
       <el-table-column label="内容" prop="content" show-overflow-tooltip>
@@ -20,13 +20,13 @@
           <el-input v-model="search" size="mini" placeholder="输入关键字搜索" />
         </template>
         <template slot-scope="scope">
-          <el-button size="mini" type="danger" @click="handleDelete(scope.$index, scope.row)">Delete</el-button>
+          <el-button size="mini" type="danger" @click="handleDelete(scope.$index, scope.row)" icon="el-icon-delete" />
         </template>
       </el-table-column>
     </el-table>
     <div class="block">
       <el-pagination @current-change="handleCurrentChange" :current-page="pageNum" :page-size="pageInfo.size"
-        layout="total, prev, pager, next, jumper" :page-count="pageInfo.pages">
+        layout="prev, pager, next, jumper" :page-count="pageInfo.pages">
       </el-pagination>
     </div>
   </div>

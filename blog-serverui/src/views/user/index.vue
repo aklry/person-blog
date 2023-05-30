@@ -4,7 +4,7 @@
     <el-table :data="
       userList.filter((data) => !search || data.name.includes(search))
     " style="width: 100%">
-      <el-table-column label="id" prop="id"> </el-table-column>
+      <el-table-column label="序号" type="index" width="200"> </el-table-column>
       <el-table-column label="用户名" prop="name"> </el-table-column>
       <el-table-column label="性别" prop="sex"> </el-table-column>
       <el-table-column label="地址" prop="address"> </el-table-column>
@@ -20,7 +20,7 @@
           <el-input v-model="search" size="mini" placeholder="输入关键字搜索" />
         </template>
         <template slot-scope="scope">
-          <el-button size="mini" type="danger" @click="handleDelete(scope.$index, scope.row)">Delete</el-button>
+          <el-button size="mini" type="danger" @click="handleDelete(scope.$index, scope.row)" icon="el-icon-delete" />
         </template>
       </el-table-column>
     </el-table>

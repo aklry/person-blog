@@ -4,7 +4,7 @@
       <template>管理员管理</template>
     </Breadcrumb>
     <el-table :data="adminList" style="width: 100%">
-      <el-table-column label="id" prop="id"> </el-table-column>
+      <el-table-column label="序号" type="index" width="200"> </el-table-column>
       <el-table-column label="用户名" prop="username"> </el-table-column>
       <el-table-column label="权限" prop="role"></el-table-column>
       <el-table-column align="right">
@@ -16,8 +16,8 @@
           </div>
         </template>
         <template slot-scope="scope">
-          <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">Edit</el-button>
-          <el-button size="mini" type="danger" @click="handleDelete(scope.$index, scope.row)">Delete</el-button>
+          <el-button size="mini" @click="handleEdit(scope.$index, scope.row)" icon="el-icon-edit-outline" type="primary" />
+          <el-button size="mini" type="danger" @click="handleDelete(scope.$index, scope.row)" icon="el-icon-delete" />
         </template>
       </el-table-column>
     </el-table>
