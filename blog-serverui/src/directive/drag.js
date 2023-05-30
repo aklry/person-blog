@@ -3,7 +3,8 @@ import tool from '@/util/tool'
 Vue.directive('drag', {
     bind(el) {
         const headerEl = el.querySelector('.el-dialog')
-        headerEl.addEventListener(
+        const headerElChildren = headerEl.children[0]
+        headerElChildren.addEventListener(
             "mousedown",
             function (e) {
                 let event = e || window.event;
