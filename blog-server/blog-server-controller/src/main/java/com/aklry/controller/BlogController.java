@@ -103,4 +103,18 @@ public class BlogController {
     public List<Blog> findBlogByCategory(String content) {
         return blogService.findBlogByCategory(content);
     }
+
+    @PostMapping("/updateBlogInfoById")
+    public Result updateBlogInfoById(@RequestBody Blog blog) {
+        result = Utils.getResult();
+        if (blog != null) {
+            blogService.updateBlogInfoById(blog);
+            result.message = "修改成功";
+            result.flag = true;
+        } else {
+            result.message = "修改失败";
+            result.flag = false;
+        }
+        return result;
+    }
 }

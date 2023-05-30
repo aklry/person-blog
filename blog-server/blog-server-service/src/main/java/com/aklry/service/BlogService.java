@@ -38,4 +38,9 @@ public class BlogService {
     public List<Blog> findBlogByCategory(String category) {
         return blogDao.findBlogByCategory(category);
     }
+
+    @Transactional
+    public void updateBlogInfoById(Blog blog) {
+        blogDao.updateBlogInfoById(blog);
+    }
 }

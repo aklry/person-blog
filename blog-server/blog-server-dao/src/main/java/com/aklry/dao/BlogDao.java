@@ -46,13 +46,13 @@ public interface BlogDao {
     void deleteBlogById(@Param("id") int id);
 
     /**
-     * 根据id更新博客内容以及发表时间
+     * 根据id更新博客信息
      *
      * @param blog
      */
 
-    @Update("update blog set publishTime = #{publishTime}, content = #{content} where id = #{id}")
-    void updateContentById(Blog blog);
+    @Update("update blog set publishTime = #{publishTime}, title=#{title}, author=#{author}, type=#{type}, category=#{category}, content = #{content} where id = #{id}")
+    void updateBlogInfoById(Blog blog);
 
     /**
      * 根据id查询博客及其相关评论
