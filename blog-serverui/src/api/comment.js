@@ -1,5 +1,5 @@
 import axios from '../util/request'
-
+import { url } from './base'
 const base = {
     listAllComment: '/getAllComment',
     deleteComment: '/deleteComment'
@@ -11,7 +11,7 @@ const api = {
      * @returns 
      */
     listAllComment() {
-        return axios.post(base.listAllComment)
+        return axios.post(url + base.listAllComment)
     },
     /**
      * 根据id删除用户
@@ -19,7 +19,7 @@ const api = {
      * @returns 
      */
     deleteComment(params) {
-        return axios.post(base.deleteComment, params)
+        return axios.post(url + base.deleteComment, params)
     }
 }
 

@@ -36,7 +36,6 @@ const errorHandle = (status, info) => {
  * 创建Axios对象
  */
 const instance = axios.create({
-    baseURL:'http://localhost:8080/blog/',
     timeout: 5000,
     // withCredentials: true
     // 设置Content-Type，规定了前后端的交互使用json

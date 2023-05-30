@@ -1,5 +1,5 @@
 import axios from "@/util/request"
-
+import { url } from "./base"
 const base = {
     listUser: '/listUser',
     updateUser: '/updateUser',
@@ -8,13 +8,13 @@ const base = {
 
 const user = {
     getAllUsers() {
-        return axios.post(base.listUser)
+        return axios.post(url + base.listUser)
     },
     updateUser(params) {
-        return axios.post(base.updateUser, params)
+        return axios.post(url + base.updateUser, params)
     },
     deleteUserById(params) {
-        return axios.post(base.deleteUser, params)
+        return axios.post(url + base.deleteUser, params)
     }
 }
 
