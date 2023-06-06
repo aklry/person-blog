@@ -1,1 +1,1 @@
-export const url = '/api/blog'
+export const url = `${process.env.VUE_APP_BASE_API}/blog`
