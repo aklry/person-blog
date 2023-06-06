@@ -1,5 +1,6 @@
 const { defineConfig } = require('@vue/cli-service')
 const NodePolyfillPlugin = require('node-polyfill-webpack-plugin')
+const env = process.env
 module.exports = defineConfig({
   transpileDependencies: true,
   configureWebpack: {
@@ -7,15 +8,15 @@ module.exports = defineConfig({
   },
   devServer: {
     proxy: {
-      '/api': {
-        target: 'http://localhost:8088',
+      [env.VUE_APP_BASE_API]: {
+        target: env.VUE_APP_SERVE,
         changeOrigin: true,
         pathRewrite: {
           '^/api': ''
         }
       },
       '/upload': {
-        target: 'http://localhost:8088'
+        target: env.VUE_APP_SERVE
       }
     }
   }
