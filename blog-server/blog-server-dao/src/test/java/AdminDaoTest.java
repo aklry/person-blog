@@ -1,6 +1,5 @@
 import com.aklry.dao.AdminDao;
 import com.aklry.domain.Admin;
-import jdk.swing.interop.SwingInterOpUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,13 +25,6 @@ public class AdminDaoTest {
     public void testListAdmins() {
         List<Admin> admins = adminDao.listAdmin();
         admins.forEach(System.out::println);
-    }
-
-    @Test
-    public void testAddAdmin() {
-        Admin admin = new Admin("zhangsan","qweryu098");
-//        int result = 1 / 0;
-        adminDao.addAdmin(admin.getUsername(),admin.getPassword());
     }
 
     @Test
