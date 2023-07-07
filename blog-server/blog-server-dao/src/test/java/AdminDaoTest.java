@@ -15,11 +15,12 @@ public class AdminDaoTest {
     private AdminDao adminDao;
     @Test
     public void testFindByParams() {
-        Admin admin = new Admin("aklry", "010810LRY");
+//        Admin admin = adminDao.findByParams("张三", "12345678");
+//        System.out.println(admin);
+        Admin admin = new Admin("张三","12345678");
         Admin byParams = adminDao.findByParams(admin);
         System.out.println(byParams);
     }
-
     @Test
     public void testListAdmins() {
         List<Admin> admins = adminDao.listAdmin();

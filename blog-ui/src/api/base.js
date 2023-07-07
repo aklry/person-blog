@@ -1,3 +1,4 @@
+const { VUE_APP_BASE_API } = process.env
 export default {
-    baseURL: '/api/blog'
+    baseURL: `${VUE_APP_BASE_API}/blog`
 }
