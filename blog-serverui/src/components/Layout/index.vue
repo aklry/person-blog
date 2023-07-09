@@ -1,8 +1,15 @@
 <template>
     <div class="layout">
         <el-container>
-            <el-aside width="200px">
-                <NavMenu />
+            <el-aside width="200px" height="100%">
+                <el-menu :default-active="$route.path" class="el-menu-vertical-demo" router background-color="#001529"
+                    text-color="#999" active-text-color="#fff">
+                    <div class="logo">
+                        <img src="@/assets/logo.png" alt="" />
+                        <span style="font-size: 16px;">个人博客管理后台</span>
+                    </div>
+                    <NavMenu :routes="menuRoutes" />
+                </el-menu>
             </el-aside>
             <el-main>
                 <el-header>
@@ -24,7 +31,6 @@
                         </el-dropdown>
                     </div>
                 </el-header>
-
                 <div class="content">
                     <router-view></router-view>
                 </div>
@@ -53,7 +59,7 @@ export default {
         }
     },
     computed: {
-        ...mapState(['token', 'adminInfo'])
+        ...mapState(['token', 'adminInfo', 'menuRoutes'])
     }
 }
 </script>
@@ -85,5 +91,25 @@ export default {
 .avatar {
     width: 30px;
     height: 30px;
+}
+
+.logo {
+    height: 70px;
+    color: #fff;
+    font-size: 20px;
+    line-height: 70px;
+    text-align: center;
+}
+
+.logo img {
+    width: 30px;
+    height: 30px;
+    vertical-align: middle;
+    border-radius: 5px;
+}
+
+.el-menu {
+    height: 100%;
+    overflow: hidden;
 }
 </style>
