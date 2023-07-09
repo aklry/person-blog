@@ -1,0 +1,67 @@
+[
+    {
+        "path": "/",
+        "name": "Layout",
+        "children": [
+            {
+                "path": "/home",
+                "name": "Home",
+                "meta": {
+                    "isLogin": true,
+                    "icon": "el-icon-s-home",
+                    "title": "首页"
+                }
+            }
+        ]
+    },
+    {
+        "path": "/login",
+        "name": "Login",
+        "meta": {
+            "hidden": true
+        }
+    },
+    {
+        "path": "/systemSetting",
+        "name": "SystemSetting",
+        "meta": {
+            "title": "系统设置",
+            "icon": "el-icon-setting"
+        },
+        "children": [
+            {
+                "path": "/systemSetting/user",
+                "name": "User",
+                "meta": {
+                    "title": "用户管理",
+                    "icon": "el-icon-s-custom"
+                }
+            }
+        ]
+    },
+    {
+        "path": "/blog",
+        "meta": {
+            "title": "博客管理",
+            "icon": "el-icon-setting"
+        },
+        "children": [
+            {
+                "path": "/blog/blogManage",
+                "name": "BlogManage",
+                "meta": {
+                    "title": "博客管理",
+                    "icon": "el-icon-s-management"
+                }
+            },
+            {
+                "path": "/blog/comment",
+                "name": "Comment",
+                "meta": {
+                    "title": "评论管理",
+                    "icon": "el-icon-s-comment"
+                }
+            }
+        ]
+    }
+]
