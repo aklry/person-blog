@@ -15,6 +15,9 @@ const user = {
     },
     deleteUserById(params) {
         return axios.post(url + base.deleteUser, params)
+    },
+    getRouter(params) {
+        return axios.get(params)
     }
 }
 
