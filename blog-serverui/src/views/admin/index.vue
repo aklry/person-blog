@@ -80,6 +80,7 @@ import adminMixin from '@/mixins/admin'
 import Dialog from '@/components/Dialog'
 import Breadcrumb from "@/components/Breadcrumb"
 export default {
+  name: 'Admin',
   mixins: [addDialog, editDialog, adminMixin],
   methods: {
     

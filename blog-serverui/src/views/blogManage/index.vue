@@ -80,6 +80,7 @@ import Breadcrumb from '@/components/Breadcrumb'
 import blogMixins from '@/mixins/blog'
 import Dialog from '@/components/Dialog'
 export default {
+  name: 'BlogManage',
   mixins: [blogMixins],
   components: {
     Breadcrumb,

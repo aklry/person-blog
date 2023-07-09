@@ -24,6 +24,7 @@
 import Breadcrumb from '@/components/Breadcrumb'
 import commentMixins from '@/mixins/comment'
 export default {
+  name: 'Comment',
   components: {
     Breadcrumb
   },

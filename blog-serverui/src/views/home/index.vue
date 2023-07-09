@@ -7,6 +7,7 @@
 <script>
 import api from '@/api/blog'
 export default {
+  name: 'Home',
   methods: {
     setChart(data) {
       this.$pie('pie', {

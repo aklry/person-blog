@@ -22,6 +22,7 @@
 import Breadcrumb from '@/components/Breadcrumb'
 import roleMixins from '@/mixins/role'
 export default {
+  name: 'Role',
   mixins: [roleMixins],
   components: {
     Breadcrumb

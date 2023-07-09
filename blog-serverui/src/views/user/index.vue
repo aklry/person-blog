@@ -32,6 +32,7 @@ import Breadcrumb from '@/components/Breadcrumb'
 import user from '@/mixins/user'
 import api from '@/api/user'
 export default {
+  name: 'User',
   mixins: [user],
   components: {
     Breadcrumb,
