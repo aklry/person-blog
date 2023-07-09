@@ -27,23 +27,24 @@ export default {
     methods: {
         ...mapMutations(['setAdminInfo']),
         submitForm () {
-            const username = this.$data.form.username
-            const password = this.$data.form.password
+            const username = this.form.username
+            const password = this.form.password
             api.getAdminInfo({
                 username,
                 password
             })
                 .then(res => {
                     if (res.data[0].flag && res.data[0].token) {
+                        const [message, result] = res.data
                         this.setAdminInfo({
-                            token: res.data[0].token,
-                            adminInfo: res.data[1]
+                            token: message.token,
+                            adminInfo: result
                         })
-                        localStorage.setItem('token', res.data[0].token)
-                        localStorage.setItem('adminInfo', JSON.stringify(res.data[1]))
+                        localStorage.setItem('token', message.token)
+                        localStorage.setItem('adminInfo', JSON.stringify(result))
                         this.$router.push('home')
                     } else {
-                        this.$message.error(res.data[0].message)
+                        this.$message.error(message.message)
                         this.$router.push('/login')
                     }
                 })
