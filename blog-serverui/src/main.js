@@ -4,6 +4,7 @@ import './registerServiceWorker'
 import router from './router'
 import store from './store'
 import tool from './util/tool'
+import request from '@/util/request'
 // 引入element ui
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
@@ -22,6 +23,7 @@ Vue.config.productionTip = false
 Vue.use(ElementUI)
 Vue.use(echarts)
 Vue.use(VueQuillEditor)
+Vue.prototype.$request = request
 new Vue({
   router,
   store,
