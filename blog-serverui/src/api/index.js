@@ -1,5 +1,5 @@
-import axios from '@/util/request'
 import { url } from './base'
+import request from '../util/request'
 const base = {
     login: '/login',
     listAllAdmin: '/listAllAdmin',
@@ -11,29 +11,17 @@ const base = {
 }
 
 const api = {
-    getAdminInfo(params) {
-        return axios.post(url +base.login, params)
-    },
-    getAllAdmin(params) {
-        return axios.post(url +base.listAllAdmin, params)
-    },
-    add(params) {
-        return axios.post(url +base.add, params)
-    },
-    delete(id) {
-        return axios.post(url +base.deleteById, id)
-    },
-    update(params) {
-        return axios.post(url +base.update, params)
-    },
-    updateRole(params) {
-        return axios.post(url +base.updateRole, params)
-    },
+    getAdminInfo:params => request.post(url +base.login, params),
+    getAllAdmin:params => request.post(url +base.listAllAdmin, params),
+    add:params =>request.post(url +base.add, params),
+    delete:id => request.post(url +base.deleteById, id),
+    update:params => request.post(url +base.update, params),
+    updateRole:params => request.post(url +base.updateRole, params),
     /**
      * 模糊查询
      */
-    search(params) {
-        return axios.post(url + base.search, params)
+    search:(params) => {
+        return request.post(url + base.search, params)
     }
 }
 

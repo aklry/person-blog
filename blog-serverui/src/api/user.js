@@ -1,5 +1,5 @@
-import axios from "@/util/request"
 import { url } from "./base"
+import request from '../util/request'
 const base = {
     listUser: '/listUser',
     updateUser: '/updateUser',
@@ -7,18 +7,10 @@ const base = {
 }
 
 const user = {
-    getAllUsers() {
-        return axios.post(url + base.listUser)
-    },
-    updateUser(params) {
-        return axios.post(url + base.updateUser, params)
-    },
-    deleteUserById(params) {
-        return axios.post(url + base.deleteUser, params)
-    },
-    getRouter(params) {
-        return axios.get(params)
-    }
+    getAllUsers: () => request.post(url + base.listUser),
+    updateUser: params => request.post(url + base.updateUser, params),
+    deleteUserById: params => request.post(url + base.deleteUser, params),
+    getRouter: params => request.get(params)
 }
 
 export default user
