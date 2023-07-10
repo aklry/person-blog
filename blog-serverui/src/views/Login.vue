@@ -34,8 +34,8 @@ export default {
                 password
             })
                 .then(res => {
-                    if (res.data[0].flag && res.data[0].token) {
-                        const [message, result] = res.data
+                    const [message, result] = res.data
+                    if (message.flag && message.token) {
                         this.setAdminInfo({
                             token: message.token,
                             adminInfo: result
