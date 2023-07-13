@@ -2,6 +2,8 @@ export default {
     token: '',
     userInfo: {},
     flag: false,
-    blogInfo: [],
-    blog: {}
+    pageInfo: {
+        pageNum: 1,
+        size: 4
+    }
 }

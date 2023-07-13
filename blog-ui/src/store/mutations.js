@@ -30,5 +30,8 @@ export default {
         state.userInfo = params['userInfo']
         state.blogInfo = params['blogInfo']
         state.blog = params['blog']
+    },
+    setPageInfo(state, pageNum) {
+        state.pageInfo = {...state.pageInfo, pageNum }
     }
 }
