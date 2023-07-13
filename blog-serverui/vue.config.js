@@ -17,6 +17,9 @@ module.exports = defineConfig({
       },
       '/upload': {
         target: VUE_APP_SERVE
+      },
+      '/banner': {
+        target: VUE_APP_SERVE
       }
     }
   }
