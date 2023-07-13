@@ -2,9 +2,13 @@
     <el-breadcrumb separator="/">
         <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
         <el-breadcrumb-item>
-            <a href="/">
-                <slot></slot>
-            </a>
+            <slot></slot>
         </el-breadcrumb-item>
-  </el-breadcrumb>
+    </el-breadcrumb>
 </template>
+<style scoped lang="scss">
+.el-breadcrumb {
+    display: block;
+    margin-bottom: 20px;
+}
+</style>

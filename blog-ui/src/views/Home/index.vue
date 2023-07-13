@@ -24,7 +24,7 @@
     </template>
     <template #main>
       <Carrousel />
-      <Card />
+      <Card :blogList="blogList" :total="total" />
     </template>
     <div class="content">
       <router-view></router-view>
@@ -38,10 +38,13 @@ import Layout from '@/components/Layout'
 import Carrousel from '@/components/Carrousel'
 import Card from '@/components/Card'
 import { mapState, mapMutations } from 'vuex'
+import api from '@/api/blog'
 export default {
   data() {
     return {
-      url: ''
+      url: '',
+      blogList: [],
+      total: 0
     }
   },
   components: {
@@ -51,16 +54,23 @@ export default {
     Card
   },
   computed: {
-    ...mapState(['flag', 'userInfo'])
+    ...mapState(['flag', 'userInfo', 'pageInfo'])
   },
   methods: {
     ...mapMutations(['handleLogout']),
     logout() {
       this.handleLogout()
       this.$router.push('/login')
+    },
+    async http(val) {
+      //加载博客数据
+      const result = await api.listAllBlog(val)
+      const { list, total } = result.data
+      this.blogList = list
+      this.total = total
     }
   },
-  mounted() {
+  async mounted() {
     const imageUrl = localStorage.getItem('imageUrl')
     if (imageUrl) {
       this.url = imageUrl
@@ -68,6 +78,13 @@ export default {
       this.url = this.$store.state.userInfo.url
     } else {
       this.url = require('@/assets/a1.png')
+    }
+    this.http({pageNum: 1, size: 4})
+  },
+  //监听博客数据页码的变化
+  watch: {
+    pageInfo: function(val) {
+      this.http(val)
     }
   }
 }

@@ -63,5 +63,19 @@
                 }
             }
         ]
+    },
+    {
+        "path": "/",
+        "children": [
+            {
+                "path": "/banner",
+                "name": "Banner",
+                "meta": {
+                    "isLogin": true,
+                    "title": "banner管理",
+                    "icon": "el-icon-s-operation"
+                }
+            }
+        ]
     }
 ]

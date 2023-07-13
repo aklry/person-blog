@@ -1,73 +1,59 @@
 <template>
   <div class="container">
     <el-row>
-      <el-col :span="8" v-for="(item, index) in blogInfo" :key="index">
+      <el-col :span="8" v-for="blog in blogList" :key="blog.id">
         <el-card :body-style="{ padding: '0px' }" style="height: 100%;">
           <div style="padding: 14px;">
-            <p class="title" show-overflow-tooltip="true">{{ item.title }}</p>
+            <p class="title" show-overflow-tooltip="true">{{ blog.title }}</p>
             <div class="bottom clearfix">
               <article class="article">
                 <div class="article-container">
-                  <div class="article-content" v-html="item.content"></div>
+                  <div class="article-content" v-html="blog.content"></div>
                 </div>
               </article>
-              <el-button type="text" class="button" @click="viewArticle(item)">查看原文</el-button>
+              <el-button type="text" class="button" @click="viewArticle(blog)">查看原文</el-button>
             </div>
           </div>
         </el-card>
       </el-col>
     </el-row>
     <div>
-      <el-pagination @current-change="handleCurrentChange" :current-page="pageNum" :page-size="pageInfo.size"
-        layout="total, prev, pager, next, jumper" :page-count="pageInfo.pages">
+      <el-pagination @current-change="handleCurrentChange" :current-page="pageInfo.pageNum" :page-size="pageInfo.size"
+        layout="total, prev, pager, next, jumper" :total="total">
       </el-pagination>
     </div>
   </div>
 </template>
 <script>
 import { mapState, mapMutations } from 'vuex'
-import blogApi from '@/api/blog'
 export default {
   data() {
     return {
-      pageInfo: {},
-      pageNum: 1,
-      size: 4
+      
     }
   },
   methods: {
-    ...mapMutations(['setBlog']),
+    ...mapMutations(['setBlog', 'setPageInfo']),
     viewArticle(blog) {
       this.setBlog(blog)
       this.$router.push('/blog')
     },
     handleCurrentChange(val) {
-      this.pageNum = val
-      this.http()
-    },
-    //加载博客数据
-    http() {
-      blogApi.listAllBlog({
-        pageNum: this.pageNum,
-        size: this.size
-      })
-        .then(res => {
-          if (res.status === 200 && res.data != null) {
-            this.pageInfo = res.data
-            this.$store.state.blogInfo = res.data.list
-            res.data.list.filter(item => {
-              item.content = item.content.trim()
-            })
-            localStorage.setItem('blogInfo', JSON.stringify(this.$store.state.blogInfo))
-          }
-        }).catch(error => console.log(error))
+      this.setPageInfo(val)
     }
   },
   computed: {
-    ...mapState(['blogInfo'])
+    ...mapState(['blogInfo', 'pageInfo'])
   },
-  mounted() {
-    this.http()
+  props: {
+    blogList: {
+      type: Array,
+      default: () => []
+    },
+    total: {
+      type: Number,
+      default: 0
+    }
   }
 }
 </script>

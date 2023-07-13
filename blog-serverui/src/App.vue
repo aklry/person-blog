@@ -36,4 +36,11 @@ export default {
   background: rgb(48, 65, 86) !important;
   line-height: 24px !important;
 }
+.el-upload {
+    border: 1px dashed #d9d9d9;
+    border-radius: 6px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
 </style>
