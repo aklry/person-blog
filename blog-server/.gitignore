@@ -2,7 +2,7 @@
 node_modules
 /dist
 blog-server-controller/src/main/webapp/upload
-
+blog-server-controller/src/main/webapp/banner
 
 # local env files
 .env.local
