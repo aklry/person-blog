@@ -77,6 +77,22 @@ export const routes = [
                 }
             }
         ]
+    },
+    {
+        path: '/',
+        component: () => import('@/components/Layout'),
+        redirect: '/banner',
+        children: [
+            {
+                path: '/banner',
+                name: 'Banner',
+                component: () => import('@/views/banner'),
+                meta: {
+                    isLogin: true,
+                    title: 'banner管理',
+                    icon: 'el-icon-s-operation'
+                }
+           }
+        ]
     }
-
 ]
