@@ -1,13 +1,7 @@
 <template>
     <swiper ref="mySwiper" :options="swiperOptions" style="width:100%; height: 62%;">
-        <swiper-slide style="width:100%;height: 100%">
-            <img src="../../assets/yao.png" alt="" style="width:100%;height: 100%;">
-        </swiper-slide>
-        <swiper-slide>
-            <img src="../../assets/h1.jpeg" alt="" style="width:100%;height: 100%;">
-        </swiper-slide>
-        <swiper-slide>
-            <img src="../../assets/sishen.jpg" alt="" style="width:100%;height: 100%;">
+        <swiper-slide style="width:100%;height: 100%" v-for="url in imgUrl" :key="url">
+            <img :src="url" alt="" style="width:100%;height: 100%;">
         </swiper-slide>
         <div class="swiper-button-prev" slot="button-prev"></div>
         <div class="swiper-button-next" slot="button-next"></div>
@@ -15,6 +9,7 @@
 </template>
 
 <script>
+import api from '@/api/banner'
 export default {
     name: 'carrousel',
     data() {
@@ -33,7 +28,8 @@ export default {
                     nextEl: '.swiper-button-next',
                     prevEl: '.swiper-button-prev'
                 }
-            }
+            },
+            imgUrl: []
         }
     },
     computed: {
@@ -41,8 +37,12 @@ export default {
             return this.$refs.mySwiper.$swiper
         }
     },
-    mounted() {
-        // this.swiper.slideTo(4, 10000, true)
+    async mounted() {
+        const result = await api.getAllBanner()
+        const { status, data } = result
+        if (status === 200) {
+            this.imgUrl = data.data.slice(0, 3).map(item => item.imgUrl) 	//将图片链接存储到数组中
+        }
     }
 }
 </script>
@@ -52,6 +52,7 @@ export default {
 .swiper-button-next:after {
     color: rgba(255, 255, 255, .7)
 }
+
 .swiper-slide {
     width: 100% !important;
 }
