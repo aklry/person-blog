@@ -94,5 +94,22 @@ export const routes = [
                 }
            }
         ]
+    },
+    {
+        path: '/',
+        component: () => import('@/components/Layout'),
+        redirect: '/category',
+        children: [
+            {
+                path: '/category',
+                name: 'Category',
+                component: () => import('@/views/category'),
+                meta: {
+                    isLogin: true,
+                    title: '分类管理',
+                    icon: 'el-icon-s-operation'
+                }
+           }
+        ]
     }
 ]

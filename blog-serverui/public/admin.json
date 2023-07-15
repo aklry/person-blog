@@ -5,9 +5,7 @@
         "children": [
             {
                 "path": "/home",
-                "name": "Home",
                 "meta": {
-                    "isLogin": true,
                     "icon": "el-icon-s-home",
                     "title": "首页"
                 }
@@ -16,14 +14,12 @@
     },
     {
         "path": "/login",
-        "name": "Login",
         "meta": {
             "hidden": true
         }
     },
     {
         "path": "/systemSetting",
-        "name": "SystemSetting",
         "meta": {
             "title": "系统设置",
             "icon": "el-icon-setting"
@@ -31,7 +27,6 @@
         "children": [
             {
                 "path": "/systemSetting/user",
-                "name": "User",
                 "meta": {
                     "title": "用户管理",
                     "icon": "el-icon-s-custom"
@@ -48,7 +43,6 @@
         "children": [
             {
                 "path": "/blog/blogManage",
-                "name": "BlogManage",
                 "meta": {
                     "title": "博客管理",
                     "icon": "el-icon-s-management"
@@ -69,11 +63,21 @@
         "children": [
             {
                 "path": "/banner",
-                "name": "Banner",
                 "meta": {
-                    "isLogin": true,
                     "title": "banner管理",
                     "icon": "el-icon-s-operation"
+                }
+            }
+        ]
+    },
+    {
+        "path": "/",
+        "children": [
+            {
+                "path": "/category",
+                "meta": {
+                    "title": "分类管理",
+                    "icon": "el-icon-tickets"
                 }
             }
         ]
