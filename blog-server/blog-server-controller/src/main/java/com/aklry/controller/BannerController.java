@@ -22,20 +22,39 @@ public class BannerController {
     @Autowired
     private BannerService bannerService;
     private Result result;
-    @GetMapping("/addBanner")
-    public Result addBanner(String url) {
+
+    @GetMapping("/addOrUpdateBanner")
+    public Result addBanner(@RequestParam HashMap<String, Object> params) {
+        String imgUrl = (String) params.get("imgUrl");
+        String id = (String) params.get("id");
         result = Utils.getResult();
-        if (!"".equals(url)) {
-            bannerService.addBanner(url);
-            result.flag = true;
-            result.message = "添加成功";
+        /**
+         * 根据前端传递过来的参数判断执行哪个操作
+         */
+        if ("0".equals(id)) {
+            if (!"".equals(imgUrl)) {
+                bannerService.addBanner(imgUrl);
+                result.flag = true;
+                result.message = "添加成功";
+            } else {
+                result.flag = false;
+                result.message = "请先上传图片";
+            }
         } else {
-            result.flag = false;
-            result.message = "请先上传图片";
+            Boolean isExist = bannerService.isExist(imgUrl);
+            if (isExist) {
+                result.message = "该banner图已存在";
+                result.flag = false;
+            } else {
+                bannerService.UpdateBannerById(imgUrl, Integer.parseInt(id));
+                result.message = "修改成功";
+                result.flag = true;
+            }
         }
         return result;
     }
-    @PostMapping(value="/uploadBanner",produces = "text/html;charset=UTF-8")
+
+    @PostMapping(value = "/uploadBanner", produces = "text/html;charset=UTF-8")
     @CrossOrigin
     public String getUploadAvatar(HttpServletRequest request, MultipartFile file) throws IOException {
         // 创建文件夹，存放上传文件。
@@ -52,7 +71,7 @@ public class BannerController {
         // 将上传的文件写到空文件中
         file.transferTo(newFile);
         //返回文件路径
-        return  "banner/" + filename;
+        return "banner/" + filename;
     }
 
     @GetMapping("/getAllBanner")
@@ -61,11 +80,21 @@ public class BannerController {
         result = Utils.getResult();
         List<Banner> allBanner = bannerService.getAllBanner();
         if (allBanner.size() > 0) {
-            map.put("data",allBanner);
+            map.put("data", allBanner);
         } else {
             result.message = "暂无数据";
             map.put("message", result);
         }
         return map;
+    }
+
+    @GetMapping("/deleteBanner")
+    public Result deleteById(int id) {
+        if (id > 0) {
+            bannerService.deleteBannerById(id);
+            result.message = "删除成功";
+            result.flag = true;
+        }
+        return result;
     }
 }
