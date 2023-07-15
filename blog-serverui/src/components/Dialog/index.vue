@@ -3,7 +3,9 @@
         <!-- 表单 -->
         <slot name="input" />
         <!-- 按钮 -->
-        <slot name="button" />
+       <div slot="footer" class="dialog-footer">
+            <slot name="button" />
+       </div>
     </el-dialog>
 </template>
 <script>
@@ -20,3 +22,8 @@ export default {
     }
 }
 </script>
+<style lang="scss" scoped>
+.dialog-footer {
+    text-align: right;
+}
+</style>

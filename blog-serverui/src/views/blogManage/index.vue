@@ -61,10 +61,8 @@
         </el-form>
       </template>
       <template #button>
-        <div slot="footer" class="dialog_footer">
-          <el-button @click="cancelHandle">取消</el-button>
-          <el-button type="primary" @click="confirmHandle('form')">确认</el-button>
-        </div>
+        <el-button @click="cancelHandle">取消</el-button>
+        <el-button type="primary" @click="confirmHandle('form')">确认</el-button>
       </template>
     </Dialog>
     <div class="block">

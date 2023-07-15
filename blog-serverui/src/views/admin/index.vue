@@ -16,7 +16,8 @@
           </div>
         </template>
         <template slot-scope="scope">
-          <el-button size="mini" @click="handleEdit(scope.$index, scope.row)" icon="el-icon-edit-outline" type="primary" />
+          <el-button size="mini" @click="handleEdit(scope.$index, scope.row)" icon="el-icon-edit-outline"
+            type="primary" />
           <el-button size="mini" type="danger" @click="handleDelete(scope.$index, scope.row)" icon="el-icon-delete" />
         </template>
       </el-table-column>
@@ -40,10 +41,8 @@
         </el-form>
       </template>
       <template #button>
-        <div slot="footer" class="dialog-footer">
-          <el-button @click="cancel('addForm')">取 消</el-button>
-          <el-button type="primary" @click="clickAddHandle('addForm')">添 加</el-button>
-        </div>
+        <el-button @click="cancel('addForm')">取 消</el-button>
+        <el-button type="primary" @click="clickAddHandle('addForm')">添 加</el-button>
       </template>
     </Dialog>
     <!-- 编辑用户弹出框 -->
@@ -59,10 +58,8 @@
         </el-form>
       </template>
       <template #button>
-        <div slot="footer" class="dialog-footer">
-          <el-button @click="cancel('editForm')">取 消</el-button>
-          <el-button type="primary" @click="clickEditHandle('editForm')">修 改</el-button>
-        </div>
+        <el-button @click="cancel('editForm')">取 消</el-button>
+        <el-button type="primary" @click="clickEditHandle('editForm')">修 改</el-button>
       </template>
     </Dialog>
     <div class="block">
@@ -83,7 +80,7 @@ export default {
   name: 'Admin',
   mixins: [addDialog, editDialog, adminMixin],
   methods: {
-    
+
   },
   components: {
     Dialog,
