@@ -1,5 +1,5 @@
 <template>
-    <el-dialog v-drag :visible="isShow" :show-close="false" :title="title" :center="true" width="600px">
+    <el-dialog v-drag :visible="isShow" :show-close="false" :title="title" :center="true" width="600px" @close="clearData">
         <!-- 表单 -->
         <slot name="input" />
         <!-- 按钮 -->
@@ -18,6 +18,11 @@ export default {
         title: {
             type: String,
             default: ''
+        }
+    },
+    methods: {
+        clearData() {
+            this.$emit('clearData')
         }
     }
 }
