@@ -11,7 +11,8 @@ export default {
             id: 0,
             pageInfo: {},
             pageNum: 1,
-            size: 5
+            size: 5,
+            loading: false
         }
     },
     methods: {
@@ -32,6 +33,7 @@ export default {
         },
         //获得所有用户
         http() {
+            this.loading = true
             api
                 .getAllAdmin({
                     pageNum: this.pageNum,
@@ -40,6 +42,7 @@ export default {
                 .then((res) => {
                     this.adminList = res.data.list
                     this.pageInfo = res.data
+                    this.loading = false
                 })
                 .catch((error) => console.log(error));
         },

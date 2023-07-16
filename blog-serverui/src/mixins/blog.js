@@ -57,7 +57,8 @@ export default {
                 category: [
                     { required: true }
                 ]
-            }
+            },
+            loading: false
         }
     },
     methods: {
@@ -86,6 +87,7 @@ export default {
             this.http()
         },
         http() {
+            this.loading = true
             blogApi.listAllBlog({
                 pageNum: this.pageNum,
                 size: this.size
@@ -97,6 +99,7 @@ export default {
                         })
                         this.blogInfo = res.data.list
                         this.pageInfo = res.data
+                        this.loading = false
                     }
                 })
                 .catch(error => console.log(error))

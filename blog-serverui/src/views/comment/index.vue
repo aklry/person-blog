@@ -1,7 +1,7 @@
 <template>
   <div>
     <Breadcrumb>评论管理</Breadcrumb>
-    <el-table :data="
+    <el-table v-loading="loading" element-loading-text="拼命加载中" element-loading-spinner="el-icon-loading" :data="
       commentList.filter((data) => !search || data.user.name.includes(search))
     " style="width: 100%">
       <el-table-column label="序号" type="index" width="200"> </el-table-column>

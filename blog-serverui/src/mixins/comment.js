@@ -4,7 +4,8 @@ export default {
     data() {
         return {
             commentList: [],
-            search: ''
+            search: '',
+            loading: false
         }
     },
     methods: {
@@ -29,6 +30,7 @@ export default {
                 .catch((error) => { console.log(error) })
         },
         http() {
+            this.loading = true
             commentApi.listAllComment()
                 .then(res => {
                     if (res.status === 200) {
@@ -37,6 +39,7 @@ export default {
                             return item
                         })
                         this.commentList = data
+                        this.loading = false
                     } else {
                         return false
                     }

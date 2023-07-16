@@ -1,7 +1,7 @@
 <template>
   <div>
     <Breadcrumb>博客管理</Breadcrumb>
-    <el-table :data="blogInfo.filter((data) => !search || data.title.includes(search))
+    <el-table v-loading="loading" element-loading-text="拼命加载中" element-loading-spinner="el-icon-loading" :data="blogInfo.filter((data) => !search || data.title.includes(search))
       " style="width: 100%">
       <el-table-column label="序号" type="index" width="200"> </el-table-column>
       <el-table-column label="文章标题" prop="title"> </el-table-column>

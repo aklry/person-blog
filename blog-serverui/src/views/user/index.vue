@@ -1,9 +1,8 @@
 <template>
   <div>
     <Breadcrumb>用户管理</Breadcrumb>
-    <el-table :data="
-      userList.filter((data) => !search || data.name.includes(search))
-    " style="width: 100%">
+    <el-table v-loading="loading" element-loading-text="拼命加载中" element-loading-spinner="el-icon-loading" :data="userList.filter((data) => !search || data.name.includes(search))
+      " style="width: 100%">
       <el-table-column label="序号" type="index" width="200"> </el-table-column>
       <el-table-column label="用户名" prop="name"> </el-table-column>
       <el-table-column label="性别" prop="sex"> </el-table-column>
@@ -58,9 +57,11 @@ export default {
         .catch((error) => { console.log(error) })
     },
     http() {
+      this.loading = true
       api.getAllUsers().then(res => {
         if (res.data.length != 0) {
           this.$data.userList = res.data
+          this.loading = false
         }
       })
     }

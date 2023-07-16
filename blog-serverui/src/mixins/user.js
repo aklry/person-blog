@@ -35,6 +35,7 @@ export default {
                     { pattern: '^(男|女){1}$', message: '请输入性别格式(男或女)', trigger: 'blur' }
                 ]
             },
+            loading: false
         }
     },
     methods: {

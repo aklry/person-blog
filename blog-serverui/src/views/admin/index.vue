@@ -3,7 +3,8 @@
     <Breadcrumb>
       <template>管理员管理</template>
     </Breadcrumb>
-    <el-table :data="adminList" style="width: 100%">
+    <el-table v-loading="loading" :data="adminList" style="width: 100%" element-loading-text="拼命加载中"
+      element-loading-spinner="el-icon-loading">
       <el-table-column label="序号" type="index" width="200"> </el-table-column>
       <el-table-column label="用户名" prop="username"> </el-table-column>
       <el-table-column label="权限" prop="role"></el-table-column>
@@ -79,9 +80,6 @@ import Breadcrumb from "@/components/Breadcrumb"
 export default {
   name: 'Admin',
   mixins: [addDialog, editDialog, adminMixin],
-  methods: {
-
-  },
   components: {
     Dialog,
     Breadcrumb
