@@ -1,5 +1,5 @@
-export default {
-    setAdminInfo (state, params) {
+const mutations = {
+    setAdminInfo(state, params) {
         state.adminInfo = params.adminInfo
         state.token = params.token
     },
@@ -10,3 +10,4 @@ export default {
         window.localStorage.removeItem('adminInfo')
     }
 }
+export default mutations
