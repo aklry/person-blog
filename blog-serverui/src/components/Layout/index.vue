@@ -43,7 +43,6 @@
 import NavMenu from '@/components/NavMenu.vue';
 import { mapState, mapMutations } from 'vuex';
 import api from '@/api/user'
-import { dynamicRoutes } from '@/router/dynamicRoute';
 export default {
     data() {
         return {
@@ -62,12 +61,7 @@ export default {
         loadMenuData() {
             switch (this.$store.state.adminInfo.role) {
                 case '超级管理员':
-                    api.getRouter('/vip.json').then(res => {
-                        this.menuRoutes = res.data
-                        dynamicRoutes.forEach(item => {
-                            this.$router.addRoute('SystemSetting', item)
-                        })
-                    })
+                    api.getRouter('/vip.json').then(res => this.menuRoutes = res.data)
                     break
                 case '普通管理员':
                     api.getRouter('/admin.json').then(res => this.menuRoutes = res.data)
