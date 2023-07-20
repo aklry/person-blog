@@ -1,5 +1,5 @@
 import Vue from "vue"
-import tool from '@/util/tool'
+import { getStyle } from "@/util/tool"
 Vue.directive('drag', {
     bind(el) {
         const headerEl = el.querySelector('.el-dialog')
@@ -8,8 +8,8 @@ Vue.directive('drag', {
             "mousedown",
             function (e) {
                 let event = e || window.event;
-                let x = event.clientX - parseInt(tool.getStyle(headerEl, "left"))
-                let y = event.clientY - parseInt(tool.getStyle(headerEl, "top"))
+                let x = event.clientX - parseInt(getStyle(headerEl, "left"))
+                let y = event.clientY - parseInt(getStyle(headerEl, "top"))
                 function cancel(e) {
                     let event = e || window.event;
                     headerEl.style.left = event.clientX - x + "px"

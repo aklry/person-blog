@@ -3,7 +3,7 @@ import App from './App.vue'
 import './registerServiceWorker'
 import router from './router'
 import store from './store'
-import tool from './util/tool'
+import { dataStorage } from './util/tool'
 import request from '@/util/request'
 // 引入element ui
 import ElementUI from 'element-ui';
@@ -29,4 +29,4 @@ new Vue({
   store,
   render: h => h(App)
 }).$mount('#app')
-tool.dataStorage()
+dataStorage()
