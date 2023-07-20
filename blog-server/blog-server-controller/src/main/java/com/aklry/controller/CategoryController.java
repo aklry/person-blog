@@ -32,7 +32,7 @@ public class CategoryController {
         return categoryService.getAllCategory();
     }
 
-    @GetMapping("deleteCategory")
+    @GetMapping("/deleteCategory")
     public Result deleteCategotyById(int id) {
         //判断前端传递过来的参数是否正确
         boolean flag = categoryService.deleteCategoryById(id);
