@@ -8,6 +8,9 @@ const mutations = {
         state.adminInfo = ''
         window.localStorage.removeItem('token')
         window.localStorage.removeItem('adminInfo')
+    },
+    setRoutes(state, routes) {
+        state.routes = routes
     }
 }
 export default mutations

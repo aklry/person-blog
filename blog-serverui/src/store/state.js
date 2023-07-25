@@ -1,5 +1,6 @@
 const state = {
     token: '',
-    adminInfo: {}
+    adminInfo: {},
+    routes: []
 }
 export default state
