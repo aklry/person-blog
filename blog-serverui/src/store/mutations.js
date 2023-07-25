@@ -5,9 +5,10 @@ const mutations = {
     },
     handleLogOut(state) {
         state.token = ''
-        state.adminInfo = ''
-        window.localStorage.removeItem('token')
-        window.localStorage.removeItem('adminInfo')
+        state.adminInfo = {}
+        state.routes = []
+        localStorage.removeItem('token')
+        localStorage.removeItem('adminInfo')
     },
     setRoutes(state, routes) {
         state.routes = routes
