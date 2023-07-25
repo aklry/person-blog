@@ -8,7 +8,7 @@
                         <img src="@/assets/logo.png" alt="" />
                         <span style="font-size: 16px;">个人博客管理后台</span>
                     </div>
-                    <NavMenu :routes="menuRoutes" />
+                    <NavMenu :routes="routes" />
                 </el-menu>
             </el-aside>
             <el-main>
@@ -18,7 +18,6 @@
                     </div>
                     <div class="user-info">
                         <img class="avatar" src="@/assets/a1.png" alt="">
-                        <!-- <span class="username"></span> -->
                         <el-dropdown>
                             <span class="el-dropdown-link">
                                 {{ adminInfo.username }}<i class="el-icon-arrow-down el-icon--right"></i>
@@ -57,23 +56,10 @@ export default {
         logout() {
             this.handleLogOut()
             this.$router.push('/login')
-        },
-        loadMenuData() {
-            switch (this.$store.state.adminInfo.role) {
-                case '超级管理员':
-                    api.getRouter('/vip.json').then(res => this.menuRoutes = res.data)
-                    break
-                case '普通管理员':
-                    api.getRouter('/admin.json').then(res => this.menuRoutes = res.data)
-                    break
-            }
         }
     },
     computed: {
-        ...mapState(['token', 'adminInfo'])
-    },
-    mounted() {
-        this.loadMenuData()
+        ...mapState(['token', 'adminInfo', 'routes'])
     }
 }
 </script>
