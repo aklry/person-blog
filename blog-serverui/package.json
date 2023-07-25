@@ -12,6 +12,7 @@
     "commitizen": "^4.3.0",
     "core-js": "^3.8.3",
     "cz-conventional-changelog": "^3.3.0",
+    "default-passive-events": "^2.0.0",
     "echarts": "^5.4.2",
     "element-ui": "^2.15.12",
     "lodash": "^4.17.21",
