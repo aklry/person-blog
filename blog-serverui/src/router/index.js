@@ -3,6 +3,8 @@ import VueRouter from 'vue-router'
 import nProgress from 'nprogress'
 import api from '@/api/user'
 import 'nprogress/nprogress.css'
+import Login from '@/views/Login.vue'
+import store from '@/store'
 nProgress.configure({ showSpinner: false })
 Vue.use(VueRouter)
 //解决重复点击导航问题
@@ -10,8 +12,16 @@ const originalPush = VueRouter.prototype.push
 VueRouter.prototype.push = function push(location) {
   return originalPush.call(this, location).catch(err => err)
 }
-const routes = []
-const { role } = JSON.parse(localStorage.getItem('adminInfo'))
+const routes = [
+  {
+    path: "/login",
+    name: "Login",
+    meta: {
+      "hidden": true
+    },
+    component: Login
+  },
+]
 
 //处理动态路由数据
 const router = new VueRouter({
@@ -19,8 +29,10 @@ const router = new VueRouter({
 })
 //将服务端返回的数据转化为路由配置数据格式的数据
 const transfer = data => {
+  data = data.filter(item => item.name !== 'Login')
+  const routerData = []
   data.forEach(item => {
-    routes.push({
+    routerData.push({
       path: item.path,
       name: item.name,
       meta: item.meta,
@@ -36,37 +48,36 @@ const transfer = data => {
       }) : null
     })
   })
-  return routes
-}
-//根据权限获取路由数据
-const getRoutesData = async role => {
-  switch (role) {
-    case '超级管理员':
-      let res1 = await api.getRouter('/vip.json')
-      let routesData1 = transfer(res1.data)
-      routesData1.forEach(item => router.addRoute(item))
-      break;
-    case '普通管理员':
-      let res2 = await api.getRouter('/admin.json')
-      let routesData2 = transfer(res2.data)
-      routesData2.forEach(item => router.addRoute(item))
-      break
-    default: break
-  }
+  return routerData
 }
 
-getRoutesData(role)
-router.beforeEach((to, from, next) => {
+const getExactlyRouter = data => {
+  let result = transfer(data)
+  result.forEach(item => router.addRoute(item))
+}
+
+router.beforeEach(async (to, from, next) => {
   nProgress.start()
   let token = localStorage.getItem('token')
-  if (token && token != null) { // 本地有 token 去下一步
-    if (to.path === '/login') {
-      next('/')
+  let routesData = store.state.routes || []
+  if (token) { // 本地有 token 去下一步
+    if (routesData.length === 0) {
+      const { role } = store.state.adminInfo
+      if (role === '超级管理员') {
+        const { data } = await api.getRouter('/vip.json')
+        store.dispatch('SET_ROUTES', data)
+        getExactlyRouter(data)
+      } else {
+        const { data } = await api.getRouter('/admin.json')
+        store.dispatch('SET_ROUTES', data)
+        getExactlyRouter(data)
+      }
+      next({ path: to.path })
     } else {
       next()
     }
   } else { // 不是 login 页面我再去跳 ，是 login 就会死循环，因为login 也是页面就会被守卫
-    if (to.meta.isLogin && to.path !== '/login') {
+    if (to.path !== '/login') {
       // 路由原信息为true 并且 不是 login 页面 去login 防止死循环
       next('/login')
     } else {
