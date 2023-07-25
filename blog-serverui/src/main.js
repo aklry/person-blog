@@ -8,7 +8,9 @@ import request from '@/util/request'
 // 引入element ui
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
-import  '@/directive/drag.js'
+import '@/directive/drag.js'
+
+import 'default-passive-events'
 //引入公共样式
 import '@/common/css/reset.css'
 //引入echarts插件
@@ -25,8 +27,8 @@ Vue.use(echarts)
 Vue.use(VueQuillEditor)
 Vue.prototype.$request = request
 new Vue({
-  router,
   store,
+  router,
   render: h => h(App)
 }).$mount('#app')
 dataStorage()
