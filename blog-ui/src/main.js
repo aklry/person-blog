@@ -11,11 +11,6 @@ import VueAwesomeSwiper from 'vue-awesome-swiper'
 import 'swiper/css/swiper.css'
 //引入公共样式
 import '@/common/css/reset.css'
-Vue.config.productionTip = false
-//注册element-ui
-Vue.use(ElementUI)
-Vue.use(VueAwesomeSwiper)
-
 import VueQuillEditor from 'vue-quill-editor'
 
 // require styles
@@ -24,6 +19,10 @@ import 'quill/dist/quill.snow.css'
 import 'quill/dist/quill.bubble.css'
 
 import { dataStorage } from './utils/storage'
+Vue.config.productionTip = false
+//注册element-ui
+Vue.use(ElementUI)
+Vue.use(VueAwesomeSwiper)
 Vue.use(VueQuillEditor)
 new Vue({
   router,
