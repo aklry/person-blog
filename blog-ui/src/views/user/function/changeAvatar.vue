@@ -2,7 +2,7 @@
     <div class="container">
         <el-button class="btn" type="primary" @click="dialogUploadVisible = true">上传头像</el-button>
         <el-dialog destroy-on-close :visible="dialogUploadVisible" center title="上传头像">
-            <el-upload class="avatar-uploader" action="http://localhost:8088/blog/uploadAvatar" :show-file-list="false"
+            <el-upload class="avatar-uploader" :action="getActions" :show-file-list="false"
                 :on-success="handleAvatarSuccess" :before-upload="beforeAvatarUpload">
                 <img v-if="imageUrl" :src="imageUrl" class="avatar">
                 <i v-else class="el-icon-plus avatar-uploader-icon"></i>
@@ -49,6 +49,11 @@ export default {
                 this.$message.error('上传头像图片大小不能超过 2MB!');
             }
             return isJPG && isLt2M;
+        }
+    },
+    computed: {
+        getActions() {
+            return process.env.NODE_ENV === 'development' ? `${process.env.VUE_APP_SERVE}/uploadAvatar` : `${process.env.VUE_APP_SERVE}/blog/uploadAvatar`
         }
     }
 }
