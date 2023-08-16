@@ -62,7 +62,7 @@ router.beforeEach(async (to, from, next) => {
   let routesData = store.state.routes || []
   if (token) { // 本地有 token 去下一步
     if (routesData.length === 0) {
-      const { role } = store.state.adminInfo
+      const { role } = JSON.parse(localStorage.getItem('adminInfo'))
       if (role === '超级管理员') {
         const { data } = await api.getRouter('/vip.json')
         store.dispatch('SET_ROUTES', data)
