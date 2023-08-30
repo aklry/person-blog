@@ -1,4 +1,4 @@
-export default {
+const edit = {
     data() {
         return {
             editForm: {
@@ -19,3 +19,4 @@ export default {
         }
     }
 }
+export default edit

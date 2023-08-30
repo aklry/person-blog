@@ -1,5 +1,5 @@
 import api from '@/api'
-export default {
+const role = {
     data() {
         return {
             data: {
@@ -24,3 +24,4 @@ export default {
         }
     }
 }
+export default role

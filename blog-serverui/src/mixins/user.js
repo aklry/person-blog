@@ -1,4 +1,4 @@
-export default {
+const user = {
     data() {
         return {
             userList: [],
@@ -50,3 +50,4 @@ export default {
         }
     }
 }
+export default user

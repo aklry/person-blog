@@ -1,4 +1,4 @@
-export default {
+const add = {
     data() {
         return {
             addForm: {
@@ -23,3 +23,4 @@ export default {
         }
     }
 }
+export default add

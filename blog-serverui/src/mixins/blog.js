@@ -1,6 +1,6 @@
 import blogApi from "@/api/blog"
 import moment from 'moment'
-export default {
+const blog = {
     data() {
         return {
             blogInfo: [],
@@ -123,7 +123,7 @@ export default {
                 category: this.blogData.category,
                 type: this.blogData.type
             })
-            
+
             if (result.status === 200) {
                 this.$message.success(result.data.message)
                 this.http()
@@ -136,3 +136,4 @@ export default {
         this.http()
     }
 }
+export default blog

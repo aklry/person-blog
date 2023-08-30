@@ -1,5 +1,5 @@
 import api from "@/api"
-export default {
+const admin = {
     data() {
         return {
             adminList: [],
@@ -29,7 +29,9 @@ export default {
          */
         handleEdit(index, row) {
             this.editVisible = true
-            this.id = row.id
+            const { id, username, password } = row
+            this.id = id
+            Object.assign(this.editForm, { username, password })
         },
         //获得所有用户
         http() {
@@ -125,7 +127,7 @@ export default {
             })
         },
         /**
-         * //分页刷新数据
+         * 分页刷新数据
          * @param {} val 
          */
         handleCurrentChange(val) {
@@ -148,6 +150,7 @@ export default {
         }
     },
     mounted() {
-      this.http()
+        this.http()
     }
 }
+export default admin

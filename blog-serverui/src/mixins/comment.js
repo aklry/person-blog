@@ -1,6 +1,6 @@
 import commentApi from "@/api/comment"
 import moment from 'moment'
-export default {
+const comment = {
     data() {
         return {
             commentList: [],
@@ -50,3 +50,4 @@ export default {
         this.http()
     }
 }
+export default comment
