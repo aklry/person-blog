@@ -13,7 +13,7 @@ const blogApi = {
      * @param {PageInfo} params 分页对象
      * @returns 
      */
-    listAllBlog: params => request.post(url + base.listAllBlog, params),
+    listAllBlog: params => request.get(url + base.listAllBlog, { params }),
     /**
      * 
      * @param {Object} params 

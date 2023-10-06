@@ -90,7 +90,7 @@ const blog = {
             this.loading = true
             blogApi.listAllBlog({
                 pageNum: this.pageNum,
-                size: this.size
+                pageSize: this.size
             })
                 .then(res => {
                     if (res.status === 200 && res.data != null) {

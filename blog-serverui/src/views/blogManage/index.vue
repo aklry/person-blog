@@ -66,7 +66,7 @@
       </template>
     </Dialog>
     <div class="block">
-      <el-pagination @current-change="handleCurrentChange" :current-page="pageNum" :page-size="pageInfo.size"
+      <el-pagination @current-change="handleCurrentChange" :current-page="pageNum" :page-size="pageInfo.pageSize"
         layout="prev, pager, next, jumper" :page-count="pageInfo.pages">
       </el-pagination>
     </div>

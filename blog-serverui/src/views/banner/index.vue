@@ -69,18 +69,18 @@ export default {
         },
         beforeAvatarUpload(file) {
             const isImage = file.type.split('/')[0] === 'image';
-            const isLt2M = file.size / 1024 / 1024 < 3;
+            const isLt2M = file.size / 1024 / 1024 < 2;
 
             if (!isImage) {
                 this.$message.error('只能上传图片');
             }
             if (!isLt2M) {
-                this.$message.error('上传头像图片大小不能超过 3MB!');
+                this.$message.error('上传头像图片大小不能超过 2MB!');
             }
             return isImage && isLt2M;
         },
         //保存图片到数据库
-        async saveImage() {
+        saveImage() {
             this.handleAddOrUpdate(this.uploadParams)
         },
         //编辑数据
@@ -96,7 +96,7 @@ export default {
             const { flag, message } = result.data
             if (flag) {
                 this.$message.success(message)
-                this.http()
+                await this.http()
             }
         },
         //获取轮播图数据
@@ -117,7 +117,7 @@ export default {
             const { flag, message } = result.data
             if (flag) {
                 this.$message.success(message)
-                this.http()
+                await this.http()
             } else {
                 this.$message.error(message)
             }
