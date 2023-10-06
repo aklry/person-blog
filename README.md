@@ -5,7 +5,7 @@
 
 前端框架：vue(2.0)全家桶
 
-后端框架：SSM(Spring5.2.12.RELEASE)
+后端框架：SSM(Spring5.2.12.RELEASE)、SpringBoot2.5.0
 
 数据库：Mysql 5.7
 
