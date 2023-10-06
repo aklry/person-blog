@@ -6,10 +6,17 @@
                 <el-button type="primary" size="mini" @click="uploadHandler">点击上传轮播图</el-button>
                 <Dialog :isShow="visible" :title="title" @clearData="clearData">
                     <template #input>
-                        <el-upload class="avatar-uploader" :action="action" :show-file-list="false"
-                            :on-success="handleAvatarSuccess" :before-upload="beforeAvatarUpload">
+                        <el-upload
+                                class="avatar-uploader"
+                                ref="upload"
+                                :action="action" :show-file-list="false"
+                                :on-success="handleAvatarSuccess"
+                                :before-upload="beforeAvatarUpload"
+                                :auto-upload="false"
+                                :on-change="handleAvatarChange"
+                        >
                             <img v-if="uploadParams.imgUrl" :src="uploadParams.imgUrl" class="avatar">
-                            <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+                            <i v-else class="el-icon-plus avatar-uploader-icon" />
                         </el-upload>
                     </template>
                     <template #button>
@@ -65,7 +72,10 @@ export default {
     },
     methods: {
         handleAvatarSuccess(res, file) {
-            this.uploadParams.imgUrl = res
+            this.handleAddOrUpdate({
+                ...this.uploadParams,
+                imgUrl: res
+            })
         },
         beforeAvatarUpload(file) {
             const isImage = file.type.split('/')[0] === 'image';
@@ -81,7 +91,7 @@ export default {
         },
         //保存图片到数据库
         saveImage() {
-            this.handleAddOrUpdate(this.uploadParams)
+            this.$refs.upload.submit();
         },
         //编辑数据
         doEdit(row) {
@@ -126,6 +136,9 @@ export default {
         //关闭弹窗后清除数据
         clearData() {
             this.uploadParams.imgUrl = ''
+        },
+        handleAvatarChange(file) {
+            this.uploadParams.imgUrl = URL.createObjectURL(file.raw)
         }
     },
     mounted() {
