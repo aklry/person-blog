@@ -12,7 +12,9 @@ const blogApi = {
         return axios.post(url.baseURL + base.addBlog, params)
     },
     listAllBlog(params) {
-        return axios.post(url.baseURL + base.listAllBlog, params)
+        return axios.get(url.baseURL + base.listAllBlog, {
+            params
+        })
     },
     findBlogById(params) {
         return axios.post(url.baseURL + base.findBlogById, params)

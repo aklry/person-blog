@@ -79,11 +79,11 @@ export default {
     } else {
       this.url = require('@/assets/a1.png')
     }
-    this.http({pageNum: 1, size: 4})
+    this.http({pageNum: 1, pageSize: 4})
   },
   //监听博客数据页码的变化
   watch: {
-    pageInfo: function(val) {
+    pageInfo (val) {
       this.http(val)
     }
   }

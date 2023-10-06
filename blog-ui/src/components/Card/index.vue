@@ -18,7 +18,7 @@
       </el-col>
     </el-row>
     <div>
-      <el-pagination @current-change="handleCurrentChange" :current-page="pageInfo.pageNum" :page-size="pageInfo.size"
+      <el-pagination @current-change="handleCurrentChange" :current-page="pageInfo.pageNum" :page-size="pageInfo.pageSize"
         layout="total, prev, pager, next, jumper" :total="total">
       </el-pagination>
     </div>

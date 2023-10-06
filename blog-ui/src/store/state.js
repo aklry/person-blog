@@ -4,6 +4,6 @@ export default {
     flag: false,
     pageInfo: {
         pageNum: 1,
-        size: 4
+        pageSize: 4
     }
 }
