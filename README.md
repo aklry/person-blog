@@ -21,6 +21,8 @@ node：16.20.0
 
 blog-server：服务端（SSM）
 
+blog-server-reconstruct：服务端（SpringBoot2.5.0）
+
 blog-serverui（vue2.0全家桶 + element ui + axios）：后台管理系统
 
 blog-ui（vue2.0全家桶 + element ui + axios）：前台界面
