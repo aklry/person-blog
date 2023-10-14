@@ -5,12 +5,15 @@ import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
+/**
+ * @author aklry
+ */
 @Mapper
 public interface UserDao {
     /**
      * 查询所有用户
      *
-     * @return
+     * @return List
      */
     @Select("select * from user")
     List<User> listUser();
@@ -18,8 +21,8 @@ public interface UserDao {
     /**
      * 根据id查询用户
      *
-     * @param id
-     * @return
+     * @param id Integer
+     * @return User
      */
     @Select("select * from user where id = #{id}")
     User findUserById(Integer id);
@@ -27,9 +30,9 @@ public interface UserDao {
     /**
      * 根据用户名字和密码查询用户
      *
-     * @param name
-     * @param password
-     * @return
+     * @param name String
+     * @param password String
+     * @return User
      */
     @Select("select * from user where binary name = #{name} and binary password = #{password}")
     User findByCondition(@Param("name") String name, @Param("password") String password);
@@ -37,7 +40,7 @@ public interface UserDao {
     /**
      * 添加用户
      *
-     * @param user
+     * @param user User
      */
     @Insert("insert into user(id,name,sex,address,phoneNumber,password) values(default,#{name},#{sex},#{address},#{phoneNumber},#{password})")
     void addUser(User user);
@@ -45,7 +48,7 @@ public interface UserDao {
     /**
      * 根据id删除用户
      *
-     * @param id
+     * @param id int
      */
     @Delete("delete from user where id = #{id}")
     void deleteUserById(int id);
@@ -53,8 +56,8 @@ public interface UserDao {
     /**
      * 根据id修改密码
      *
-     * @param password
-     * @param id
+     * @param password String
+     * @param id int
      */
     @Update("update user set password = #{password} where id = #{id}")
     void updatePasswordById(@Param("password") String password, @Param("id") int id);
@@ -62,8 +65,8 @@ public interface UserDao {
     /**
      * 根据id查询用户密码
      *
-     * @param id
-     * @return
+     * @param id int
+     * @return String
      */
     @Select("select password from user where id = #{id}")
     String findPasswordById(@Param("id") int id);
@@ -80,8 +83,8 @@ public interface UserDao {
     /**
      * 根据用户id更新用户头像
      *
-     * @param id
-     * @param url
+     * @param id Integer
+     * @param url String
      */
     @Update("update user set url = #{url} where id = #{id}")
     void updateUserURL(@Param("id") Integer id, @Param("url") String url);

@@ -7,14 +7,17 @@ import org.apache.ibatis.mapping.FetchType;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * @author aklry
+ */
 @Mapper
 public interface CommentDao {
     /**
      * 新增评论
      *
-     * @param content
-     * @param dateTime
-     * @param user_id
+     * @param content String
+     * @param dateTime String
+     * @param user_id String
      */
     @Insert("insert into comment(id, dateTime, content, user_id, blog_id) values(default, #{dateTime}, #{content}, #{user_id}, #{blog_id})")
     void addComment(@Param("content") String content, @Param("dateTime") Date dateTime,
@@ -23,7 +26,7 @@ public interface CommentDao {
     /**
      * 查询所有评论
      *
-     * @return
+     * @return List
      */
     @Select("select * from comment")
     @Results(id = "commentDao", value = {
@@ -46,8 +49,8 @@ public interface CommentDao {
     /**
      * 根据用户id查询评论
      *
-     * @param user_id
-     * @return
+     * @param user_id Integer
+     * @return List
      */
     @Select("select * from comment where user_id = #{user_id}")
     List<Comment> findCommentByUserId(Integer user_id);
@@ -55,8 +58,8 @@ public interface CommentDao {
     /**
      * 根据博客id查询评论
      *
-     * @param blog_id
-     * @return
+     * @param blog_id Integer
+     * @return List
      */
     @Select("select * from comment where blog_id = #{blog_id}")
     @Results(id = "CommentDao", value = {

@@ -9,6 +9,9 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+/**
+ * @author aklry
+ */
 @Mapper
 public interface CategoryDao {
     @Insert("insert into category(id, category) values(default, #{category})")

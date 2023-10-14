@@ -5,6 +5,9 @@ import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
+/**
+ * @author aklry
+ */
 @Mapper
 public interface BannerDao {
     @Insert("insert into banner(id, imgUrl) values(default, #{url})")

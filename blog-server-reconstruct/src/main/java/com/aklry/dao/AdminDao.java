@@ -5,12 +5,14 @@ import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
+/**
+ * @author aklry
+ */
 @Mapper
 public interface AdminDao {
     /**
      * 查询所有管理员
      *
-     * @return
      */
     @Select("select * from admin")
     List<Admin> listAdmin();
@@ -18,8 +20,7 @@ public interface AdminDao {
     /**
      * 根据id删除管理员
      *
-     * @param id
-     * @return --> 返回是否删除成功
+     * @param id Integer
      */
     @Delete("delete from admin where id = #{id}")
     void deleteAdmin(@Param("id") Integer id);
@@ -27,9 +28,8 @@ public interface AdminDao {
     /**
      * 根据id修改管理员信息
      *
-     * @param username
-     * @param password
-     * @return --> 返回是否删除成功
+     * @param username(用户名) String
+     * @param password(密码) String
      */
     @Update("update admin set username=#{username},password=#{password} where id = #{id}")
     void updateAdmin(@Param("username") String username, @Param("password") String password, @Param("id") Integer id);
@@ -37,8 +37,8 @@ public interface AdminDao {
     /**
      * 添加管理员
      *
-     * @param username
-     * @param password
+     * @param username String
+     * @param password String
      */
     @Insert("insert into admin(id,username,password,role) values(default,#{username},#{password}, #{role}) ")
     void addAdmin(@Param("username") String username, @Param("password") String password, @Param("role") String role);
@@ -49,8 +49,8 @@ public interface AdminDao {
     /**
      * 根据用户名设置用户权限
      *
-     * @param username
-     * @param role
+     * @param username(用户名) String
+     * @param role(用户权限) String
      */
     @Update("update admin set role = #{role} where username = #{username}")
     void updateRoleByUsername(@Param("username") String username, @Param("role") String role);
@@ -58,8 +58,8 @@ public interface AdminDao {
     /**
      * 根据关键字模糊查询
      *
-     * @param keywords
-     * @return
+     * @param keywords String
+     * @return List<Admin>
      */
 
     @Select("select * from admin where username like #{keywords}")

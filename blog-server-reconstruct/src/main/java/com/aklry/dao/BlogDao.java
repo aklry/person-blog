@@ -7,13 +7,16 @@ import org.apache.ibatis.mapping.FetchType;
 
 import java.util.List;
 
+/**
+ * @author aklry
+ */
 @Mapper
 public interface BlogDao {
 
     /**
      * 添加一条博客
      *
-     * @param blog
+     * @param blog Blog
      */
     @Insert("insert into blog(id, publishTime, title, author, content, category, type) values(default, #{publishTime}, #{title}, #{author}, #{content}, #{category}, #{type})")
     void addBlog(Blog blog);
@@ -21,7 +24,7 @@ public interface BlogDao {
     /**
      * 查询所有博客
      *
-     * @return
+     * @return Page
      */
     @Select("select * from blog")
     Page<Blog> listAllBlog();
@@ -29,8 +32,8 @@ public interface BlogDao {
     /**
      * 根据id查询博客内容
      *
-     * @param id
-     * @return
+     * @param id int
+     * @return Blog
      */
 
     @Select("select content from blog where id = #{id}")
@@ -39,7 +42,7 @@ public interface BlogDao {
     /**
      * 根据id删除博客
      *
-     * @param id
+     * @param id int
      */
 
     @Delete("delete from blog where id = #{id}")
@@ -48,7 +51,7 @@ public interface BlogDao {
     /**
      * 根据id更新博客信息
      *
-     * @param blog
+     * @param blog Blog
      */
 
     @Update("update blog set publishTime = #{publishTime}, title=#{title}, author=#{author}, type=#{type}, category=#{category}, content = #{content} where id = #{id}")
@@ -57,8 +60,8 @@ public interface BlogDao {
     /**
      * 根据id查询博客及其相关评论
      *
-     * @param id
-     * @return
+     * @param id int
+     * @return Blog
      */
     @Select("select * from blog where id = #{id}")
     @Results(id = "BlogDao", value = {
@@ -78,8 +81,8 @@ public interface BlogDao {
     /**
      * 根据博客分类查询博客信息
      *
-     * @param category
-     * @return
+     * @param category String
+     * @return List
      */
     @Select("select * from blog where category = #{category}")
     List<Blog> findBlogByCategory(String category);
