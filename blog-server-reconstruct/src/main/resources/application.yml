@@ -14,3 +14,5 @@ Spring:
 logging:
   pattern:
     console: '%d{HH:mm:ss.SSS} %clr(%-5level) ---  [%-15thread] %cyan(%-50logger{50}):%msg%n'
+  level:
+    org: off
