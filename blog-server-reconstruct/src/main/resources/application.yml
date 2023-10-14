@@ -8,6 +8,8 @@ Spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/personblog?serverTimezone=UTC
     type: com.alibaba.druid.pool.DruidDataSource
+  main:
+    allow-circular-references: true
 
 logging:
   pattern:
