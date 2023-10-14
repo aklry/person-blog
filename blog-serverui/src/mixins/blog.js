@@ -1,4 +1,5 @@
 import blogApi from "@/api/blog"
+import cateApi from "@/api/category"
 import moment from 'moment'
 const blog = {
     data() {
@@ -58,7 +59,8 @@ const blog = {
                     { required: true }
                 ]
             },
-            loading: false
+            loading: false,
+            categoryList: []
         }
     },
     methods: {
@@ -86,8 +88,9 @@ const blog = {
             this.pageNum = val
             this.http()
         },
-        http() {
+        async http() {
             this.loading = true
+            await this.getBlogCategory()
             blogApi.listAllBlog({
                 pageNum: this.pageNum,
                 pageSize: this.size
@@ -130,6 +133,10 @@ const blog = {
             } else {
                 this.$message.error(result.data.message)
             }
+        },
+        async getBlogCategory() {
+            const { data } = await cateApi.getAllCategory()
+            this.categoryList = data
         }
     },
     mounted() {
