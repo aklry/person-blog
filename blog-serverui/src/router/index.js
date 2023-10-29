@@ -1,10 +1,11 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import nProgress from 'nprogress'
-import api from '@/api/user'
 import 'nprogress/nprogress.css'
 import Login from '@/views/Login.vue'
 import store from '@/store'
+import vip from '@/util/data/vip.json'
+import admin from '@/util/data/admin.json'
 nProgress.configure({ showSpinner: false })
 Vue.use(VueRouter)
 //解决重复点击导航问题
@@ -64,13 +65,11 @@ router.beforeEach(async (to, from, next) => {
     if (routesData.length === 0) {
       const { role } = JSON.parse(localStorage.getItem('adminInfo'))
       if (role === '超级管理员') {
-        const { data } = await api.getRouter('/vip.json')
-        store.dispatch('SET_ROUTES', data)
-        getExactlyRouter(data)
+        await store.dispatch('SET_ROUTES', vip)
+        getExactlyRouter(vip)
       } else {
-        const { data } = await api.getRouter('/admin.json')
-        store.dispatch('SET_ROUTES', data)
-        getExactlyRouter(data)
+        await store.dispatch('SET_ROUTES', admin)
+        getExactlyRouter(admin)
       }
       next({ path: to.path })
     } else {

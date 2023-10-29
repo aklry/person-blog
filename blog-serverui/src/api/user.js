@@ -24,12 +24,6 @@ const user = {
      * @returns 
      */
     deleteUserById: params => request.post(url + base.deleteUser, params),
-    /**
-     * 
-     * @param {路由信息路径} params 
-     * @returns 不同管理员权限下的导航菜单
-     */
-    getRouter: params => request.get(params)
 }
 
 export default user
